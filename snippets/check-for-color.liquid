@@ -1,0 +1,38 @@
+{%- comment -%}
+  Check if the current option is a swatch option
+
+  Accepts:
+  - option: {Object} Product option (required)
+  - get: {String} Type of swatch option to check for (required)
+  - color_swatches_type: {String} Type of color swatches to check for (required)
+
+  Usage:
+  {% capture is_swatch_option %}
+    {% render 'check-for-color', option: option, get: 'is_swatch_option', color_swatches_type: color_swatches_type, color_translation_string: color_translation_string %}
+  {% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign option_name_handle_separator = option.name | handle | prepend: ',' | append: ','
+
+  if get == 'is_swatch_option'
+    if color_translation_string contains option_name_handle_separator and color_swatches_type == 'theme'
+      echo true
+    else
+      echo false
+    endif
+  elsif get == 'is_native_swatch_option'
+    assign result = false
+    if color_swatches_type == 'native'
+      for value in option.values
+        if value.swatch
+          assign result = true
+          break
+        endif
+      endfor
+    endif
+    echo result
+  else
+    echo false
+  endif
+-%}

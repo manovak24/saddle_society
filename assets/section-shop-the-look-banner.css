@@ -1,0 +1,172 @@
+/*================ "Shop the Look Banner" ================*/
+.stl-banner {
+  contain: paint;
+  background: var(--bg);
+  line-height: 1.25;
+}
+.stl-banner .wrapper--full .stl-banner__head {
+  padding: 0 var(--gutter-mobile);
+}
+@media only screen and (min-width: 1024px) {
+  .stl-banner .wrapper--full .stl-banner__head {
+    padding: 0 var(--gutter);
+  }
+}
+.stl-banner .product-grid-item__fieldset {
+  padding: 0;
+}
+
+.stl-banner__wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gutter-mobile);
+}
+.stl-banner__wrapper .quick__form {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .stl-banner__wrapper {
+    grid-template: "heading cta" "hero hero"/minmax(0, 3fr) minmax(0, 1fr);
+    gap: calc(var(--gutter) / 2);
+    align-items: center;
+  }
+  .stl-banner__head {
+    grid-area: heading;
+  }
+  .stl-banner__cta {
+    grid-area: cta;
+  }
+  .stl-banner__hero {
+    grid-area: hero;
+  }
+  .stl-banner__wrapper.text-center {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+}
+.stl-banner__wrapper--hero-only {
+  gap: 0;
+}
+
+.stl-banner__head {
+  --adjust-heading: var(--adjust-heading-desktop, var(--FONT-ADJUST-HEADING));
+  --adjust-body: var(--adjust-body-desktop);
+  width: 100%;
+  color: var(--text);
+}
+@media only screen and (max-width: 1023px) {
+  .stl-banner__head {
+    --adjust-heading: var(--adjust-heading-mobile, var(--FONT-ADJUST-HEADING));
+    --adjust-body: var(--adjust-body-mobile);
+  }
+}
+.stl-banner__head p {
+  margin-top: 0;
+}
+
+.stl-banner__heading {
+  margin-bottom: 0;
+}
+
+.stl-banner__rte p:last-child {
+  margin-bottom: 0;
+}
+
+.stl-banner__hero {
+  position: relative;
+}
+
+.stl-banner__image {
+  contain: paint;
+}
+
+.body--rounded-corners .wrapper--full-padded .stl-banner__image {
+  border-radius: var(--radius);
+}
+
+.stl-banner__quick-view-items {
+  position: relative;
+}
+
+.stl-banner__quick-view-item {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: -1;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.stl-banner__quick-view-item.is-active {
+  position: relative;
+  inset-block-start: auto;
+  inset-inline-start: auto;
+  z-index: unset;
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+/*================ Product card inline ================*/
+/* Shares the same class naming as ".product-grid-item" and makes use of the same styles */
+.product-grid-item.product-grid-item--inline {
+  display: grid;
+  gap: var(--inner, 15px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  text-align: left;
+}
+
+.product-grid-item--inline .product-grid-item__image {
+  margin: 0;
+  align-self: center;
+}
+.product-grid-item--inline .product-grid-item__info {
+  padding-block-start: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.product-grid-item--inline .product-grid-item__title,
+.product-grid-item--inline .product-grid-item__price,
+.product-grid-item--inline .product-cutline {
+  line-height: var(--line-height, 1);
+}
+.product-grid-item--inline .product-grid-item__swatch {
+  justify-content: flex-start;
+}
+.product-grid-item--inline .product-grid-item__quick-buy {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-block-start: auto;
+}
+.product-grid-item--inline .errors {
+  left: auto;
+  bottom: auto;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+}
+.body--rounded-corners .product-grid-item--inline .errors {
+  border-radius: var(--radius);
+}
+.product-grid-item--inline.soldout .quick__form {
+  display: block;
+}
+.product-grid-item--inline.soldout .btn--quick-buy {
+  border-color: transparent;
+  background-color: var(--text-alpha-10);
+  color: var(--text-alpha-50);
+  opacity: 1;
+  pointer-events: none;
+}
+.product-grid-item--inline:has(.product-grid-item__image--error) .errors {
+  animation: fadeInOutError 6s ease;
+}
+
+body:not(.no-outline) .product-grid-item__image:focus-within {
+  outline: -webkit-focus-ring-color auto 5px;
+}

@@ -1,0 +1,183 @@
+{%- comment -%}
+  Renders sibling product picker on the product page
+
+  Uses section/block context when rendered from a section (block).
+
+  Accepts:
+  - block: {Object} Section block object (required)
+  - is_quick_view: {Boolean} Rendered inside quick view (required)
+  - metaobjects: {Object} Product sibling metaobjects (required)
+
+  Usage:
+  {% render 'product-siblings' %}
+{%- endcomment -%}
+<!-- /snippets/product-siblings.liquid -->
+{%- liquid
+  assign animation_attributes = animation_attributes | default: ''
+  assign padding_bottom = block.settings.padding_bottom
+  assign show_siblings_images = settings.show_siblings_images
+
+  capture swatch_class
+    echo 'siblings__swatch'
+    case settings.color_swatches_product_style
+      when 'circle'
+        echo ' siblings__swatch--circle'
+      when 'rectangle'
+        echo ' siblings__swatch--rectangle'
+    endcase
+
+    unless show_siblings_images
+      echo ' siblings__swatch--colors'
+    else
+      echo ' siblings__swatch--image'
+    endunless
+  endcapture
+
+  assign sib_label = 'general.siblings.label' | t
+  assign block_label = block.settings.text | default: sib_label
+  if label_text_caps
+    assign block_label = block_label | replace: 'ß', '<span style="text-transform: lowercase;">ß</span>'
+  endif
+
+  assign siblings_found = false
+-%}
+
+{%- if metaobjects[settings.theme_siblings] != blank -%}
+  {%- paginate metaobjects[settings.theme_siblings].values by 250 -%}
+    {%- for entry in metaobjects[settings.theme_siblings].values -%}
+      {%- liquid
+        assign sibling_products = entry.product_list.value
+        assign has_siblings = sibling_products | has: 'id', product.id
+      -%}
+
+      {%- if has_siblings and sibling_products != blank -%}
+        {%- assign siblings_found = true -%}
+        <div
+          class="product__block"
+          style="--PBB: {{ padding_bottom }}px;"
+          {{ animation_attributes }}
+          {{ block.shopify_attributes }}
+        >
+          <fieldset class="siblings">
+            <legend class="radio__legend siblings__legend">
+              <span class="radio__legend__label label-typography">{{ block_label }}</span>
+            </legend>
+
+            {%- for sib_product in sibling_products limit: 50 -%}
+              {%- liquid
+                assign is_current_product = false
+                if sib_product.handle == product.handle
+                  assign is_current_product = true
+                endif
+
+                assign sib_swatch_class = swatch_class
+                if sib_product.available == false
+                  assign sib_swatch_class = sib_swatch_class | append: ' siblings__swatch--sold-out'
+                endif
+
+                unless show_siblings_images
+                  assign sib_swatch_class = sib_swatch_class | append: ' swatches swatch__button'
+                endunless
+
+                capture siblings_swatch
+                  render 'siblings-swatch-style', sib_product: sib_product, show_siblings_images: show_siblings_images
+                endcapture
+                assign siblings_swatch_parts = siblings_swatch | split: '|||'
+                assign swatch_style = siblings_swatch_parts[0]
+                assign swatch_name_handle = siblings_swatch_parts[1]
+                assign swatch_tooltip_label = siblings_swatch_parts[2]
+              -%}
+
+              <a
+                href="{{ sib_product.url }}"
+                class="{{ sib_swatch_class }}"
+                {% if is_quick_view %}
+                  data-sibling-handle="{{ sib_product.handle }}"
+                {% endif %}
+                {% if is_current_product %}
+                  aria-current="true"
+                {%- endif -%}
+              >
+                <tooltip-component
+                  class="siblings__button"
+                  data-tooltip="{{ swatch_tooltip_label }}"
+                  data-swatch="{{ swatch_name_handle }}"
+                  {% unless show_siblings_images %}
+                    style="{{ swatch_style }}"
+                  {% endunless %}
+                >
+                  {%- if show_siblings_images -%}
+                    {%- liquid
+                      assign image = sib_product.featured_media.preview_image
+                      assign image_widths = '44, 88'
+                      assign sizes = '44px'
+                      if settings.color_swatches_product_style == 'rectangle'
+                        assign image_widths = '56, 112'
+                        assign sizes = '56px'
+                      endif
+                      assign placeholder_index = forloop.index0 | modulo: 6 | plus: 1
+                      assign placeholder_svg = 'product-' | append: placeholder_index
+
+                      render 'image', image: image, widths: image_widths, sizes: sizes, cover: true, placeholder_svg: placeholder_svg, preload: true
+                    -%}
+                  {%- else -%}
+                    {%- if is_current_product and sib_product.available -%}
+                      <span class="icon icon-check"></span>
+                    {%- endif -%}
+                  {%- endif -%}
+
+                  <span class="visually-hidden">{{ swatch_tooltip_label }}</span>
+                </tooltip-component>
+              </a>
+            {%- endfor -%}
+          </fieldset>
+        </div>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endpaginate -%}
+{%- endif -%}
+
+{%- if siblings_found == false and request.design_mode -%}
+  <div
+    class="product__block"
+    style="--PBB: {{ padding_bottom }}px;"
+    {{ animation_attributes }}
+    {{ block.shopify_attributes }}
+  >
+    <fieldset class="siblings">
+      <legend class="radio__legend siblings__legend">
+        <span class="radio__legend__label label-typography">{{ block_label }}</span>
+      </legend>
+
+      {%- for i in (1..3) -%}
+        {%- liquid
+          capture value
+            cycle 'White', 'Grey', 'Black'
+          endcapture
+          assign placeholder_svg = 'product-' | append: forloop.index
+        -%}
+
+        <a
+          href="#!"
+          class="{{ swatch_class }}"
+          {% if forloop.first %}
+            aria-current="true"
+          {%- endif -%}
+        >
+          <tooltip-component class="siblings__button" data-tooltip="{{ value }}" data-swatch="{{ value }}">
+            {%- if show_siblings_images -%}
+              {%- render 'image', placeholder_svg: placeholder_svg, cover: true -%}
+            {%- else -%}
+              {%- if forloop.first -%}
+                <span class="icon icon-check"></span>
+              {%- endif -%}
+            {%- endif -%}
+
+            <span class="visually-hidden">{{ value }}</span>
+          </tooltip-component>
+        </a>
+      {%- endfor -%}
+    </fieldset>
+  </div>
+{%- endif -%}

@@ -1,0 +1,453 @@
+{% if settings.cart_type == 'drawer' and template.name != 'cart' %}
+  {%- render 'stylesheet', name: 'cart-drawer.css', async: true -%}
+
+  {%- render 'cart-drawer', section: section, cart: cart -%}
+
+  {%- if request.design_mode -%}
+    <script>
+      {
+        const getCartDrawer = () => document.querySelector('[data-cart-drawer]');
+        const getCartItems = () => document.querySelector('cart-items');
+
+        // Open drawer when section is selected
+        document.addEventListener('shopify:section:select', (event) => {
+          const cartDrawer = getCartDrawer();
+          const cartElement = getCartItems();
+
+          if (!cartDrawer || !cartElement) return;
+
+          // Check if this is our section
+          const sectionId = event.detail.sectionId;
+          if (sectionId !== '{{ section.id }}') return;
+
+          // Open the drawer
+          if (typeof cartElement.openCartDrawer === 'function') {
+            cartElement.openCartDrawer();
+            // Focus the drawer after opening
+            requestAnimationFrame(() => {
+              cartDrawer.focus();
+              cartDrawer.setAttribute('tabindex', '-1');
+            });
+          }
+        });
+
+        // Close drawer when section is deselected
+        document.addEventListener('shopify:section:deselect', (event) => {
+          const cartDrawer = getCartDrawer();
+          const cartElement = getCartItems();
+
+          if (!cartDrawer || !cartElement) return;
+
+          const sectionId = event.detail.sectionId;
+          if (sectionId !== '{{ section.id }}') return;
+
+          if (typeof cartElement.closeCartDrawer === 'function') {
+            cartElement.closeCartDrawer();
+          }
+        });
+
+        // Highlight block when selected and open drawer if closed
+        document.addEventListener('shopify:block:select', (event) => {
+          const cartDrawer = getCartDrawer();
+          const cartElement = getCartItems();
+          if (!cartDrawer || !cartElement) return;
+
+          const sectionId = event.detail.sectionId;
+          if (sectionId !== '{{ section.id }}') return;
+
+          const blockId = event.detail.blockId;
+          if (!blockId) return;
+
+          // Open drawer if it's closed
+          const isDrawerOpen = document.body.classList.contains('js-drawer-open-cart');
+          if (!isDrawerOpen && typeof cartElement.openCartDrawer === 'function') {
+            cartElement.openCartDrawer();
+            // Focus the drawer after opening
+            requestAnimationFrame(() => {
+              cartDrawer.focus();
+              cartDrawer.setAttribute('tabindex', '-1');
+            });
+          }
+
+          // Function to highlight and scroll to block
+          const highlightBlock = () => {
+            // Remove previous highlights
+            cartDrawer.querySelectorAll('[data-block-highlight]').forEach((el) => {
+              el.removeAttribute('data-block-highlight');
+            });
+
+            // Find the block element by data-block-id attribute
+            const blockElement = cartDrawer.querySelector(`[data-block-id="${blockId}"]`);
+            if (blockElement) {
+              blockElement.setAttribute('data-block-highlight', 'true');
+              // Scroll to block if drawer was just opened
+              if (!isDrawerOpen) {
+                requestAnimationFrame(() => {
+                  blockElement.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+                });
+              }
+            }
+          };
+
+          // Wait a bit for drawer to render if it was just opened
+          if (!isDrawerOpen) {
+            setTimeout(highlightBlock, 200);
+          } else {
+            highlightBlock();
+          }
+        });
+
+        // Remove highlight when block is deselected
+        document.addEventListener('shopify:block:deselect', (event) => {
+          const cartDrawer = getCartDrawer();
+          if (!cartDrawer) return;
+
+          const sectionId = event.detail.sectionId;
+          if (sectionId !== '{{ section.id }}') return;
+
+          const blockId = event.detail.blockId;
+          if (blockId) {
+            const blockElement = cartDrawer.querySelector(`[data-block-id="${blockId}"]`);
+            if (blockElement) {
+              blockElement.removeAttribute('data-block-highlight');
+            }
+          }
+        });
+
+        // Update drawer when block or section is updated
+        document.addEventListener('shopify:block:update', (event) => {
+          const cartDrawer = getCartDrawer();
+          const cartElement = getCartItems();
+
+          if (!cartDrawer || !cartElement) return;
+
+          const sectionId = event.detail.sectionId;
+          if (sectionId !== '{{ section.id }}') return;
+
+          // Re-render the drawer to show updated content
+          if (typeof cartElement.renderCartDrawer === 'function') {
+            cartElement.renderCartDrawer(false);
+          }
+        });
+
+        document.addEventListener('shopify:section:load', (event) => {
+          const cartDrawer = getCartDrawer();
+          const cartElement = getCartItems();
+
+          if (!cartDrawer || !cartElement) return;
+
+          const sectionId = event.detail.sectionId;
+          if (sectionId !== '{{ section.id }}') return;
+
+          // Re-render the drawer when section is loaded/updated
+          if (typeof cartElement.renderCartDrawer === 'function') {
+            cartElement.renderCartDrawer(false);
+          }
+        });
+      }
+    </script>
+
+    {%- style -%}
+      [data-block-highlight] {
+        outline: 2px solid rgba(var(--color-primary-rgb), 0.5);
+        outline-offset: 4px;
+      }
+    {%- endstyle -%}
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button settings"
+    },
+    {
+      "type": "select",
+      "id": "cart_button_color",
+      "label": "Button color",
+      "default": "btn--primary",
+      "options": [
+        {"label": "Primary", "value": "btn--primary"},
+        {"label": "Secondary", "value": "btn--secondary"},
+        {"label": "White", "value": "btn--white"},
+        {"label": "Black", "value": "btn--black"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cart_button_style",
+      "label": "Button style",
+      "default": "btn--solid-border",
+      "options": [
+        {"label": "Solid", "value": "btn--solid"},
+        {"label": "Outline", "value": "btn--outline"},
+        {"label": "Solid with border", "value": "btn--solid-border"},
+        {"label": "Soft", "value": "btn--soft"},
+        {"label": "Text", "value": "btn--text"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cart_button_size",
+      "label": "Size",
+      "default": "btn--medium",
+      "options": [
+        {"label": "Small", "value": "btn--small"},
+        {"label": "Medium", "value": "btn--medium"},
+        {"label": "Large", "value": "btn--large"}
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_text",
+          "label": "Title",
+          "default": "Cart"
+        },
+        {
+          "type": "select",
+          "label": "Heading style",
+          "id": "type_style",
+          "default": "font-heading",
+          "options": [
+            {"label": "Heading", "value": "font-heading"},
+            {"label": "Body", "value": "font-body"},
+            {"label": "Subheading", "value": "subheading-text"}
+          ]
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Heading size",
+          "default": 100,
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "cart-message",
+      "name": "Cart message",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "cart_custom_message_text",
+          "label": "Text",
+          "default": "<p>New customers save 10% with code <strong>WELCOME10<\/strong><\/p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "free-shipping-message",
+      "name": "Free shipping message",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "message",
+          "label": "Message",
+          "info": "Use ||amount|| to display progress towards free shipping.",
+          "default": "Spend ||amount|| more for FREE shipping."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "products",
+      "name": "Products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "upsell",
+      "name": "Upsell",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Use a dynamic source with the metafield 'theme.upsell_list' to allow product upsells to follow users into the cart. Use any other name to limit this feature to the product page. [Learn more](https://palo-alto.presidiocreative.com/products/blocks/upsell)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "discount-code",
+      "name": "Discount code",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "order-note",
+      "name": "Order note",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "gift-note",
+      "name": "Gift note",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "payment-icons",
+      "name": "Payment icons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_alignment",
+          "label": "Icon alignment",
+          "default": "text-left",
+          "options": [
+            {
+              "value": "text-left",
+              "label": "Left"
+            },
+            {
+              "value": "text-center",
+              "label": "Center"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_greyscale",
+          "label": "Enable greyscale for payment icons",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "shipping-estimate",
+      "name": "Shipping estimate",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_border_bottom",
+          "label": "Show bottom border",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "checkout-buttons",
+      "name": "Checkout buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enable_additional_buttons",
+          "label": "Enable additional checkout buttons",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart drawer",
+      "blocks": [
+        {
+          "type": "cart-message"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "free-shipping-message"
+        },
+        {
+          "type": "products"
+        },
+        {
+          "type": "upsell"
+        },
+        {
+          "type": "discount-code"
+        },
+        {
+          "type": "checkout-buttons"
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["aside"]
+  }
+}
+{% endschema %}

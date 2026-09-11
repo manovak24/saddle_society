@@ -1,0 +1,144 @@
+/*================ "Shop the look" ================*/
+.look {
+  --hotspot: var(--white);
+  contain: paint;
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  background: var(--bg);
+}
+@media only screen and (max-width: 767px) {
+  .look {
+    min-height: 0;
+    height: auto;
+    flex-wrap: wrap;
+  }
+}
+.look .flickity-prev-next-button {
+  background: var(--bg);
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .look .flickity-prev-next-button {
+    --flickity-btn-position: calc((var(--gutter-mobile) / 2 - var(--flickity-btn-size)) / 2);
+  }
+}
+@media only screen and (max-width: 767px) {
+  .look .flickity-prev-next-button {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .look .flickity-page-dots {
+    position: relative;
+    padding-block-start: var(--gutter-mobile);
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+  }
+}
+.look look-component {
+  width: 100%;
+}
+
+.look__text {
+  --adjust-heading: var(--adjust-heading-desktop, var(--FONT-ADJUST-HEADING));
+  --adjust-body: var(--adjust-body-desktop);
+  color: var(--text);
+}
+@media only screen and (max-width: 1023px) {
+  .look__text {
+    --adjust-heading: var(--adjust-heading-mobile, var(--FONT-ADJUST-HEADING));
+    --adjust-body: var(--adjust-body-mobile);
+  }
+}
+.look__text p {
+  margin-top: 0;
+}
+@media only screen and (max-width: 1023px) {
+  .text-left .look__text {
+    text-align: center;
+  }
+  .text-left .look__text hr {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.look__heading {
+  margin-bottom: 0;
+}
+
+.look__products {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .look__products {
+    display: block;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .look__products {
+    align-self: center;
+  }
+}
+
+.look__hero.aos-animate .look__image {
+  transition: transform 0.8s ease;
+  transform: scale(1.05);
+}
+
+.body--rounded-corners .look__hero-image {
+  border-radius: var(--radius);
+}
+
+.look__rte p:last-child {
+  margin-bottom: 0;
+}
+
+.look__image {
+  align-self: flex-start;
+}
+
+@media only screen and (min-width: 768px) {
+  .look__button {
+    display: none;
+  }
+}
+
+.look__button-cta {
+  display: flex;
+  justify-content: center;
+  grid-area: button;
+}
+
+@media only screen and (max-width: 767px) {
+  .look__button,
+  .look__button-cta a {
+    width: 100%;
+  }
+}
+
+.look__quick-view-items {
+  position: relative;
+}
+
+.look__quick-view-item {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: -1;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.look__quick-view-item.is-active {
+  position: relative;
+  inset-block-start: auto;
+  inset-inline-start: auto;
+  z-index: unset;
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}

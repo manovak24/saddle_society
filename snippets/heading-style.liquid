@@ -1,0 +1,17 @@
+{%- comment -%}
+  Outputs an inline style string for heading/text size based on type style and size.
+  Usage: {% capture style %}{% render 'heading-style', type_style: 'font-heading', size: size_var %}{% endcapture %}
+  Params: type_style (font-heading | font-body | subheading-text), size (decimal multiplier, e.g. 1.0 for 100%)
+{%- endcomment -%}
+{%- liquid
+  assign type_style = type_style | default: 'font-heading'
+  assign size = size | default: 1
+  assign type_adjustment = 'var(--adjust-heading)'
+  case type_style
+    when 'font-body'
+      assign type_adjustment = 'var(--adjust-body)'
+    when 'subheading-text'
+      assign type_adjustment = 'var(--adjust-subheading)'
+  endcase
+-%}
+style="--text-size: calc({{ type_adjustment }} * {{ size }})"

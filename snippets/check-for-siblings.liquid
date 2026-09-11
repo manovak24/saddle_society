@@ -1,0 +1,53 @@
+{%- comment -%}
+  Check if the current product is in siblings
+
+  Accepts:
+  - option_name_handle_separator: {String} The handle separator for the option name (required)
+  - get: {String} The type of check to perform (required)
+  - option: {Object} Product option (required for 'hide_sib_option')
+
+  Usage:
+  {% capture getter %}
+    {% render 'check-for-siblings', option: option, option_name_handle_separator: option_name_handle_separator, get: 'getter' %}
+  {% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign sib_options_count = 0
+  assign hide_sib_option = false
+  assign sib_translation = 'general.siblings.swatches' | t
+  assign sib_translation_string = sib_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ','
+
+  if sib_translation_string contains option_name_handle_separator
+    assign sib_options = product.options_with_values | where: 'name', option.name
+    assign sib_options_count = sib_options[0].values.size
+  endif
+  if sib_options_count == 1
+    assign hide_sib_option = true
+  endif
+
+  assign is_current_product_in_siblings = false
+
+  if metaobjects[settings.theme_siblings] != blank
+    paginate metaobjects[settings.theme_siblings].values by 250
+      for entry in metaobjects[settings.theme_siblings].values
+        assign sibling_products = entry.product_list.value
+        assign has_siblings = sibling_products | has: 'id', product.id
+
+        if has_siblings and sibling_products != blank
+          assign is_current_product_in_siblings = true
+          break
+        endif
+      endfor
+    endpaginate
+  endif
+
+  case get
+    when 'is_current_product_in_siblings'
+      echo is_current_product_in_siblings
+    when 'hide_sib_option'
+      echo hide_sib_option
+    else
+      echo false
+  endcase
+-%}

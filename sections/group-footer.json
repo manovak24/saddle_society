@@ -1,0 +1,95 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-block-0": {
+          "type": "logo",
+          "settings": {
+            "alignment": "text-left",
+            "image": "shopify:\/\/shop_images\/Vector_24.png",
+            "logo_width": 170,
+            "show_shop_name": false,
+            "text": "",
+            "column_width": "20"
+          }
+        },
+        "footer-block-2": {
+          "type": "link",
+          "settings": {
+            "alignment": "text-left",
+            "menu": "subscribe",
+            "title": "SUBSCRIBE",
+            "column_width": "15"
+          }
+        },
+        "link_dHVFpf": {
+          "type": "link",
+          "settings": {
+            "alignment": "text-left",
+            "menu": "companyq",
+            "title": "COMPANY",
+            "column_width": "15"
+          }
+        },
+        "85419cdc-79f6-42de-b7c4-aab7a9f33c50": {
+          "type": "link",
+          "settings": {
+            "alignment": "text-left",
+            "menu": "support",
+            "title": "SUPPORT",
+            "column_width": "15"
+          }
+        },
+        "newsletter_VXj84C": {
+          "type": "newsletter",
+          "settings": {
+            "alignment": "text-left",
+            "title": "SIGN UP FOR THE SADDLE SOCIETY",
+            "uppercase_heading": true,
+            "heading_size": 175,
+            "text": "<p>New boxes, western brands, rider stories, and what’s worth bringing into your western lifestyle.<\/p>",
+            "button_text": "",
+            "button_color": "btn--white",
+            "button_style": "btn--solid",
+            "column_width": "30"
+          }
+        }
+      },
+      "block_order": [
+        "footer-block-0",
+        "footer-block-2",
+        "link_dHVFpf",
+        "85419cdc-79f6-42de-b7c4-aab7a9f33c50",
+        "newsletter_VXj84C"
+      ],
+      "settings": {
+        "show_footer_wave": false,
+        "enable_footer_parallax": false,
+        "increase_border_radius": false,
+        "bottom_bar_alignment": "text-left",
+        "show_social_links": true,
+        "enable_follow_on_shop": false,
+        "show_payment_icons": false,
+        "enable_greyscale": false,
+        "bottom_menu": "",
+        "color_text": "#ffffff",
+        "color_scheme": "scheme-5",
+        "color_border": "#ffffff",
+        "show_locale_selector": false,
+        "show_locale_code": false,
+        "show_country_selector": false,
+        "show_country_name": false,
+        "show_country_flag": false,
+        "width": "wrapper",
+        "padding_top": 38,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

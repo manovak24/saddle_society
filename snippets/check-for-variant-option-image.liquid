@@ -1,0 +1,39 @@
+{%- comment -%}
+  Check if the current option has a variant option image
+
+  Accepts:
+  - option_name_handle_separator: {String} The handle separator for the option name (required)
+  - get: {String} The type of check to perform (required)
+
+  Usage:
+  {% capture getter %}
+    {% render 'check-for-variant-option-image', option_name_handle_separator: option_name_handle_separator, get: 'getter', color_translation_string: color_translation_string %}
+  {% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign has_variant_option_image = false
+  assign color_swatch_variant_image = false
+
+  if settings.show_variant_image
+    assign variant_option_image_translation = 'products.product.variant_option_image' | t
+    assign translation_string_variant_option_image = variant_option_image_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ','
+
+    if translation_string_variant_option_image contains option_name_handle_separator
+      assign has_variant_option_image = true
+    endif
+
+    if color_translation_string contains translation_string_variant_option_image
+      assign color_swatch_variant_image = true
+    endif
+  endif
+
+  case get
+    when 'has_variant_option_image'
+      echo has_variant_option_image
+    when 'color_swatch_variant_image'
+      echo color_swatch_variant_image
+    else
+      echo false
+  endcase
+-%}

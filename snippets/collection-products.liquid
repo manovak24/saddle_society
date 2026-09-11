@@ -1,0 +1,161 @@
+{%- comment -%}
+  Renders collection products
+
+  Accepts:
+  - collection_count: {Number} Number of products in the collection (required)
+  - carousel: {Boolean} Whether to show the carousel (required)
+  - items_container_tag: {String} Tag for the items container (required)
+  - enable_infinity_scroll: {Boolean} Whether to enable infinity scroll (required)
+  - section_template: {String} Template name (required)
+  - columns: {Number} Number of columns (required)
+  - columns_tablet: {Number} Number of columns on tablet (required)
+  - columns_mobile: {Number} Number of columns on mobile (required)
+  - size_mobile: {String} Size of the mobile grid (required)
+  - pagination_limit: {Number} Number of products per page (required)
+
+  Usage:
+  {% render 'collection-products', collection_count: collection_count, carousel: carousel, items_container_tag: items_container_tag, enable_infinity_scroll: enable_infinity_scroll, section_template: section_template, columns: columns, columns_tablet: columns_tablet, columns_mobile: columns_mobile, pagination_limit: pagination_limit %}
+{%- endcomment -%}
+
+{%- paginate collection.products by pagination_limit -%}
+  {%- assign promos_array = '' -%}
+
+  {%- if paginate.current_page == 1 -%}
+    {%- for block in section.blocks -%}
+      {%- capture current_promo -%}
+        {%- liquid
+          assign block_id = 'CollectionPromo--' | append: block.id
+          assign promo_collection = block.settings.collection
+          assign promo_position = block.settings.promo_position
+          assign promo_width = block.settings.width
+          assign promo_width_class = 'collection-promo--two-columns'
+          assign promo_order = promo_position | append: '-' | append: forloop.index
+
+          if promo_position < 10
+            assign promo_order = promo_order | prepend: '0'
+          endif
+
+          case promo_width
+            when 'full'
+              assign promo_width_class = 'collection-promo--full'
+              assign current_promo_width = columns
+            when 'half'
+              assign current_promo_width = 2
+            when 'auto'
+              assign promo_width_class = 'collection-promo--one-column'
+              assign current_promo_width = 1
+          endcase
+
+          render 'collection-promo', block: block, promo_position: promo_position, promo_width: promo_width, columns: columns, columns_mobile: columns_mobile
+        -%}
+      {%- endcapture -%}
+
+      {%- assign promos_array = promos_array
+        | append: promo_order
+        | append: '#promo_position#'
+        | append: promo_position
+        | append: '#promo_html#'
+        | append: current_promo
+        | append: '#block_id#'
+        | append: block_id
+        | append: '#promo_collection#'
+        | append: promo_collection
+        | append: '#promo_width#'
+        | append: current_promo_width
+        | append: '#promo_width_class#'
+        | append: promo_width_class
+        | append: '@@'
+      -%}
+    {%- endfor -%}
+
+    {%- assign promos_array = promos_array | split: '@@' | sort -%}
+  {%- endif -%}
+
+  {%- liquid
+    assign promos_take_space = 0
+    for promo in promos_array
+      if promo == ''
+        continue
+      endif
+      assign promo_position = promo | split: '#promo_position#' | last | split: '#promo_html#' | first | times: 1
+      assign promo_width = promo | split: '#promo_width#' | last | split: '#promo_width_class#' | first | times: 1
+      if promo_position <= pagination_limit
+        assign promos_take_space = promos_take_space | plus: promo_width
+      endif
+    endfor
+
+    assign empty_grid_items = pagination_limit | minus: promos_take_space | modulo: columns
+  -%}
+
+  <{{ items_container_tag }}
+    class="collection__products collection-items--{{ columns }} collection-items--{{ size_mobile }}"
+    data-collection-products
+  >
+    {%- if collection_count > 0 -%}
+      {%- if collection.products_count > 0 -%}
+        <div
+          class="grid grid--empty-items-{{ empty_grid_items }}"
+          {% if enable_infinity_scroll %}
+            id="AjaxinateLoop"
+            data-ajaxinate-id="{{ section.id }}"
+            data-columns-tablet="{{ columns_tablet }}"
+            data-columns-mobile="{{ columns_mobile }}"
+          {% endif %}
+        >
+          {%- render 'collection-promo-grid-items',
+            promos_array: promos_array,
+            collection: collection,
+            products: collection.products,
+            products_limit: pagination_limit,
+            onboarding: false,
+            carousel: carousel,
+            columns: columns,
+            columns_mobile: columns_mobile,
+            section_template: section_template,
+            section_width: section.settings.width,
+            enable_slider_mobile: section.settings.enable_slider_mobile
+          -%}
+        </div>
+      {%- else -%}
+        <div class="collection--no-results">
+          <p class="no-matches">
+            {{ 'collections.general.no_matches_by_filter' | t: products_count: collection.products_count }}
+          </p>
+        </div>
+      {%- endif -%}
+
+    {%- elsif collection.handle != 'all' and collection_count == 0 -%}
+      <div class="collection--no-results">
+        <p class="no-matches">{{ 'collections.general.no_matches' | t }}</p>
+        <a
+          href="{{ routes.root_url }}"
+          class="btn btn--primary btn--solid btn--advanced btn--advanced-width-height"
+        >
+          <hover-button></hover-button>
+          {{- 'general.404.button_text' | t -}}
+        </a>
+      </div>
+    {%- endif -%}
+
+    {%- if enable_infinity_scroll -%}
+      <div
+        class="pagination pagination--infinite"
+        id="AjaxinatePagination"
+        data-ajaxinate-id="{{ section.id }}"
+      >
+        {%- if paginate.next -%}
+          <div class="pagination__loading">
+            <a href="{{ paginate.next.url }}">
+              <span class="visually-hidden">{{ 'general.pagination.next' | t }}</span>
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+
+    {%- else -%}
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+    {%- endif -%}
+  </{{ items_container_tag }}>
+{%- endpaginate -%}

@@ -1,0 +1,46 @@
+{%- comment -%}
+  Check if the title contains a percent off string
+
+  Accepts:
+  - title: {String} The title to check (required)
+  - get: {String} The type of check to perform (required)
+
+  Usage:
+  {% capture getter %}
+    {% render 'check-for-percent-off-string', title: title, get: 'getter' %}
+  {% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign numbers_string = '0%,1%,2%,3%,4%,5%,6%,7%,8%,9%' | split: ','
+  assign has_percent_off = false
+  assign has_number_percent = false
+  for num in numbers_string
+    if title contains num
+      assign has_number_percent = true
+    endif
+  endfor
+
+  if has_number_percent
+    assign title = title | replace: '%', '<sup>%</sup>'
+
+    if title contains '<sup>%</sup> off' or title contains '<sup>%</sup> OFF' or title contains '<sup>%</sup> Off'
+      assign has_percent_off = true
+      assign title = title | replace: '<sup>%</sup> off', '<sup>%</sup> <small>off</small>'
+      assign title = title | replace: '<sup>%</sup> OFF', '<sup>%</sup> <small>OFF</small>'
+      assign title = title | replace: '<sup>%</sup> Off', '<sup>%</sup> <small>Off</small>'
+    endif
+  endif
+
+  case get
+    when 'classes'
+      if has_number_percent
+        echo ' hasnumberpercent'
+      endif
+      if has_percent_off
+        echo ' haspercentoff'
+      endif
+    when 'title'
+      echo title
+  endcase
+-%}

@@ -1,0 +1,128 @@
+{%- comment -%}
+  Renders empty cart state for both cart page and cart drawer
+
+  Accepts:
+  - animation_order: {Number} Starting order number for animations. Default: 1
+  - aos_anchor: {String} Anchor ID for AOS animations
+  - bg_color: {String} Background color for cart-empty-buttons (required for cart page markup)
+  - cart_button_color: {String} Cart button color class (required)
+  - cart_button_size: {String} Cart button size class (required)
+  - cart_button_style: {String} Cart button style class (required)
+
+  Usage:
+  {% render 'cart-empty', aos_anchor: aos_anchor, animation_order: animation_order, bg_color: bg_color %}
+{%- endcomment -%}
+
+{%- liquid
+  assign animations_enabled = settings.animations_enabled
+  assign animation_order = animation_order | default: 1
+  assign empty_cart_text = settings.empty_cart_text
+  assign empty_cart_text_style = settings.empty_cart_text_style
+  assign empty_cart_text_size = settings.empty_cart_text_size | times: 0.01
+  assign empty_cart_title_default = 'cart.general.title' | t
+  assign empty_cart_title = settings.empty_cart_title | default: empty_cart_title_default
+  assign empty_cart_title_style = settings.empty_cart_title_style
+  assign empty_cart_title_size = settings.empty_cart_title_size | times: 0.01
+-%}
+
+{%- capture title_style -%}
+  {%- render 'heading-style', type_style: empty_cart_title_style, size: empty_cart_title_size -%}
+{%- endcapture -%}
+{%- capture text_style -%}
+  {%- render 'heading-style', type_style: empty_cart_text_style, size: empty_cart_text_size -%}
+{%- endcapture -%}
+
+{%- capture cart_empty_drawer_markup -%}
+  <p
+    {% if animations_enabled %}
+      data-aos="hero"
+      data-aos-anchor="{{ aos_anchor }}"
+      data-aos-order="{{ animation_order }}"
+      {%- assign animation_order = animation_order | plus: 1 -%}
+    {% endif %}>
+    {{ 'cart.general.empty' | t }}
+  </p>
+
+  {% if empty_cart_text != blank %}
+    <h3 class="{{ empty_cart_text_style }}"
+      {% if animations_enabled %}
+        data-aos="hero"
+        data-aos-anchor="{{ aos_anchor }}"
+        data-aos-order="{{ animation_order }}"
+        {%- assign animation_order = animation_order | plus: 1 -%}
+      {% endif %}
+      {{ text_style }}>
+      {{ empty_cart_text }}
+    </h3>
+  {% endif %}
+
+  {%- render 'cart-empty-collections', aos_anchor: aos_anchor, animation_order: animation_order -%}
+{%- endcapture -%}
+
+{%- capture cart_empty_page_markup -%}
+  <div class="section__header">
+    <h1 class="section__heading h2 {{ empty_cart_title_style }}"
+      {{ title_style }}
+      {% if animations_enabled %}
+        data-aos="hero"
+        data-aos-anchor="{{ aos_anchor }}"
+        data-aos-order="{{ animation_order }}"
+        {%- assign animation_order = animation_order | plus: 1 -%}
+      {% endif %}>
+      {{- empty_cart_title -}}
+    </h1>
+
+    {%- if settings.show_spacer_lines -%}
+      <hr class="section__heading-line"
+        {% if animations_enabled %}
+          data-aos="hero"
+          data-aos-anchor="{{ aos_anchor }}"
+          data-aos-order="{{ animation_order }}"
+          {%- assign animation_order = animation_order | plus: 1 -%}
+        {% endif %}>
+    {%- endif -%}
+
+    <p
+      {% if animations_enabled %}
+        data-aos="hero"
+        data-aos-anchor="{{ aos_anchor }}"
+        data-aos-order="{{ animation_order }}"
+        {%- assign animation_order = animation_order | plus: 1 -%}
+      {% endif %}>
+      {{- 'cart.general.empty' | t -}}
+    </p>
+
+    {% if empty_cart_text != blank %}
+      <h3 class="{{ empty_cart_text_style }}"
+        {% if animations_enabled %}
+          data-aos="hero"
+          data-aos-anchor="{{ aos_anchor }}"
+          data-aos-order="{{ animation_order }}"
+          {%- assign animation_order = animation_order | plus: 1 -%}
+        {% endif %}
+        {{ text_style }}
+      >
+        {{- empty_cart_text -}}
+      </h3>
+    {% endif %}
+  </div>
+
+  {%- render 'cart-empty-collections', aos_anchor: aos_anchor, animation_order: animation_order -%}
+
+  {%- render 'cart-empty-buttons',
+    bg_color: bg_color,
+    aos_anchor: aos_anchor,
+    animation_order: animation_order,
+    cart_button_style: cart_button_style,
+    cart_button_size: cart_button_size,
+    cart_button_color: cart_button_color
+  -%}
+
+  {%- render 'cart-empty-message', aos_anchor: aos_anchor, animation_order: animation_order -%}
+{%- endcapture -%}
+
+{%- if template.name == 'cart' -%}
+  {{ cart_empty_page_markup }}
+{%- else -%}
+  {{ cart_empty_drawer_markup }}
+{%- endif -%}

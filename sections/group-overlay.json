@@ -1,0 +1,73 @@
+{
+  "type": "aside",
+  "name": "Overlay",
+  "sections": {
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "blocks": {
+        "cart-message-0": {
+          "type": "cart-message",
+          "settings": {}
+        },
+        "title-0": {
+          "type": "title",
+          "settings": {
+            "show_border_bottom": true
+          }
+        },
+        "free-shipping-message-0": {
+          "type": "free-shipping-message",
+          "settings": {
+            "show_border_bottom": true
+          }
+        },
+        "products-0": {
+          "type": "products",
+          "settings": {
+            "show_border_bottom": true
+          }
+        },
+        "upsell-0": {
+          "type": "upsell",
+          "settings": {}
+        },
+        "discount-code-0": {
+          "type": "discount-code",
+          "settings": {}
+        },
+        "checkout-buttons-0": {
+          "type": "checkout-buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "cart-message-0",
+        "title-0",
+        "free-shipping-message-0",
+        "products-0",
+        "upsell-0",
+        "discount-code-0",
+        "checkout-buttons-0"
+      ],
+      "settings": {}
+    },
+    "popup": {
+      "type": "popup",
+      "blocks": {
+        "popup-0": {
+          "type": "popup-with-image",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "popup-0"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "cart-drawer",
+    "popup"
+  ]
+}

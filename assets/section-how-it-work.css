@@ -1,0 +1,225 @@
+/*================ "How it works" ================*/
+.how-it-work {
+  --radius: 0px;
+  --line-fill: 0;
+  position: relative;
+  width: 100%;
+  background: var(--bg);
+    --line-end-offset: -11px; 
+}
+
+.how-it-work .how-it-work_inner {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 90px;
+}
+
+.how-it-work .how-it-work_content {
+  width: calc(55% - 45px);
+}
+
+.how-it-work .how-it-work_badge {
+  margin-bottom: 20px;
+}
+
+.how-it-work .how-it-work_heading {
+  margin: 0 0 16px;
+  color: var(--text);
+  --adjust-heading: calc(var(--FONT-ADJUST-HEADING) * 1.5);
+  letter-spacing: 1px;
+  font-weight: 500;
+  max-width: 450px;
+  width: 100%;
+}
+
+.how-it-work .how-it-work_heading p {
+  margin: 0;
+}
+
+.how-it-work .how-it-work_text {
+  margin: 0 0 32px;
+    max-width: 470px;
+    color: #4E544B;
+  line-height: 1.5;
+}
+
+.how-it-work .how-it-work_text p {
+  margin: 0;
+}
+
+.how-it-work .how-it-work_image {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius, 0px);
+}
+
+.how-it-work .how-it-work_steps {
+  position: relative;
+  width: calc(45% - 45px);
+  display: grid;
+  grid-template-columns: max-content max-content 1fr;
+  grid-template-rows: repeat(var(--steps-count, 1), auto);
+  column-gap: 40px;
+}
+
+.how-it-work .how-it-work_line {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / var(--steps-count);
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  top: 16px;
+}
+
+.how-it-work .how-it-work_line-track,
+.how-it-work .how-it-work_line-fill {
+  position: absolute;
+  top: 2px;
+  bottom: var(--line-end-offset);
+  left: 50%;
+  width: 2px;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.how-it-work .how-it-work_line-track {
+  background: #D9D9D9;
+}
+
+.how-it-work .how-it-work_line-fill {
+  background: var(--text);
+  transform: translateX(-50%) scaleY(var(--line-fill));
+  transform-origin: top center;
+  transition: transform 0.1s linear;
+}
+
+.how-it-work .how-it-work_step {
+  display: contents;
+}
+
+.how-it-work .how-it-work_step-number {
+  grid-column: 1;
+  grid-row: var(--row);
+  color: #DBD1BF;
+  --adjust-heading: calc(var(--FONT-ADJUST-HEADING) * 1.5);
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.how-it-work .how-it-work_step-marker {
+  grid-column: 2;
+  grid-row: var(--row);
+  display: flex;
+  justify-content: center;
+  width: 24px;
+  color: #D9D9D9;
+  transition: color 0.2s ease, opacity 0.2s ease;
+    align-self: start;
+        padding-top: 16px;
+}
+
+.how-it-work .how-it-work_step-marker-icon {
+  width: 22px;
+  height: 22px;
+  position: relative;
+}
+
+.how-it-work .how-it-work_step-marker.is-filled {
+  color: var(--text);
+}
+
+.how-it-work .how-it-work_step-content {
+  grid-column: 3;
+  grid-row: var(--row);
+}
+
+.how-it-work .how-it-work_step-heading {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.how-it-work .how-it-work_step-text {
+    margin: 0;
+    line-height: 1.5;
+    color: #4E544B;
+}
+
+.how-it-work .how-it-work_step-text p {
+  margin: 0;
+}
+.how-it-work .how-it-work_step .how-it-work_step-content{
+      padding-bottom: 50px;
+}
+.how-it-work .how-it-work_steps .how-it-work_step:last-child .how-it-work_step-content{
+      padding-bottom: 0;
+}
+
+/*================ Media queries ================*/
+@media only screen and (min-width: 768px) {
+  .how-it-work .how-it-work_inner--image-right {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .how-it-work .how-it-work_step-marker{
+    padding-top: 12px;
+  }
+  .how-it-work .how-it-work_line{
+    top: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .how-it-work .how-it-work_inner {
+    gap: 40px;
+  }
+  .how-it-work .how-it-work_content {
+    width: calc(52% - 20px);
+  }
+  .how-it-work .how-it-work_steps{
+        width: calc(48% - 20px);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .how-it-work .how-it-work_inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .how-it-work .how-it-work_steps {
+    column-gap: 18px;
+    width: 100%;
+  }
+  .how-it-work .how-it-work_content{
+        width: 100%;
+  }
+  .how-it-work .how-it-work_text{
+        margin: 0 0 25px;
+        font-size: 14px;
+  }
+  .how-it-work .how-it-work_step-heading{
+        font-size: 22px;
+  }
+  .how-it-work .how-it-work_step-text{
+    font-size: 14px;
+  }
+  .how-it-work .how-it-work_step-marker-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .how-it-work .how-it-work_step .how-it-work_step-content {
+    padding-bottom: 32px;
+  }
+    .how-it-work .how-it-work_step-marker{
+    padding-top: 8px;
+  }
+  .how-it-work .how-it-work_line{
+    top: 8px;
+  }
+}

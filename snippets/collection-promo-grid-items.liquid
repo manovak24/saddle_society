@@ -1,0 +1,289 @@
+{%- comment -%}
+  Renders collection grid items (products or placeholders) with promo blocks interspersed.
+
+  Accepts:
+  - promos_array: {Array} Sorted array of promo data strings
+  - collection: {Object} Collection for product loop and promo collection filter
+  - products: {Array} Optional. Products array to iterate. Falls back to `collection.products`.
+  - products_limit: {Number} Max items to show
+  - onboarding: {Boolean} If true, render placeholders; if false, render products
+  - carousel: {Boolean} Carousel layout
+  - columns: {Number} Desktop columns
+  - columns_mobile: {Number} Mobile columns
+  - section_template: {String} Template name for intersection ratio
+  - section_width: {String} Section width setting
+  - enable_slider_mobile: {Boolean} Enable mobile slider
+
+  Usage:
+  {% render 'collection-promo-grid-items',
+    promos_array: promos_array,
+    collection: collection,
+    products_limit: products_limit,
+    onboarding: false,
+    carousel: carousel,
+    columns: columns,
+    columns_mobile: columns_mobile,
+    section_template: section_template,
+    section_width: section_width,
+    enable_slider_mobile: enable_slider_mobile
+  %}
+{%- endcomment -%}
+
+{%- liquid
+  assign animations_enabled = settings.animations_enabled
+  assign tablet_counter = 1
+  assign mobile_counter = 1
+  if products == null
+    assign products = collection.products
+  endif
+  if promos_array.size > 0
+    assign counter_grid = 1
+    assign counter_delay = 0
+    assign added_promos_index = ''
+    assign items_on_row_remaining = columns
+  endif
+-%}
+
+{%- if promos_array.size > 0 -%}
+  {%- for i in (1..products_limit) -%}
+    {%- unless onboarding -%}
+      {%- assign current_product = products[forloop.index0] -%}
+      {%- if current_product == blank -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- if onboarding -%}
+      {%- capture placeholder_index -%}{%- cycle 1, 2, 3, 5, 6 -%}{%- endcapture -%}
+    {%- endif -%}
+    {%- if carousel -%}
+      {%- assign animation_delay = forloop.index0 -%}
+    {%- else -%}
+      {%- assign animation_delay = forloop.index0 | modulo: columns | times: 1 -%}
+    {%- endif -%}
+
+    {%- for promo in promos_array -%}
+      {%- liquid
+        if promo == ''
+          continue
+        endif
+
+        assign promo_index = forloop.index
+        assign current_promo_markup = promo | split: '#promo_html#' | last | split: '#block_id#' | first
+        assign block_id = promo | split: '#block_id#' | last | split: '#promo_collection#' | first
+        assign promo_collection = promo | split: '#promo_collection#' | last | split: '#promo_width#' | first
+        assign promo_position = promo | split: '#promo_position#' | last | split: '#promo_html#' | first | times: 1
+        assign promo_width = promo | split: '#promo_width#' | last | split: '#promo_width_class#' | first | times: 1
+        assign promo_width_class = promo | split: '#promo_width_class#' | last
+        assign promo_index_tag = '@' | append: promo_index | append: '@'
+        assign block_class = 'collection-promo' | append: ' ' | append: promo_width_class
+        assign block_tablet_class = ''
+        assign promo_tablet_class = 'collection-promo--'
+        assign tablet_class = 'tablet-grid'
+        assign tablet_even_class = tablet_class | append: ' collection-promo--grid-even'
+        assign tablet_second_class = ' collection-promo--grid-second'
+        assign tablet_third_class = ' collection-promo--grid-third'
+        assign tablet_full_class = 'tablet-full'
+        assign animation_delay = counter_delay | modulo: columns | times: 1
+
+        if carousel
+          assign block_class = block_class | append: ' carousel__item'
+
+          case columns
+            when 2
+              assign block_class = block_class | append: ' one-half'
+            when 3
+              assign block_class = block_class | append: ' one-third'
+            when 4
+              assign block_class = block_class | append: ' one-quarter'
+          endcase
+        else
+          assign block_class = block_class | append: ' grid__item'
+        endif
+
+        if enable_slider_mobile
+          case columns_mobile
+            when 1
+              assign block_class = block_class | append: ' mobile--one-whole'
+            when 2
+              assign block_class = block_class | append: ' mobile--one-half'
+          endcase
+        endif
+      -%}
+
+      {%- if promo_position <= counter_grid -%}
+        {%- unless added_promos_index contains promo_index_tag -%}
+          {%- if promo_collection == empty or promo_collection == collection.handle -%}
+            {%- liquid
+              if items_on_row_remaining < promo_width
+                assign animation_delay = 0
+                assign counter_delay = 0
+                assign items_on_row_remaining = columns
+              endif
+
+              assign promo_even = mobile_counter | modulo: 2
+              assign promo_second = tablet_counter | plus: 1 | modulo: 3
+              assign promo_third = tablet_counter | modulo: 3
+              assign counter_grid = counter_grid | plus: promo_width
+              assign items_on_row_remaining = items_on_row_remaining | minus: promo_width
+              assign counter_delay = counter_delay | plus: promo_width
+              assign block_tablet_class = tablet_class
+
+              case promo_width
+                when 1
+                  if promo_even == 0
+                    assign block_tablet_class = tablet_even_class
+                  endif
+
+                  if columns > 2
+                    if promo_second == 0
+                      assign block_tablet_class = block_tablet_class | append: tablet_second_class
+                    elsif promo_third == 0
+                      assign block_tablet_class = block_tablet_class | append: tablet_third_class
+                    endif
+                  endif
+
+                  assign tablet_counter = tablet_counter | plus: 1
+                  assign mobile_counter = mobile_counter | plus: 1
+
+                when columns
+                  assign counter_delay = 0
+                  assign items_on_row_remaining = columns
+
+                when 2, columns
+                  assign counter_increase_mobile = 2
+                  assign block_tablet_class = tablet_full_class
+
+                  if promo_even == 0
+                    assign counter_increase_mobile = 1
+                    assign block_tablet_class = tablet_even_class
+                  endif
+
+                  if columns > 2
+                    if promo_second == 0
+                      assign counter_increase_tablet = 2
+                      assign block_tablet_class = block_tablet_class | append: tablet_second_class
+                    elsif promo_third == 0
+                      assign counter_increase_tablet = 1
+                      assign block_tablet_class = block_tablet_class | append: tablet_third_class
+                    else
+                      if promo_width == 2
+                        assign counter_increase_tablet = 2
+                      else
+                        assign counter_increase_tablet = 3
+                      endif
+                    endif
+                  endif
+
+                  assign tablet_counter = tablet_counter | plus: counter_increase_tablet
+                  assign mobile_counter = mobile_counter | plus: counter_increase_mobile
+              endcase
+
+              assign promo_tablet_class = promo_tablet_class | append: block_tablet_class
+              assign added_promos_index = added_promos_index | append: '@' | append: promo_index | append: '@#'
+
+              assign intersection_ratio = '0.3'
+              assign promo_grid_index = counter_grid | minus: 1
+              if promo_grid_index <= columns and section_template == 'collection'
+                assign intersection_ratio = '0.15'
+              endif
+            -%}
+            <div
+              id="{{ block_id }}"
+              class="{{ block_class }} {{ promo_tablet_class }}"
+              {% if carousel %}
+                data-slide
+              {% endif %}
+              {% if animations_enabled %}
+                data-aos-intersection="{{ intersection_ratio }}"
+              {% endif %}
+              data-promo
+            >
+              {{ current_promo_markup }}
+            </div>
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endif -%}
+
+      {%- liquid
+        assign mod = counter_delay | modulo: columns
+        if mod < 1
+          assign items_on_row_remaining = columns
+          assign counter_delay = 0
+        endif
+      -%}
+    {%- endfor -%}
+
+    {%- liquid
+      assign animation_delay = counter_delay | modulo: columns | times: 1
+      assign counter_delay = counter_delay | plus: 1
+      assign counter_grid = counter_grid | plus: 1
+      assign items_on_row_remaining = items_on_row_remaining | minus: 1
+
+      assign intersection_ratio = '0.3'
+      assign item_grid_index = counter_grid | minus: 1
+      if item_grid_index <= columns and section_template == 'collection'
+        assign intersection_ratio = '0.15'
+      endif
+
+      if onboarding
+        capture placeholder_index
+          cycle 1, 2, 3, 5, 6
+        endcapture
+        render 'product-grid-item--onboarding', columns_mobile: columns_mobile, carousel: carousel, placeholder_index: placeholder_index, index: forloop.index0, animation_delay: animation_delay, columns: columns, intersection_ratio: intersection_ratio
+      else
+        render 'product-grid-item', product: current_product, animation_delay: animation_delay, tablet_counter: tablet_counter, mobile_counter: mobile_counter, carousel: carousel, columns: columns, section_width: section_width, item_index: forloop.index0, intersection_ratio: intersection_ratio
+      endif
+
+      assign tablet_counter = tablet_counter | plus: 1
+      assign mobile_counter = mobile_counter | plus: 1
+
+      assign mod = counter_delay | modulo: columns
+      if mod < 1
+        assign items_on_row_remaining = columns
+        assign counter_delay = 0
+      endif
+    -%}
+  {%- endfor -%}
+{%- elsif onboarding -%}
+  {%- for i in (1..products_limit) -%}
+    {%- capture placeholder_index -%}{%- cycle 1, 2, 3, 5, 6 -%}{%- endcapture -%}
+    {%- if carousel -%}
+      {%- assign animation_delay = forloop.index0 -%}
+    {%- else -%}
+      {%- assign animation_delay = forloop.index0 | modulo: columns | times: 1 -%}
+    {%- endif -%}
+
+    {%- assign placeholder_index = placeholder_index | plus: 0 -%}
+    {%- render 'product-grid-item--onboarding',
+      columns: columns,
+      columns_mobile: columns_mobile,
+      carousel: carousel,
+      placeholder_index: placeholder_index,
+      index: forloop.index0,
+      animation_delay: animation_delay
+    -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- liquid
+    for product in products limit: products_limit
+      if carousel
+        assign animation_delay = forloop.index0
+      else
+        assign animation_delay = forloop.index0 | modulo: columns | times: 1
+      endif
+
+      assign intersection_ratio = '0.3'
+      assign item_grid_index = forloop.index
+      if item_grid_index <= columns and section_template == 'collection'
+        assign intersection_ratio = '0.15'
+      endif
+
+      render 'product-grid-item', columns: columns, columns_mobile: columns_mobile, product: product, carousel: carousel, animation_delay: animation_delay, tablet_counter: tablet_counter, mobile_counter: mobile_counter, section_width: section_width, item_index: forloop.index0, intersection_ratio: intersection_ratio
+      unless carousel
+        assign tablet_counter = tablet_counter | plus: 1
+        assign mobile_counter = mobile_counter | plus: 1
+      endunless
+    endfor
+  -%}
+{%- endif -%}

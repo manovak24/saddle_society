@@ -1,0 +1,48 @@
+{%- comment -%}
+  Calculates and outputs countdown expiration date
+
+  Accepts:
+  - block: {Object} Block object with settings (required)
+
+  Usage:
+  {%- capture expiration_date -%}
+    {%- render 'countdown-expiration-date', block: block -%}
+  {%- endcapture -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign end_date = block.settings.end_date
+  assign end_time = block.settings.end_time
+  assign period = block.settings.period
+
+  assign end_time_hour = end_time | split: ':' | first | times: 1
+  assign end_time_minute = end_time | split: ':' | last
+
+  echo end_date
+  echo ' '
+  case period
+    when 'am'
+      case end_time_hour
+        when 0, 12
+          echo '00' | append: ':' | append: end_time_minute
+        else
+          echo end_time
+      endcase
+
+    when 'pm'
+      capture hour
+        case end_time_hour
+          when 0, 12
+            echo '12'
+          else
+            if end_time_hour < 12
+              echo end_time_hour | plus: 12
+            else
+              echo end_time_hour
+            endif
+        endcase
+      endcapture
+
+      echo hour | append: ':' | append: end_time_minute
+  endcase
+-%}

@@ -1,0 +1,48 @@
+{%- comment -%}
+  Renders list of recently viewed products in grid layout
+
+  Uses section/block context when rendered from a section (block, section).
+
+  Accepts:
+  - block: {Object} Section block object (required)
+  - columns: {Number} Desktop column count (required)
+  - columns_mobile: {Number} Mobile column count (required)
+  - container_class: {String} The class of the container
+  - enable_carousel: {Boolean} Determines the section layout
+  - layout_class: {String} The classes of the layout components
+  - limit: {Integer} A maxmimum products to show
+  - product: {Object} product (required)
+  - product_recently_minimum: {Integer} A minimum products to show
+
+  Usage:
+  {% render 'products-recently-viewed', product: product, product_recently_minimum: product_recently_minimum %}
+{%- endcomment -%}
+<!-- /snippets/products-recently-viewed.liquid -->
+{%- liquid
+  assign enable_carousel = enable_carousel | default: false
+  assign layout_tag = 'div'
+  if enable_carousel
+    assign layout_tag = 'grid-slider'
+  endif
+-%}
+
+<script src="{{ 'recently-viewed.js' | asset_url }}" defer="defer"></script>
+
+<recently-viewed
+  class="{{ container_class }}"
+  id="RecentlyViewed-{{ section.id }}"
+  data-limit="{{ limit }}"
+  data-minimum="{{ product_recently_minimum }}"
+  {% if block %}
+    {{- block.shopify_attributes -}}
+  {% endif %}
+>
+  <{{ layout_tag }}
+    class="{{ layout_class }}"
+    id="recently-viewed-products-{{ section.id }}"
+    tabindex="0"
+    role="group"
+    data-columns="{{ columns }}"
+    data-column-mobile="{{ columns_mobile }}"
+  ></{{ layout_tag }}>
+</recently-viewed>

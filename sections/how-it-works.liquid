@@ -1,0 +1,304 @@
+{%- liquid
+  assign color_scheme = 'color-' | append: section.settings.color_scheme
+  assign selected_color_scheme = section.settings.color_scheme | strip
+  assign scheme_bg_color = settings.color_schemes[selected_color_scheme].settings.section_bg
+
+  assign badge_text = section.settings.badge_text
+  assign heading = section.settings.heading
+  assign text = section.settings.text
+  assign image = section.settings.image
+  assign content_position = section.settings.content_position
+  assign increase_border_radius = section.settings.increase_border_radius
+  assign section_width = section.settings.section_width
+
+  assign unique = section.id
+  assign id = 'HowItWork--' | append: section.id
+  assign selector_id = '#' | append: id
+  assign animation_anchor = selector_id
+  assign animations_enabled = settings.animations_enabled
+  assign animation_delay = 150
+
+  assign steps_count = 0
+  for block in section.blocks
+    if block.type == 'step'
+      assign steps_count = steps_count | plus: 1
+    endif
+  endfor
+
+  assign items_layout_class = 'how-it-work_inner--image-left'
+  if content_position == 'right'
+    assign items_layout_class = 'how-it-work_inner--image-right'
+  endif
+-%}
+
+{%- render 'stylesheet', name: 'section-how-it-work.css', async: true -%}
+
+{%- style -%}
+  {{ selector_id }} {
+    --PT: {{ section.settings.padding_top }}px;
+    --PB: {{ section.settings.padding_bottom }}px;
+  }
+
+  {% if increase_border_radius -%}
+    {{ selector_id }} .how-it-work_image{
+      --radius: 34px;
+    }
+  {%- endif %}
+{%- endstyle -%}
+
+<section id="{{ id }}"
+  class="section-padding how-it-work {{ color_scheme }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="how-it-work">
+  <div class="how-it-work_wrapper">
+    <div class="{{ section_width }}{% if section_width != 'wrapper--full' %} wrapper--no-full{% endif %}">
+      <div class="how-it-work_inner {{ items_layout_class }}">
+
+        {%- comment -%} Left column: badge / heading / text / image {%- endcomment -%}
+        <div class="how-it-work_content">
+          {%- if badge_text != blank -%}
+            <div class="how-it-work_badge subheading-text"
+              {% if animations_enabled %}
+                data-aos="fade-up"
+                data-aos-anchor="{{ animation_anchor }}"
+                data-aos-delay="{{ animation_delay }}"
+                {%- assign animation_delay = animation_delay | plus: 150 -%}
+              {% endif %}>
+              {{ badge_text }}
+            </div>
+          {%- endif -%}
+
+          {%- if heading != blank -%}
+            <div class="how-it-work_heading h2"
+              {% if animations_enabled %}
+                data-aos="fade-up"
+                data-aos-anchor="{{ animation_anchor }}"
+                data-aos-delay="{{ animation_delay }}"
+                {%- assign animation_delay = animation_delay | plus: 150 -%}
+              {% endif %}>
+              {{ heading }}
+            </div>
+          {%- endif -%}
+
+          {%- if text != blank -%}
+            <div class="how-it-work_text rte"
+              {% if animations_enabled %}
+                data-aos="fade-up"
+                data-aos-anchor="{{ animation_anchor }}"
+                data-aos-delay="{{ animation_delay }}"
+                {%- assign animation_delay = animation_delay | plus: 150 -%}
+              {% endif %}>
+              {{ text }}
+            </div>
+          {%- endif -%}
+
+          {%- if image != blank -%}
+            {%- capture image_attributes -%}
+              {% if animations_enabled %}
+                data-aos="fade"
+                data-aos-anchor="{{ animation_anchor }}"
+                data-aos-delay="{{ animation_delay }}"
+              {% endif %}
+            {%- endcapture -%}
+
+            <div class="how-it-work_image">
+              {%- render 'image-fill',
+                is_background: false,
+                img_object: image,
+                sizes: '(min-width: 1024px) 45vw, 100vw',
+                image_attributes: image_attributes,
+                classes: 'how-it-work_image-bg',
+                placeholder_svg: 'lifestyle-1'
+              -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Right column: numbered steps with scroll-fill timeline {%- endcomment -%}
+        {%- if steps_count > 0 -%}
+          <div class="how-it-work_steps"
+            data-how-it-work-line
+            style="--steps-count: {{ steps_count }};">
+
+            <div class="how-it-work_line" aria-hidden="true">
+              <span class="how-it-work_line-track"></span>
+              <span class="how-it-work_line-fill" data-line-fill></span>
+            </div>
+
+            {%- assign step_index = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'step' -%}
+                {%- assign step_index = step_index | plus: 1 -%}
+                {%- capture padded_index -%}{{ step_index | prepend: '00' | slice: -2, 2 }}{%- endcapture -%}
+
+                <div class="how-it-work_step"
+                  id="HowItWork--{{ block.id }}"
+                  style="--row: {{ step_index }};"
+                  {{ block.shopify_attributes }}>
+                  <div class="how-it-work_step-number h2">{{ padded_index }}</div>
+
+                  <div class="how-it-work_step-marker" data-step-marker aria-hidden="true">
+                    <svg class="how-it-work_step-marker-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <path d="M11 0L13.971 8.029L22 11L13.971 13.971L11 22L8.029 13.971L0 11L8.029 8.029L11 0Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+
+                  <div class="how-it-work_step-content"
+                    {% if animations_enabled %}
+                      data-aos="fade-up"
+                      data-aos-anchor="{{ animation_anchor }}"
+                      data-aos-delay="{{ animation_delay }}"
+                      {%- assign animation_delay = animation_delay | plus: 150 -%}
+                    {% endif %}>
+                    {%- if block.settings.heading != blank -%}
+                      <h3 class="how-it-work_step-heading">{{ block.settings.heading }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                      <div class="how-it-work_step-text rte">{{ block.settings.text }}</div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How it works",
+  "class": "how-it-work-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Image position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "increase_border_radius",
+      "label": "Increase border radius",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Steps"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>How it works</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Choose your box, tell us about you, and receive a premium selection of products every month.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "default": "wrapper",
+      "options": [
+        { "value": "wrapper--full", "label": "Full width" },
+        { "value": "wrapper--full-padded", "label": "Full width padded" },
+        { "value": "wrapper", "label": "Page width" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Choose your box"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Select your box and complete checkout. Skip or cancel anytime.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How it works",
+      "category": "Storytelling",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside", "footer"]
+  }
+}
+{% endschema %}

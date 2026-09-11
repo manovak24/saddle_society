@@ -1,0 +1,219 @@
+{%- comment -%}
+  Custom Fonts
+
+  Usage:
+    {% render 'custom-fonts', output: 'preload' %}   → <link rel="preload"> tags (in <head>)
+    {% render 'custom-fonts', output: 'css' %}       → @font-face + CSS variable overrides (in {% style %} block)
+
+  Settings format:
+  filename.woff2|Font Display Name|weight|style|format
+
+  Supported slots: heading, subheading, base, nav, btn
+{%- endcomment -%}
+
+{%- liquid
+  assign heading_font_custom = nil
+  assign subheading_font_custom = nil
+  assign base_font_custom = nil
+  assign nav_font_custom = nil
+  assign btn_font_custom = nil
+
+  if settings.type_header_font_custom and settings.type_header_font_list == 'custom'
+    assign heading_font_custom = settings.type_header_font_custom | split: '|'
+    assign heading_font_custom_filename = heading_font_custom[0]
+    assign heading_font_custom_name = heading_font_custom[1]
+    assign heading_font_custom_weight = heading_font_custom[2]
+    assign heading_font_custom_style = heading_font_custom[3]
+    assign heading_font_custom_format = heading_font_custom[4]
+  endif
+
+  if settings.type_subheading_font_custom and settings.type_subheading_font_list == 'custom'
+    assign subheading_font_custom = settings.type_subheading_font_custom | split: '|'
+    assign subheading_font_custom_filename = subheading_font_custom[0]
+    assign subheading_font_custom_name = subheading_font_custom[1]
+    assign subheading_font_custom_weight = subheading_font_custom[2]
+    assign subheading_font_custom_style = subheading_font_custom[3]
+    assign subheading_font_custom_format = subheading_font_custom[4]
+  endif
+
+  if settings.type_base_font_custom and settings.type_base_font_list == 'custom'
+    assign base_font_custom = settings.type_base_font_custom | split: '|'
+    assign base_font_custom_filename = base_font_custom[0]
+    assign base_font_custom_name = base_font_custom[1]
+    assign base_font_custom_weight = base_font_custom[2]
+    assign base_font_custom_style = base_font_custom[3]
+    assign base_font_custom_format = base_font_custom[4]
+  endif
+
+  if settings.type_nav_font_custom and settings.type_nav_font_list == 'custom'
+    assign nav_font_custom = settings.type_nav_font_custom | split: '|'
+    assign nav_font_custom_filename = nav_font_custom[0]
+    assign nav_font_custom_name = nav_font_custom[1]
+    assign nav_font_custom_weight = nav_font_custom[2]
+    assign nav_font_custom_style = nav_font_custom[3]
+    assign nav_font_custom_format = nav_font_custom[4]
+  endif
+
+  if settings.type_btn_font_custom and settings.type_btn_font_list == 'custom'
+    assign btn_font_custom = settings.type_btn_font_custom | split: '|'
+    assign btn_font_custom_filename = btn_font_custom[0]
+    assign btn_font_custom_name = btn_font_custom[1]
+    assign btn_font_custom_weight = btn_font_custom[2]
+    assign btn_font_custom_style = btn_font_custom[3]
+    assign btn_font_custom_format = btn_font_custom[4]
+  endif
+-%}
+
+{%- case output -%}
+  {%- when 'preload' -%}
+    {%- if heading_font_custom -%}
+      <link
+        rel="preload"
+        as="font"
+        href="{{ heading_font_custom_filename | asset_url }}"
+        type="font/{{ heading_font_custom_format }}"
+        crossorigin
+      >
+    {%- endif -%}
+
+    {%- if subheading_font_custom -%}
+      <link
+        rel="preload"
+        as="font"
+        href="{{ subheading_font_custom_filename | asset_url }}"
+        type="font/{{ subheading_font_custom_format }}"
+        crossorigin
+      >
+    {%- endif -%}
+
+    {%- if base_font_custom -%}
+      <link
+        rel="preload"
+        as="font"
+        href="{{ base_font_custom_filename | asset_url }}"
+        type="font/{{ base_font_custom_format }}"
+        crossorigin
+      >
+    {%- endif -%}
+
+    {%- if nav_font_custom -%}
+      <link
+        rel="preload"
+        as="font"
+        href="{{ nav_font_custom_filename | asset_url }}"
+        type="font/{{ nav_font_custom_format }}"
+        crossorigin
+      >
+    {%- endif -%}
+
+    {%- if btn_font_custom -%}
+      <link
+        rel="preload"
+        as="font"
+        href="{{ btn_font_custom_filename | asset_url }}"
+        type="font/{{ btn_font_custom_format }}"
+        crossorigin
+      >
+    {%- endif -%}
+
+  {%- when 'css' -%}
+
+    {% if heading_font_custom %}
+      @font-face {
+        font-family: "{{ heading_font_custom_name }}";
+        font-weight: {{ heading_font_custom_weight }};
+        font-style: {{ heading_font_custom_style }};
+        font-display: swap;
+        src: url("{{ heading_font_custom_filename | asset_url }}") format("{{ heading_font_custom_format }}");
+      }
+    {% endif %}
+
+    {% if subheading_font_custom %}
+      @font-face {
+        font-family: "{{ subheading_font_custom_name }}";
+        font-weight: {{ subheading_font_custom_weight }};
+        font-style: {{ subheading_font_custom_style }};
+        font-display: swap;
+        src: url("{{ subheading_font_custom_filename | asset_url }}") format("{{ subheading_font_custom_format }}");
+      }
+    {% endif %}
+
+    {% if base_font_custom %}
+      @font-face {
+        font-family: "{{ base_font_custom_name }}";
+        font-weight: {{ base_font_custom_weight }};
+        font-style: {{ base_font_custom_style }};
+        font-display: swap;
+        src: url("{{ base_font_custom_filename | asset_url }}") format("{{ base_font_custom_format }}");
+      }
+    {% endif %}
+
+    {% if nav_font_custom %}
+      @font-face {
+        font-family: "{{ nav_font_custom_name }}";
+        font-weight: {{ nav_font_custom_weight }};
+        font-style: {{ nav_font_custom_style }};
+        font-display: swap;
+        src: url("{{ nav_font_custom_filename | asset_url }}") format("{{ nav_font_custom_format }}");
+      }
+    {% endif %}
+
+    {% if btn_font_custom %}
+      @font-face {
+        font-family: "{{ btn_font_custom_name }}";
+        font-weight: {{ btn_font_custom_weight }};
+        font-style: {{ btn_font_custom_style }};
+        font-display: swap;
+        src: url("{{ btn_font_custom_filename | asset_url }}") format("{{ btn_font_custom_format }}");
+      }
+    {% endif %}
+
+    :root {
+      {% if heading_font_custom %}
+        --FONT-STACK-HEADING: "{{ heading_font_custom_name }}";
+        --FONT-STYLE-HEADING: {{ heading_font_custom_style }};
+        --FONT-STYLE-HEADING-ITALIC: italic;
+        --FONT-WEIGHT-HEADING: {{ heading_font_custom_weight }};
+        --FONT-WEIGHT-HEADING-LIGHT: {{ heading_font_custom_weight }};
+        --FONT-WEIGHT-HEADING-MEDIUM: {{ heading_font_custom_weight }};
+        --FONT-WEIGHT-HEADING-BOLD: {{ heading_font_custom_weight }};
+      {% endif %}
+
+      {% if subheading_font_custom %}
+        --FONT-STACK-SUBHEADING: "{{ subheading_font_custom_name }}";
+        --FONT-STYLE-SUBHEADING: {{ subheading_font_custom_style }};
+        --FONT-WEIGHT-SUBHEADING: {{ subheading_font_custom_weight }};
+        --FONT-WEIGHT-SUBHEADING-BOLD: {{ subheading_font_custom_weight }};
+      {% endif %}
+
+      {% if base_font_custom %}
+        --FONT-STACK-BODY: "{{ base_font_custom_name }}";
+        --FONT-STYLE-BODY: {{ base_font_custom_style }};
+        --FONT-STYLE-BODY-ITALIC: italic;
+        --FONT-WEIGHT-BODY: {{ base_font_custom_weight }};
+        --FONT-WEIGHT-BODY-LIGHT: {{ base_font_custom_weight }};
+        --FONT-WEIGHT-BODY-MEDIUM: {{ base_font_custom_weight }};
+        --FONT-WEIGHT-BODY-BOLD: {{ base_font_custom_weight }};
+      {% endif %}
+
+      {% if nav_font_custom %}
+        --FONT-STACK-NAV: "{{ nav_font_custom_name }}";
+        --FONT-STYLE-NAV: {{ nav_font_custom_style }};
+        --FONT-STYLE-NAV-ITALIC: italic;
+        --FONT-WEIGHT-NAV: {{ nav_font_custom_weight }};
+        --FONT-WEIGHT-NAV-LIGHT: {{ nav_font_custom_weight }};
+        --FONT-WEIGHT-NAV-MEDIUM: {{ nav_font_custom_weight }};
+        --FONT-WEIGHT-NAV-BOLD: {{ nav_font_custom_weight }};
+      {% endif %}
+
+      {% if btn_font_custom %}
+        --FONT-STACK-BUTTON: "{{ btn_font_custom_name }}";
+        --FONT-STYLE-BUTTON: {{ btn_font_custom_style }};
+        --FONT-STYLE-BUTTON-ITALIC: italic;
+        --FONT-WEIGHT-BUTTON: {{ btn_font_custom_weight }};
+        --FONT-WEIGHT-BUTTON-MEDIUM: {{ btn_font_custom_weight }};
+        --FONT-WEIGHT-BUTTON-BOLD: {{ btn_font_custom_weight }};
+      {% endif %}
+    }
+
+{%- endcase -%}

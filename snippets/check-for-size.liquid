@@ -1,0 +1,23 @@
+{%- comment -%}
+  Check if the current option is a size option
+
+  Accepts:
+  - option_name_handle_separator: {String} The handle separator for the option name (required)
+
+  Usage:
+  {% capture is_size_option %}
+    {% render 'check-for-size', option_name_handle_separator: option_name_handle_separator %}
+  {% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign is_size_option = false
+  assign size_translation = 'general.size_chart.size' | t
+  assign translation_string = size_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ','
+
+  if translation_string contains option_name_handle_separator
+    assign is_size_option = true
+  endif
+
+  echo is_size_option
+-%}

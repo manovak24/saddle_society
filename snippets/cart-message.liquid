@@ -1,0 +1,123 @@
+{%- comment -%}
+  Renders free shipping message for cart drawer, cart page, and announcement bar
+
+  Accepts:
+  - block: {Object} Block object with settings.message (optional)
+  - aos_anchor: {String} Anchor ID for AOS animations (optional)
+  - animation_delay: {Number} Animation delay value (optional)
+  - has_progress_holder: {Boolean} Show progress bar indicator. Default: false
+
+  Usage:
+  {% render 'cart-message', block: block, aos_anchor: aos_anchor, animation_delay: animation_delay, has_progress_holder: has_progress_holder %}
+{%- endcomment -%}
+
+{%- liquid
+  assign animations_enabled = settings.animations_enabled
+
+  if block and block.settings.message != blank
+    assign free_shipping_text = block.settings.message
+  endif
+
+  assign is_enable = false
+
+  if block and block.settings.message != blank
+    assign is_enable = true
+  endif
+
+  if settings.free_shipping_limit != blank and free_shipping_text != blank
+    assign is_enable = true
+  endif
+-%}
+
+{%- if is_enable -%}
+  {%- liquid
+    assign limit = settings.free_shipping_limit | plus: 0
+    assign limit_currency = limit | times: 100
+    assign cart_total_price = cart.total_price
+    assign subtotal_without_currency = cart_total_price | plus: 0 | divided_by: 100
+  -%}
+
+  {%- capture left_to_spend -%}
+    <span data-left-to-spend>
+      {%- if settings.currency_code_enable -%}
+        {{- limit_currency | minus: cart_total_price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code -}}
+      {%- else -%}
+        {{- limit_currency | minus: cart_total_price | money_without_trailing_zeros -}}
+      {%- endif -%}
+    </span>
+  {%- endcapture -%}
+
+  {%- liquid
+    assign free_shipping_message = free_shipping_text | replace: '||amount||', left_to_spend
+    assign qualified_shipping_message = 'cart.general.qualified_shipping_message' | t
+    assign class_message = ''
+
+    if subtotal_without_currency >= limit
+      if qualified_shipping_message != blank
+        assign class_message = ' is-success'
+        assign is_default_message_hidden = ' is-hidden'
+      else
+        assign class_message = ' is-hidden'
+      endif
+    elsif subtotal_without_currency == 0
+      assign class_message = ' is-hidden'
+    endif
+
+    assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit
+    assign percent = 100 | minus: percent
+  -%}
+
+  {%- liquid
+    assign padding_style = ''
+    if block and block.settings.padding_bottom > 0
+      assign padding_style = 'padding-bottom: ' | append: block.settings.padding_bottom | append: 'px;'
+    endif
+  -%}
+  <p
+    class="{% unless template.name == 'cart' or section.id == 'announcement-bar' %}cart-message--drawer {% endunless %}cart-message{{ class_message }}"
+    data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}"
+    data-limit="{{ limit }}"
+    {% if block %}
+      {{ block.shopify_attributes }}
+    {% endif %}
+    {% if padding_style != '' %}
+      style="{{ padding_style }}"
+    {% endif %}
+    {% if animations_enabled %}
+      data-aos="fade"
+      {% if aos_anchor %}
+        data-aos-anchor="{{ aos_anchor }}"
+      {% endif %}
+      {% if animation_delay %}
+        data-aos-delay="{{ animation_delay }}"
+      {% endif %}
+    {% endif %}
+  >
+    <span class="cart-message__default{{ is_default_message_hidden }}" data-message-default>
+      {{- free_shipping_message -}}
+    </span>
+
+    {%- if qualified_shipping_message != blank -%}
+      <span class="cart-message__success">{{ qualified_shipping_message }}</span>
+    {%- endif -%}
+
+    {%- if has_progress_holder -%}
+      <span class="cart-message__progress-holder">
+        <progress
+          class="cart-message__progress"
+          data-cart-message-progress
+          value="{{ percent }}"
+          max="100"
+          style="--progress-width: {{ percent }}%;"
+        ></progress>
+        {%- comment -%}Second progress bar shows only on Firefox{%- endcomment -%}
+        <progress
+          class="cart-message__progress"
+          data-cart-message-progress
+          max="100"
+          style="--progress-width: {{ percent }}%;"
+        ></progress>
+      </span>
+    {%- endif -%}
+  </p>
+{%- endif -%}

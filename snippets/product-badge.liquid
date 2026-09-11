@@ -1,0 +1,213 @@
+{%- comment -%}
+  Renders product badges (sale, sold out, custom badge, saving badge, preorder)
+
+  Accepts:
+  - product: {Object} Product object (required - snippets have isolated scope, must be passed)
+  - current_variant: {Object} Current variant object (required)
+  - custom_badge_metafield: {Boolean} Whether custom badge metafield exists (optional)
+  - custom_badge_metafield_text: {String} Custom badge text (optional)
+  - sold_out: {Boolean} Whether product is sold out (optional)
+  - aos_anchor: {String} Animation anchor selector (optional)
+  - aos_delay: {Number} Animation delay in milliseconds (optional)
+  - aos_custom_init: {Boolean} Whether to use custom AOS initialization (optional)
+
+  Uses global Shopify objects:
+  - settings: Theme settings
+  - cart: Cart object
+
+  Usage:
+  {% render 'product-badge', product: product, custom_badge_metafield: custom_badge_metafield, custom_badge_metafield_text: custom_badge_metafield_text, sold_out: sold_out, aos_anchor: aos_anchor, aos_delay: aos_delay, aos_custom_init: aos_custom_init, current_variant: current_variant %}
+{%- endcomment -%}
+
+{%- liquid
+  assign animations_enabled = settings.animations_enabled
+  assign show_sale_badge = settings.show_sale_badge
+  assign show_custom_badge = settings.show_custom_badge
+  assign show_sold_badge = settings.show_sold_badge
+  assign show_saving_badge = settings.show_saving_badge
+  assign show_preorder_badge = settings.show_preorder_badge
+  assign sold_out_text = 'products.product.sold_out' | t
+  assign sale_text = 'products.product.sale' | t
+  assign enable_preorder_marquee = settings.enable_preorder_marquee
+  assign enable_custom_marquee = settings.enable_custom_marquee
+  assign enable_sold_marquee = settings.enable_sold_marquee
+  assign enable_sale_marquee = settings.enable_sale_marquee
+  assign badge_marquee_speed = settings.badge_marquee_speed
+
+  assign product_tags = product.tags | join: ',' | append: ','
+  assign preorder = false
+
+  assign is_preorder_tag = false
+  if product_tags contains '_preorder'
+    assign is_preorder_tag = true
+  endif
+
+  assign is_preorder_metafield = false
+  if current_variant.metafields.theme.preorder.type == 'boolean' and current_variant.metafields.theme.preorder.value == true
+    assign is_preorder_metafield = true
+  endif
+
+  if show_preorder_badge and current_variant.available
+    if is_preorder_tag or is_preorder_metafield
+      assign preorder_badge_text = 'products.product.preorder' | t
+      assign preorder = true
+    endif
+  endif
+
+  assign on_sale = false
+  if current_variant.compare_at_price > current_variant.price
+    assign on_sale = true
+  endif
+
+  if settings.show_saving_badge
+    assign price = current_variant.price
+    assign price_compare = current_variant.compare_at_price
+    assign price_difference = price_compare | minus: price
+    assign test_variants = product.variants | where: 'compare_at_price' | where: 'available', true
+
+    if test_variants.size > 0
+      for variant in test_variants
+        assign variant_price_difference = variant.compare_at_price | minus: variant.price
+
+        if variant_price_difference > price_difference
+          assign price = variant.price
+          assign price_compare = variant.compare_at_price
+          assign price_difference = variant_price_difference
+        endif
+      endfor
+    endif
+
+    if settings.currency_code_enable
+      assign discount = price_difference | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
+    else
+      assign discount = price_difference | money_without_trailing_zeros
+    endif
+
+    if settings.saving_badge_type == 'percentage'
+      assign percent_off = price_difference | times: 1.00 | divided_by: price_compare | times: 100
+      assign discount = percent_off | floor | append: '%'
+    endif
+
+    if product.variants.size == 1 and price_difference > 0
+      assign saving_badge_text = 'products.product.save_badge_html' | t: discount: discount
+    endif
+
+    if product.variants.size > 1 and price_difference > 0
+      assign saving_badge_text = 'products.product.save_badge_up_to_html' | t: discount: discount
+    endif
+
+    if saving_badge_text == blank
+      assign show_saving_badge = false
+    endif
+  endif
+
+  assign marquee_badges = '' | split: ','
+  assign marquee_badge_type = ''
+
+  if on_sale and show_sale_badge and enable_sale_marquee
+    assign badge_item = sale_text | split: '|||'
+
+    if show_saving_badge
+      assign badge_item = saving_badge_text | split: '|||'
+    endif
+
+    assign marquee_badges = marquee_badges | concat: badge_item
+
+    if marquee_badge_type == ''
+      assign marquee_badge_type = 'sale'
+    endif
+  endif
+
+  if custom_badge_metafield and show_custom_badge and custom_badge_metafield_text != blank and enable_custom_marquee
+    assign badge_item = custom_badge_metafield_text | split: '|||'
+    assign marquee_badges = marquee_badges | concat: badge_item
+
+    if marquee_badge_type == ''
+      assign marquee_badge_type = 'custom'
+    endif
+  endif
+
+  if sold_out and show_sold_badge and preorder == false and enable_sold_marquee
+    assign badge_item = sold_out_text | split: '|||'
+    assign marquee_badges = marquee_badges | concat: badge_item
+
+    if marquee_badge_type == ''
+      assign marquee_badge_type = 'sold'
+    endif
+  endif
+
+  if preorder and enable_preorder_marquee
+    assign badge_item = preorder_badge_text | split: '|||'
+    assign marquee_badges = marquee_badges | concat: badge_item
+
+    if marquee_badge_type == ''
+      assign marquee_badge_type = 'preorder'
+    endif
+  endif
+-%}
+
+<div class="product-badges__wrapper">
+  {% if marquee_badges.size > 0 %}
+    <div class="product-badge__marquee product-badge__marquee--{{ marquee_badge_type }}{% if marquee_badges.size > 1 %} product-badge__marquee--multiple{% endif %}">
+      <ticker-bar class="product-badge__marquee--ticker" data-autoplay data-marquee-speed="{{ badge_marquee_speed }}">
+        <div data-ticker-scale class="product-badge__marquee--scale ticker--unloaded">
+          <div data-ticker-text class="product-badge__marquee--text">
+            {%- for badge in marquee_badges -%}
+              <span class="product-badge__item">{{ badge }}</span>
+            {%- endfor -%}
+          </div>
+        </div>
+      </ticker-bar>
+    </div>
+  {%- endif -%}
+
+  {%- capture product_badges -%}
+    {%- if preorder and enable_preorder_marquee == false -%}
+      <div class="product-badge__item product-badge__item--preorder">
+        <span>{{ preorder_badge_text }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if custom_badge_metafield and show_custom_badge and custom_badge_metafield_text != blank and enable_custom_marquee == false -%}
+      <div class="product-badge__item product-badge__item--custom">
+        <span>{{ custom_badge_metafield_text }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if sold_out and show_sold_badge and preorder == false and enable_sold_marquee == false -%}
+      <div class="product-badge__item product-badge__item--sold">
+        <span>{{ sold_out_text }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if on_sale and show_sale_badge and show_saving_badge == false and enable_sale_marquee == false -%}
+      <div class="product-badge__item product-badge__item--sale">
+        <span>{{ sale_text }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- if show_sale_badge and show_saving_badge and enable_sale_marquee == false -%}
+      <div class="product-badge__item product-badge__item--saving">
+        <span>{{ saving_badge_text }}</span>
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- unless product_badges == blank -%}
+    <div
+      class="product-badge"
+      {% if animations_enabled %}
+        data-aos="fade"
+        {% if aos_anchor %}
+          data-aos-anchor="{{ aos_anchor }}"
+        {% endif %}
+        {% if aos_custom_init %}
+          data-aos-custom-init
+        {% endif %}
+        data-aos-delay="{{ aos_delay }}"
+      {% endif %}
+    >
+      {{- product_badges -}}
+    </div>
+  {%- endunless -%}
+</div>

@@ -1,0 +1,136 @@
+{%- comment -%}
+  Renders footer social links and Follow on Shop
+
+  Accepts:
+  - action: {String} Form action URL (optional)
+  - color_bg: {String} Background color for social icons (optional)
+  - color_text: {String} Text color for social icons (optional)
+  - shop_pay_wrapper: {String} Captured Shop Pay markup (optional)
+  - show_follow_on_shop: {Boolean} Show Follow on Shop button (optional)
+  - show_social_links: {Boolean} Show social media links (optional)
+
+  Usage:
+  {% render 'footer-social' %}
+{%- endcomment -%}
+<div class="social-sharing-wrapper">
+  {%- if show_social_links -%}
+    {%- if settings.social_instagram_link != blank -%}
+      <a
+        class="social-sharing-icon instagram"
+        rel="noopener"
+        href="{{ settings.social_instagram_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Instagram', shop_name: shop.name }}"
+      >Instagram
+        {% comment %} {%- render 'icon-instagram' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_tiktok_link != blank -%}
+      <a
+        class="social-sharing-icon tiktok"
+        rel="noopener"
+        href="{{ settings.social_tiktok_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Tiktok', shop_name: shop.name }}"
+      >Tiktok
+        {% comment %} {%- render 'icon-tiktok' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_facebook_link != blank -%}
+      <a
+        class="social-sharing-icon facebook"
+        rel="noopener"
+        href="{{ settings.social_facebook_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Facebook', shop_name: shop.name }}"
+      >Facebook
+        {% comment %} {%- render 'icon-facebook' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_twitter_link != blank -%}
+      <a
+        class="social-sharing-icon twitter"
+        rel="noopener"
+        href="{{ settings.social_twitter_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Twitter', shop_name: shop.name }}"
+      >Twitter
+        {% comment %} {%- render 'icon-twitter' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_snapchat_link != blank -%}
+      <a
+        class="social-sharing-icon snapchat"
+        rel="noopener"
+        href="{{ settings.social_snapchat_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Snapchat', shop_name: shop.name }}"
+      >Snapchat
+        {% comment %} {%- render 'icon-snapchat' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_pinterest_link != blank -%}
+      <a
+        class="social-sharing-icon pinterest"
+        rel="noopener"
+        href="{{ settings.social_pinterest_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Pinterest', shop_name: shop.name }}"
+      >Pinterest
+        {% comment %} {%- render 'icon-pinterest' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_tumblr_link != blank -%}
+      <a
+        class="social-sharing-icon tumblr"
+        rel="noopener"
+        href="{{ settings.social_tumblr_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Tumblr', shop_name: shop.name }}"
+      >Tumblr
+        {% comment %} {%- render 'icon-tumblr' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_youtube_link != blank -%}
+      <a
+        class="social-sharing-icon youtube"
+        rel="noopener"
+        href="{{ settings.social_youtube_link }}"
+        title="{{ 'footer.socials.title' | t: social: 'Youtube', shop_name: shop.name }}"
+      > Youtube
+        {% comment %} {%- render 'icon-youtube' -%} {% endcomment %}
+      </a>
+    {%- endif -%}
+
+    {%- if settings.social_rss_link != blank -%}
+      <a
+        class="social-sharing-icon rss"
+        rel="noopener"
+        href="{{ settings.social_rss_link }}"
+        title="{{ 'footer.socials.rss' | t }}"
+      >
+        {%- render 'icon-rss-feed' -%}
+      </a>
+    {%- endif -%}
+    <a
+        class="social-sharing-icon youtube"
+        rel="noopener"
+        href="/pages/contact"
+        title="{{ 'footer.socials.title' | t: social: 'Youtube', shop_name: shop.name }}"
+      > Contact
+        {% comment %} {%- render 'icon-youtube' -%} {% endcomment %}
+      </a>
+  {%- endif -%}
+
+  {%- if show_follow_on_shop -%}
+    <script src="{{ 'shop-pay-link.js' | asset_url }}" defer></script>
+    <shop-pay-wrapper
+      class="social-sharing-icon follow-on-shop"
+      data-bg="{{ color_bg }}"
+      data-text="{{ color_text }}"
+      data-hover="{{ color_text | color_modify: 'alpha', 0.50 }}"
+    >
+      {{ shop | login_button: action: 'follow' }}
+    </shop-pay-wrapper>
+  {%- endif -%}
+</div>

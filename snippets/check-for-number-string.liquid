@@ -1,0 +1,25 @@
+{%- comment -%}
+  Check if the title contains a number
+
+  Accepts:
+  - title: {String} The title to check (required)
+
+  Usage:
+  {% capture has_count_up %}
+    {% render 'check-for-number-string', title: title %}
+  {% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign numbers_string = '0,1,2,3,4,5,6,7,8,9' | split: ','
+  assign has_count_up = false
+  assign title_stripped = title | strip_html | strip_newlines
+
+  for num in numbers_string
+    if title_stripped contains num
+      assign has_count_up = true
+    endif
+  endfor
+
+  echo has_count_up
+-%}

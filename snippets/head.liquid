@@ -1,0 +1,220 @@
+{%- comment -%}
+  Renders document head assets and meta hooks
+
+  Usage:
+  {% render 'head' %}
+{%- endcomment -%}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- unless settings.type_header_font.system? and settings.type_base_font.system? -%}
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+{%- endunless -%}
+{%- unless settings.type_base_font.system? -%}
+  <link rel="preload" as="font" href="{{ settings.type_base_font | font_url }}" type="font/woff2" crossorigin>
+{%- endunless -%}
+{%- unless settings.type_header_font.system? -%}
+  <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+{%- endunless -%}
+
+{%- render 'custom-fonts', output: 'preload' -%}
+
+<link rel="preload" as="image" href="{{ 'loading.svg' | asset_url }}">
+
+{%- render 'loading-overlay' -%}
+
+{%- if settings.favicon != blank -%}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+{%- endif -%}
+
+{% comment %} Title and description {% endcomment %}
+<title>
+  {{- page_title }}
+  {% if current_tags -%}
+    {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  {%- endif %}
+  {% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
+  {% unless page_title contains shop.name %} &ndash; {{ shop.name -}}{% endunless -%}
+</title>
+
+{%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
+{%- else -%}
+  <meta name="description" content="{{ shop.description | escape }}">
+{%- endif -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+{%- render 'social-meta-tags' -%}
+
+{%- render 'css-variables' -%}
+
+{%- comment -%} CSS {%- endcomment -%}
+{{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+{{- 'novak-north.css' | asset_url | stylesheet_tag: preload: true -}}
+
+{%- render 'stylesheet', name: 'dialogs.css', async: true -%}
+
+{%- if settings.color_swatches_type != 'disabled' -%}
+  <style>
+    {{ 'swatches.css' | inline_asset_content }}
+  </style>
+  {%- render 'swatch-color-list' -%}
+{%- endif %}
+
+{%- liquid
+  capture icon_close
+    render 'icon-close'
+  endcapture
+-%}
+
+<script
+  type="text/javascript"
+>
+    let root = '{{ routes.root_url }}';
+    if (root[root.length - 1] !== '/') {
+      root = `${root}/`;
+    }
+
+    window.theme = {
+      routes: {
+        root: root,
+        cart_url: {{ routes.cart_url | json }},
+        cart_add_url: {{ routes.cart_add_url | json }},
+        cart_change_url: {{ routes.cart_change_url | json }},
+        cart_update_url: {{ routes.cart_update_url | json }},
+        shop_url: {{ shop.url | json }},
+        searchUrl: '{{ routes.search_url }}',
+        predictiveSearchUrl: '{{ routes.predictive_search_url }}',
+        product_recommendations_url: {{ routes.product_recommendations_url | json }}
+      },
+      assets: {
+        photoswipe: '{{ "photoswipe.js" | asset_url }}',
+        no_image: "{{ image | img_url: '1024x' }}",
+        base: "{{ 'blank.svg' | asset_url | split: 'blank.svg' | first }}"
+      },
+      strings: {
+        add_to_cart: {{ "products.product.add_to_cart" | t | json }},
+        cart_acceptance_error: {{ "cart.general.accept_terms" | t | json }},
+        cart_empty: {{ "cart.general.empty" | t | json }},
+        cart_price: {{ "cart.label.price" | t | json }},
+        cart_quantity: {{ "cart.label.quantity" | t | json }},
+        cart_items_one: {{ "cart.label.items_with_count.one" | t | json }},
+        cart_items_many: {{ "cart.label.items_with_count.other" | t | json }},
+        cart_title: {{ "cart.general.title" | t | json }},
+        cart_total: {{ "cart.label.total" | t | json }},
+        discount_not_applicable: {{ "cart.general.discount_not_applicable" | t | json }},
+        shipping_discounts_at_checkout: {{ "cart.general.shipping_discounts_at_checkout" | t | json }},
+        shippingCalcSubmitButton: {{ 'cart.shipping_calculator.calculate_shipping' | t | json }},
+        shippingCalcSubmitButtonDisabled: {{ 'cart.shipping_calculator.calculating' | t | json }},
+        discount_already_applied: {{ "cart.general.discount_already_applied" | t | json }},
+        continue_shopping: {{ "cart.general.continue_shopping" | t | json }},
+        free: {{ 'products.product.free' | t | json }},
+        limit_error: {{ "cart.general.limit_error" | t | json }},
+        preorder: {{ "products.product.preorder" | t | json }},
+        remove: {{ 'cart.general.remove' | t | json }},
+        sale_badge_text: {{ "products.product.sale" | t | json }},
+        saving_badge: {{ "products.product.save_badge_html" | t | json }},
+        saving_up_to_badge: {{ "products.product.save_badge_up_to_html" | t | json }},
+        sold_out: {{ "products.product.sold_out" | t | json }},
+        unavailable: {{ "products.product.unavailable" | t | json }},
+        unit_price_label: {{ "products.product.unit_price_label" | t | json }},
+        unit_price_separator: {{ "general.accessibility.unit_price_separator" | t | json }},
+        zero_qty_error: {{ "cart.general.zero_qty_error" | t | json }},
+        delete_confirm: {{ "customer.addresses.delete_confirm" | t | json }}
+      },
+      icons: {
+        close: '{{ icon_close | strip_newlines }}'
+      },
+      settings: {
+        animationsEnabled: {{ settings.animations_enabled | json }},
+        cartType: {{ settings.cart_type | json }},
+        enableAcceptTerms: {{ settings.enable_accept_terms | json }},
+        enableInfinityScroll: {{ settings.enable_infinity_scroll | json }},
+        enablePaymentButton: {{ settings.show_payment_button | json }},
+        gridImageSize: {{ settings.image_size | json }},
+        gridImageAspectRatio: {{ settings.image_aspect_ratio | json }},
+        mobileMenuBehaviour: {{ settings.mobile_menu_behaviour | json }},
+        savingBadgeType: {{ settings.saving_badge_type | json }},
+        showSaleBadge: {{ settings.show_sale_badge | json }},
+        showSoldBadge: {{ settings.show_sold_badge | json }},
+        showSavingBadge: {{ settings.show_saving_badge | json }},
+        quickBuy: {{ settings.quick_buy | json }},
+        suggestArticles: {{ settings.suggest_articles | json }},
+        suggestCollections: {{ settings.suggest_collections | json }},
+        suggestProducts: {{ settings.suggest_products | json }},
+        suggestPages: {{ settings.suggest_pages | json }},
+        suggestionsResultsLimit: {{ settings.suggestions_results_limit | json }},
+        currency_code_enable: {{ settings.currency_code_enable | json }},
+        hideInventoryCount: {{ settings.hide_inventory_count | json }},
+        colorSwatchesType: {{ settings.color_swatches_type | json }},
+        atcButtonShowPrice: {{ settings.atc_show_product_price | json }},
+        buynowButtonColor: {{ settings.buynow_btn_color | json }},
+        buynowButtonStyle: {{ settings.buynow_btn_style | json }},
+        buynowButtonSize: {{ settings.buynow_button_size | json }},
+        mobileMenuType: {{ settings.mobile_menu_type | json }},
+        collectionSwatchStyle: {{ settings.collection_swatch_style | json }},
+      },
+      sizes: {
+        mobile: 480,
+        small: 768,
+        large: 1024,
+        widescreen: 1440
+      },
+      moneyFormat: {{ shop.money_format | json }},
+      moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+      subtotal: {{ cart.total_price | json }},
+      current_iso_code: {{ cart.currency.iso_code | json }},
+      info: {
+        name: 'Palo Alto',
+        version: '9.2.0',
+        role: '{{ theme.role }}'
+      },
+    };
+    window.PaloAlto = window.PaloAlto || {};
+    window.slate = window.slate || {};
+    window.isHeaderTransparent = false;
+    window.stickyHeaderHeight = 60;
+    window.lastWindowWidth = window.innerWidth || document.documentElement.clientWidth;
+</script>
+
+{%- if request.page_type contains 'customers/' -%}
+  <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'novak-north.js' | asset_url }}" defer="defer"></script>
+
+{%- if settings.enable_sale_marquee or settings.enable_custom_marquee or settings.enable_sold_marquee or settings.enable_preorder_marquee -%}
+  <script src="{{ 'ticker.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if settings.quick_buy != 'none' -%}
+  <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'subscription-price-updater.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if request.design_mode -%}
+  <script
+    src="{{ 'theme-editor.js' | asset_url }}"
+    defer="defer"
+    data-owner-email="{{ shop.email }}"
+    data-owner-id="{{ shop.id }}"
+  ></script>
+{%- endif -%}
+
+{%- comment -%}
+  If you need to do some edits in Theme JS use theme.dev.js file
+
+  *** DO NOT EDIT theme.js file ***
+
+  Then call theme.dev.js file by editing the row above from:
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  to
+  <script src="{{ 'theme.dev.js' | asset_url }}" defer="defer"></script>
+{%- endcomment -%}

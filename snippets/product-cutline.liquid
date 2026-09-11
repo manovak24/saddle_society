@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders product cutline (tagline) from metafield
+
+  Accepts:
+  - product: {Object} Product object (required)
+  - cutline_color: {String} Color option for cutline ('body' or 'accent') (required)
+
+  Usage:
+  {% render 'product-cutline', product: product, cutline_color: cutline_color %}
+{%- endcomment -%}
+
+{%- if product.metafields.theme.cutline != blank
+  and product.metafields.theme.cutline.type == 'single_line_text_field'
+-%}
+  {%- liquid
+    capture style
+      case cutline_color
+        when 'body'
+          echo 'color: var(--text);'
+        when 'accent'
+          echo 'color: var(--accent);'
+      endcase
+    endcapture
+  -%}
+
+  <p class="product-cutline" style="{{ style }}">{{ product.metafields.theme.cutline.value }}</p>
+{%- endif -%}

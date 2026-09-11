@@ -1,0 +1,299 @@
+{%- comment -%}
+  Renders product price and saving/final sale badge
+
+  Uses section context for unit price IDs (section.id).
+
+  Accepts:
+  - product: {Object} Product object (required, pass blank for onboarding)
+  - current_variant: {Object} Variant object (required)
+  - unique: {String} Unique identifier for the price wrapper (required)
+  - price_size: {Number} Price size multiplier (optional)
+  - price_size_mobile: {Number} Mobile price size multiplier (optional)
+  - bold_price: {Boolean} Whether to apply bold styling (optional)
+  - show_tax_information: {Boolean} Show tax and duties lines (optional)
+  - show_shipping_policy: {Boolean} Show shipping policy link and drawer (optional)
+  - animation_anchor: {String} Animation anchor selector (optional)
+  - animation_order: {Number} Animation order number (optional)
+  - is_quick_view: {Boolean} Disable animations in quick view (optional)
+  - block_style: {String} Block style attributes (optional)
+
+  Usage:
+  {% render 'price-and-badge', product: product, current_variant: current_variant, unique: unique, price_size: price_size, price_size_mobile: price_size_mobile, bold_price: bold_price, show_tax_information: show_tax_information, show_shipping_policy: show_shipping_policy, animation_anchor: animation_anchor, animation_order: animation_order, is_quick_view: is_quick_view, block_style: block_style %}
+{%- endcomment -%}
+
+{%- liquid
+  assign animations_enabled = settings.animations_enabled
+  if is_quick_view
+    assign animations_enabled = false
+  endif
+  assign currency_code_enable = settings.currency_code_enable
+
+  unless current_variant
+    assign current_variant = product.selected_or_first_available_variant
+  endunless
+
+  if price_size != blank and price_size != 1 and price_size > 0
+    capture price_style
+      echo ' style="'
+      echo '--adjust-body-desktop: calc(var(--FONT-ADJUST-BODY) * ' | append: price_size | append: ');'
+      if price_size_mobile != blank and price_size_mobile != 1 and price_size_mobile > 0
+        echo ' --adjust-body-mobile: calc(var(--FONT-ADJUST-BODY) * ' | append: price_size_mobile | append: ');'
+      endif
+      echo '"'
+    endcapture
+  endif
+
+  assign show_sale_badge = settings.show_sale_badge
+  assign show_saving_badge = settings.show_saving_badge
+  assign saving_badge_type = settings.saving_badge_type
+
+  # Check final sale status
+  # - final_sale: show on all products
+  # - final_sale_on_sale: show only when the selected variant is on sale
+  # - metafields (variant takes priority over product): show on specific products/variants
+  assign is_final_sale = false
+
+  assign is_on_sale = false
+  if current_variant.compare_at_price > current_variant.price
+    assign is_on_sale = true
+  endif
+
+  if settings.final_sale
+    assign is_final_sale = true
+  elsif settings.final_sale_on_sale and is_on_sale
+    assign is_final_sale = true
+  elsif current_variant.metafields.theme.final_sale.value or product.metafields.theme.final_sale.value
+    assign is_final_sale = true
+  endif
+
+  assign color_body_text = settings.color_body_text
+  assign final_sale_color = settings.final_sale_color
+
+  if final_sale_color.alpha == 0.0 or final_sale_color == ''
+    assign final_sale_color = color_body_text
+  endif
+
+  capture sale_style
+    echo '--final-sale-color: ' | append: final_sale_color | append: ';'
+  endcapture
+  assign discount_amount = ''
+  assign compare_price = current_variant.compare_at_price | times: 1.0
+  assign sale_price = current_variant.price | times: 1.0
+
+  if compare_price and sale_price
+    if compare_price > sale_price
+      if saving_badge_type == 'percentage'
+        assign discount_difference = compare_price | minus: sale_price
+        assign discount_percentage = discount_difference | divided_by: compare_price | times: 100
+        assign discount_int = discount_percentage | round
+        if discount_int > 0
+          assign discount_amount = discount_int | append: '%'
+        endif
+      else
+        assign discount = compare_price | minus: sale_price
+        if discount > 0
+          if settings.currency_code_enable
+            assign discount_amount = discount | money_with_currency
+          else
+            assign discount_amount = discount | money
+          endif
+        endif
+      endif
+    endif
+  endif
+-%}
+
+{% capture saving_final_sale_markup %}
+  {% if show_saving_badge or is_final_sale %}
+    <span class="product__price--off"
+      {% if is_final_sale %} data-final-sale{% endif %}
+      style="{{ sale_style }}"
+    >
+      {% if show_saving_badge and show_sale_badge and discount_amount != '' %}
+        <span class="product__price-badge">
+          {{ 'products.product.save' | t }}
+          <span>{{ discount_amount }}</span>
+        </span>
+      {% endif %}
+
+      {%- if is_final_sale -%}
+        <span class="product__final-sale-wrap">
+          <span class="product__final-sale">{{ 'products.product.final_sale' | t }}</span>
+          <tooltip-component class="product__final-sale-question" data-tooltip="{{ settings.final_sale_tooltip | replace: '"', "'" }}">{%- render 'icon-question' -%}</tooltip-component>
+        </span>
+      {%- endif -%}
+    </span>
+  {% endif %}
+{% endcapture %}
+
+<div
+  class="product__block product__price-and-badge"
+  {% if animations_enabled %}
+    data-aos="hero"
+    data-aos-anchor="{{ animation_anchor }}"
+    data-aos-order="{{ animation_order }}"
+  {% endif %}
+  {{ block_style }}
+>
+  <div class="product__price-wrapper" id="Price-{{ unique }}">
+    <div
+      class="product__price"
+      data-price-wrapper
+      {% if price_style != blank %}
+        {{- price_style -}}
+      {% endif %}
+    >
+      {%- unless product == blank -%}
+        <span
+          data-product-price
+          class="product__price--regular{% if current_variant.compare_at_price > current_variant.price %} product__price--sale{% endif %}{% if bold_price %} product__price--bold{% endif %}"
+        >
+          {%- liquid
+            if current_variant.price == 0
+              echo 'products.product.free' | t
+            elsif currency_code_enable
+              echo current_variant.price | money_with_currency
+            else
+              echo current_variant.price | money
+            endif
+          -%}
+        </span>
+      {%- else -%}
+        <span id="ProductPrice" class="product__price--regular{% if bold_price %} product__price--bold{% endif %}">
+          {%- liquid
+            if currency_code_enable
+              echo 1999 | money_with_currency
+            else
+              echo 1999 | money
+            endif
+          -%}
+        </span>
+      {%- endunless -%}
+
+      {% comment %}Always render compare price element for subscription price updater{% endcomment %}
+      <s
+        data-compare-price
+        class="product__price--compare{% if bold_price %} product__price--bold{% endif %}"
+        {% unless current_variant.compare_at_price > current_variant.price %}
+          style="display: none;"
+        {% endunless %}
+      >
+        {%- liquid
+          if current_variant.compare_at_price > current_variant.price
+            if currency_code_enable
+              echo current_variant.compare_at_price | money_with_currency
+            else
+              echo current_variant.compare_at_price | money
+            endif
+          else
+            if currency_code_enable
+              echo current_variant.price | money_with_currency
+            else
+              echo current_variant.price | money
+            endif
+          endif
+        -%}
+      </s>
+
+      {%- liquid
+        assign units = product.variants | map: 'unit_price' | compact
+        if units[0]
+          assign has_units = true
+        else
+          assign has_units = false
+        endif
+      -%}
+
+      {%- if has_units -%}
+        {%- assign current_variant_unit_price = current_variant.unit_price -%}
+
+        {%- capture unit_price_separator -%}
+          <span aria-hidden="true">/</span><span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}&nbsp;</span>
+        {%- endcapture -%}
+
+        {%- capture unit_price_base_unit -%}
+          <span>
+            {%- if current_variant.unit_price_measurement -%}
+              {% if current_variant.unit_price_measurement.reference_value != 1 %}
+                {{ current_variant.unit_price_measurement.reference_value }}
+              {% endif %}
+              {{ current_variant.unit_price_measurement.reference_unit }}
+            {%- endif -%}
+          </span>
+        {%- endcapture -%}
+
+        <span class="product__unit-price">
+          <span
+            data-product-unit
+            class="product__price--unit{% unless current_variant_unit_price %} hidden{% endunless %}"
+          >
+            <span class="visually-hidden">{{ 'products.product.unit_price_label' | t }}</span>
+            <span data-product-unit-price id="unit-price-{{ section.id }}">
+              {{- current_variant_unit_price | money -}}
+            </span>
+            {{ unit_price_separator }}
+            <span data-product-base id="unit-price-base-{{ section.id }}">{{ unit_price_base_unit }}</span>
+          </span>
+        </span>
+      {%- endif -%}
+
+      {{ saving_final_sale_markup }}
+    </div>
+
+    {%- liquid
+      assign show_tax_line = false
+      assign show_duties_line = false
+      assign show_shipping_policy_link = false
+      assign show_product_tax_block = false
+
+      if show_tax_information
+        if cart.taxes_included
+          assign show_tax_line = true
+        endif
+
+        if cart.duties_included
+          assign show_duties_line = true
+        endif
+      endif
+
+      if show_shipping_policy and shop.shipping_policy.body != blank
+        assign show_shipping_policy_link = true
+      endif
+
+      if show_tax_line or show_duties_line or show_shipping_policy_link
+        assign show_product_tax_block = true
+      endif
+    -%}
+
+    {%- if show_product_tax_block -%}
+      <div class="product__tax">
+        {%- if show_duties_line and show_tax_line -%}
+          {{ 'products.product.duties_and_taxes_included' | t }}
+        {%- elsif show_tax_line -%}
+          {{ 'products.product.taxes_included' | t }}
+        {%- elsif show_duties_line -%}
+          {{ 'products.product.duties_included' | t }}
+        {%- endif -%}
+        {%- if show_shipping_policy_link -%}
+          {%- liquid
+            assign shipping_policy = 'products.product.shipping_policy_html' | t
+            assign shipping_policy_link_text = shipping_policy | split: '<span>' | last | split: '</span>' | first
+          -%}
+          <span class="product__shipping-policy">
+            {{- shipping_policy | split: '<span>' | first -}}
+            <button
+              type="button"
+              class="product__shipping-policy__link"
+              aria-controls="popup-text--shipping-policy--{{ unique }}"
+              aria-label="{{ 'products.product.shipping_policy_info_link' | t }}"
+            >
+              <drawer-toggle></drawer-toggle>
+              {{- shipping_policy_link_text -}}
+            </button>
+            {{- shipping_policy | split: '</span>' | last -}}
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>

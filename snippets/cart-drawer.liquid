@@ -1,0 +1,532 @@
+{%- comment -%}
+  Renders the cart drawer markup
+
+  Uses section/block context when rendered from a section (block, section).
+
+  Accepts:
+  - bg_color: {String} Background color CSS value (optional)
+
+  Usage:
+  {% render 'cart-drawer' %}
+{%- endcomment -%}
+<!-- /snippets/cart-drawer.liquid -->
+{%- liquid
+  assign selected_color_scheme = section.settings.color_scheme | strip
+  assign scheme_bg_color = settings.color_schemes[selected_color_scheme].settings.section_bg
+  assign bg_color = bg_color | default: scheme_bg_color
+
+  assign animations_enabled = settings.animations_enabled
+  assign animation_delay = 200
+  assign subtotal = cart.total_price | plus: 0
+  assign cart_items_size = cart.item_count
+  assign cart_title_default = 'cart.general.title' | t
+  assign has_progress_holder = true
+  assign enable_accept_terms = settings.enable_accept_terms
+  assign cart_button_style = section.settings.cart_button_style
+  assign cart_button_size = section.settings.cart_button_size
+  assign cart_button_color = section.settings.cart_button_color
+
+  assign title_block = section.blocks | where: 'type', 'title'
+  assign checkout_buttons_block = section.blocks | where: 'type', 'checkout-buttons'
+  assign shipping_estimate_block = section.blocks | where: 'type', 'shipping-estimate'
+  assign has_checkout_buttons = false
+
+  for block in section.blocks
+    case block.type
+      when 'title'
+        assign has_cart_title = true
+        assign title_block_index = forloop.index
+        assign type_style = block.settings.type_style
+        assign text_size = block.settings.text_size | times: 0.01
+      when 'checkout-buttons'
+        assign has_checkout_buttons = true
+    endcase
+  endfor
+-%}
+
+{% if has_cart_title %}
+  {%- capture title_style -%}
+    {%- render 'heading-style', type_style: type_style, size: text_size -%}
+  {%- endcapture -%}
+{% endif %}
+
+{%- capture cart_title -%}
+  <h3
+    class="{% if has_cart_title %}cart-drawer__title {{ type_style }}{% else %}cart-drawer__title--fallback{% endif %}"
+    {{ title_style }}
+  >
+    {{ title_block[0].settings.title_text | default: cart_title_default }}
+    <span
+      class="cart-drawer__item-qty{% if cart_items_size == 0 %} hidden{% endif %}"
+      data-cart-items-qty
+    >
+      {{- 'cart.label.items_with_count' | t: count: cart_items_size -}}
+    </span>
+  </h3>
+
+  <a
+    href="#cart-drawer"
+    class="cart-drawer__close"
+    data-cart-drawer-toggle
+    aria-label="{{ 'general.accessibility.close_drawer' | t }} {{ 'cart.general.title' | t }}"
+  >
+    {%- render 'icon-close' -%}
+  </a>
+
+  <div class="loader loader--line"><div class="loader-indeterminate"></div></div>
+{%- endcapture -%}
+
+{%- capture checkout_buttons -%}
+  {%- liquid
+    assign has_dynamic_checkout_buttons = false
+    if checkout_buttons_block.size > 0
+      if checkout_buttons_block[0].settings.enable_additional_buttons and additional_checkout_buttons
+        assign has_dynamic_checkout_buttons = true
+      endif
+    endif
+  -%}
+
+  <form
+    id="cartDrawerCheckoutForm"
+    {% if cart_items_size == 0 %}
+      class="hidden"
+    {% endif %}
+    action="{{ routes.cart_url }}"
+    method="post"
+    novalidate
+    data-cart-form
+  >
+    <div class="cart__foot-inner">
+      <div data-cart-price-holder>{%- render 'cart-price' -%}</div>
+
+      <div class="cart__buttons-wrapper">
+        {%- if enable_accept_terms -%}
+          <input type="hidden" name="attributes[{{ 'cart.general.accepted_terms' | t }}]" value="Yes">
+          <input
+            type="checkbox"
+            class="cart__acceptance__input"
+            name="acceptance"
+            id="acceptance"
+            data-cart-acceptance-checkbox
+          >
+          <label for="acceptance" class="cart__acceptance__label" data-cart-acceptance-label>
+            {{- settings.accept_terms_text -}}
+          </label>
+        {%- endif -%}
+
+        <p class="cart__terms cart__errors__content" data-terms-error-message></p>
+
+        <div
+          class="cart__buttons{% if enable_accept_terms %} cart__buttons--disabled{% endif %}"
+          data-cart-checkout-buttons
+        >
+          <fieldset class="cart__buttons__fieldset" data-cart-checkout-button>
+            <button
+              type="submit"
+              name="checkout"
+              class="cart__checkout btn {{ cart_button_style }} {{ cart_button_color }} {{ cart_button_size }} btn--advanced btn--advanced-width-height btn--advanced-adaptive-width{% if has_dynamic_checkout_buttons %} cart__checkout--dynamic{% endif %}"
+            >
+              <hover-button></hover-button>
+              {{- 'cart.general.checkout' | t -}}
+              <span class="cart__total__money" data-cart-total-price>
+                {%- liquid
+                  if subtotal == 0
+                    echo 'products.product.free' | t
+                  else
+                    echo subtotal | money_with_currency
+                  endif
+                -%}
+              </span>
+            </button>
+
+            {%- if has_dynamic_checkout_buttons -%}
+              <div
+                class="additional-checkout-buttons additional-checkout-buttons--vertical"
+                data-additional-checkout-button
+              >
+                {{- content_for_additional_checkout_buttons -}}
+              </div>
+            {%- endif -%}
+          </fieldset>
+        </div>
+      </div>
+
+      <p class="cart__text">{{ 'cart.general.shipping_at_checkout' | t }}</p>
+    </div>
+  </form>
+{%- endcapture -%}
+
+{%- if shipping_estimate_block.size > 0 -%}
+  <script src="{{ 'shipping-calculator.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<cart-items id="cart-drawer" class="cart-drawer cv-h" data-cart-drawer>
+  <template data-cart-drawer-template>
+    <div class="cart-drawer__body" data-cart-drawer-body>
+      {%- unless has_cart_title -%}
+        {%- assign title_block_index = title_block_index | default: 1 -%}
+        {%- assign animation_delay = title_block_index | times: 50 | plus: 200 -%}
+
+        <div
+          class="cart-drawer__block cart-drawer__block--title has-border-bottom"
+          {% if animations_enabled %}
+            data-aos="fade"
+            data-aos-delay="{{ animation_delay }}"
+            {%- assign animation_delay = animation_delay | plus: 50 -%}
+          {% endif %}
+        >
+          {{ cart_title }}
+        </div>
+      {%- endunless -%}
+
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign pin_to_bottom = block.settings.pin_to_bottom
+            assign block_class = 'cart-drawer__block'
+
+            if block.settings.show_border_bottom
+              assign block_class = block_class | append: ' has-border-bottom'
+            endif
+          -%}
+
+          {%- capture block_content -%}
+          {%- case block.type -%}
+            {%- when 'checkout-buttons' -%}
+              <div class="{{ block_class }} cart-drawer__block--checkout-buttons"
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                {%- if checkout_buttons != blank -%}
+                  {{ checkout_buttons }}
+                {%- endif -%}
+              </div>
+
+            {%- when 'title' -%}
+              <div
+                class="{{ block_class }} cart-drawer__block--title"
+                {{ block.shopify_attributes }}
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+              >
+                {{ cart_title }}
+              </div>
+
+            {%- when 'cart-message' -%}
+              {%- if block.settings.cart_custom_message_text != blank -%}
+                <div
+                  class="{{ block_class }} cart-message cart-message--custom"
+                  data-cart-bar
+                  {{ block.shopify_attributes }}
+                  {% if animations_enabled %}
+                    data-aos="fade"
+                    data-aos-delay="{{ animation_delay }}"
+                    {%- assign animation_delay = animation_delay | plus: 50 -%}
+                  {% endif %}
+                >
+                  {{ block.settings.cart_custom_message_text }}
+                </div>
+              {%- endif -%}
+
+            {%- when 'free-shipping-message' -%}
+              <div
+                class="{{ block_class }} cart-drawer__block--shipping-message"
+                {{ block.shopify_attributes }}
+              >
+                {%- render 'cart-message',
+                  animation_delay: animation_delay,
+                  has_progress_holder: has_progress_holder,
+                  block: block
+                -%}
+                {%- if animations_enabled -%}
+                  {%- assign animation_delay = animation_delay | plus: 100 -%}
+                {%- endif -%}
+              </div>
+
+            {%- when 'payment-icons' -%}
+              {%- liquid
+                assign enable_greyscale = block.settings.enable_greyscale
+                assign icon_alignment = block.settings.icon_alignment
+              -%}
+
+              <div
+                class="{{ block_class }} cart-drawer__block--payment-icons {{ icon_alignment }}"
+                {{ block.shopify_attributes }}
+              >
+                {%- render 'footer-payment', enable_greyscale: enable_greyscale -%}
+              </div>
+
+            {%- when 'products' -%}
+              <div
+                id="cartItemsHolder"
+                class="{{ block_class }} cart-drawer__block--items{% if cart_items_size == 0 %} hidden{% endif %}"
+                data-items-holder
+                {{ block.shopify_attributes }}
+              >
+                <div class="cart__errors cart-drawer__errors" role="alert" data-cart-errors>
+                  <div class="cart__errors__inner">
+                    <p class="cart__errors__heading">{{- 'cart.general.limit_error' | t -}}</p>
+
+                    <p class="cart__errors__content" data-error-message></p>
+
+                    <button
+                      type="button"
+                      class="cart__errors__close"
+                      data-cart-error-close
+                      aria-label="{{ 'general.accessibility.dismiss' | t }} {{ 'cart.general.title' | t }}"
+                    >
+                      {%- render 'icon-close' -%}
+                    </button>
+                  </div>
+                </div>
+
+                {%- render 'cart-line-items', part: 'line-items', aos_anchor: '#cartItemsHolder' -%}
+              </div>
+
+            {%- when 'upsell' -%}
+              <div
+                class="{{ block_class }} cart-drawer__block--upsell"
+                data-cart-widget-holder
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <div
+                  id="cartUpsellHolder"
+                  class="cart__pair"
+                  data-pair-products-holder
+                >
+                  {%- render 'cart-line-items', part: 'upsell-items', aos_anchor: '#cartUpsellHolder' -%}
+                </div>
+              </div>
+
+            {%- when 'discount-code' -%}
+              <collapsible-elements
+                class="{{ block_class }} cart-drawer__block--widget{% if cart_items_size == 0 %} hidden{% endif %}"
+                data-collapsible-single
+                data-collapsible-group="cart-widgets"
+                data-cart-widget-holder
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                {%- render 'discount' -%}
+              </collapsible-elements>
+
+            {%- when 'order-note' -%}
+              <collapsible-elements
+                class="{{ block_class }} cart-drawer__block--widget{% if cart_items_size == 0 %} hidden{% endif %}"
+                data-collapsible-single
+                data-collapsible-group="cart-widgets"
+                data-cart-widget-holder
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <div class="cart-widget">
+                  <button
+                    class="cart-widget__title"
+                    type="button"
+                    data-collapsible-trigger
+                    aria-expanded="false"
+                    aria-controls="notes"
+                  >
+                    {{- 'cart.general.cart_notes_label' | t -}}
+                    {%- render 'icon-toggle-plus' -%}
+                    {%- render 'icon-toggle-minus' -%}
+                  </button>
+
+                  <div id="notes" data-collapsible-container>
+                    <div class="cart-widget__content" data-collapsible-content>
+                      <label for="note">{{ 'cart.general.customer_note' | t }}</label>
+
+                      <textarea
+                        id="note"
+                        name="note"
+                        form="cartDrawerCheckoutForm"
+                        class="cart__field cart__field--textarea"
+                        aria-label="{{ 'cart.general.customer_note' | t }}"
+                      >{{- cart.note -}}</textarea>
+                    </div>
+                  </div>
+                </div>
+              </collapsible-elements>
+
+            {%- when 'gift-note' -%}
+              <collapsible-elements
+                class="{{ block_class }} cart-drawer__block--widget{% if cart_items_size == 0 %} hidden{% endif %}"
+                data-collapsible-single
+                data-collapsible-group="cart-widgets"
+                data-cart-widget-holder
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <div class="cart-widget">
+                  <button
+                    class="cart-widget__title"
+                    type="button"
+                    data-collapsible-trigger
+                    aria-expanded="false"
+                    aria-controls="gift-notes"
+                  >
+                    {{- 'cart.general.gift_notes_label' | t -}}
+                    {%- render 'icon-toggle-plus' -%}
+                    {%- render 'icon-toggle-minus' -%}
+                  </button>
+
+                  <div id="gift-notes" data-collapsible-container>
+                    <div class="cart-widget__content" data-collapsible-content>
+                      {%- liquid
+                        assign gift_note_attribute_default = 'Gift note'
+                        assign gift_note_attribute_string = 'cart.general.gift_note_attribute' | t
+                        assign gift_note_attribute = gift_note_attribute_string | default: gift_note_attribute_default
+                      -%}
+
+                      <label for="gift-note">{{ 'cart.general.note' | t }}</label>
+
+                      <textarea
+                        id="gift-note"
+                        name="attributes[{{ gift_note_attribute }}]"
+                        form="cartDrawerCheckoutForm"
+                        class="cart__field cart__field--textarea"
+                        aria-label="{{ 'cart.general.note' | t }}"
+                      >{{ cart.attributes[gift_note_attribute] }}</textarea>
+                    </div>
+                  </div>
+                </div>
+              </collapsible-elements>
+
+            {%- when 'shipping-estimate' -%}
+              <collapsible-elements
+                class="{{ block_class }} cart-drawer__block--widget{% if cart_items_size == 0 %} hidden{% endif %}"
+                data-collapsible-single
+                data-collapsible-group="cart-widgets"
+                data-cart-widget-holder
+                {% if animations_enabled %}
+                  data-aos="fade"
+                  data-aos-delay="{{ animation_delay }}"
+                  {%- assign animation_delay = animation_delay | plus: 50 -%}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                {%- render 'cart-block-shipping-calculator',
+                  block: block,
+                  cart_button_style: cart_button_style,
+                  cart_button_color: cart_button_color,
+                  cart_button_size: cart_button_size
+                -%}
+              </collapsible-elements>
+          {%- endcase -%}
+          {%- endcapture -%}
+
+          {%- liquid
+            # Separate blocks into pinned (bottom) vs static (body)
+            if pin_to_bottom
+              capture pinned_blocks
+                echo pinned_blocks
+                echo block_content
+              endcapture
+            else
+              capture static_blocks
+                echo static_blocks
+                echo block_content
+              endcapture
+            endif
+          -%}
+        {%- endfor -%}
+
+        {%- comment -%} Render static blocks in body {%- endcomment -%}
+        {%- if static_blocks != blank -%}
+          {{ static_blocks }}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if section.blocks.size == 0 -%}
+        {%- render 'no-blocks' -%}
+      {%- endif -%}
+
+      <div
+        id="cartDrawerEmptyMessage"
+        class="cart-drawer__empty-message{% if cart_items_size > 0 %} hidden{% endif %}"
+        data-empty-message
+      >
+        {%- assign aos_anchor = '#cartDrawerEmptyMessage' -%}
+        {%- render 'cart-empty',
+          aos_anchor: aos_anchor,
+          bg_color: bg_color,
+          cart_button_style: cart_button_style,
+          cart_button_color: cart_button_color,
+          cart_button_size: cart_button_size
+        -%}
+      </div>
+    </div>
+
+    {%- comment -%} Only render footer if there are pinned blocks or no checkout buttons block {%- endcomment -%}
+    {%- if has_checkout_buttons == false or pinned_blocks != blank -%}
+      <div
+        class="cart-drawer__foot cart__foot"
+        data-foot-holder
+        {% if animations_enabled %}
+          data-aos="fade-up"
+          data-aos-delay="{{ animation_delay }}"
+          {%- assign animation_delay = animation_delay | plus: 50 -%}
+        {% endif %}
+      >
+        {%- comment -%} Render pinned blocks (including checkout buttons if pinned) {%- endcomment -%}
+        {%- if pinned_blocks != blank -%}
+          {{ pinned_blocks }}
+        {%- endif -%}
+
+        {%- comment -%} Fallback: Render checkout buttons if no checkout-buttons block exists {%- endcomment -%}
+        {%- unless has_checkout_buttons -%}
+          {%- if checkout_buttons != blank -%}
+            {{ checkout_buttons }}
+          {%- endif -%}
+        {%- endunless -%}
+
+        <div
+          id="cartDrawerEmptyMessageBottom"
+          class="cart-drawer__empty-message cart-drawer__empty-message--bottom{% if cart_items_size > 0 %} hidden{% endif %}"
+          data-empty-message-bottom
+        >
+          {%- assign aos_anchor = '#cartDrawerEmptyMessageBottom' -%}
+          {%- assign animation_order = animation_order | default: 1 -%}
+
+          {%- render 'cart-empty-buttons',
+            bg_color: bg_color,
+            aos_anchor: aos_anchor,
+            animation_order: animation_order,
+            cart_button_style: cart_button_style,
+            cart_button_color: cart_button_color,
+            cart_button_size: cart_button_size
+          -%}
+
+          {%- render 'cart-empty-message',
+            aos_anchor: aos_anchor,
+            animation_order: animation_order
+          -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </template>
+</cart-items>

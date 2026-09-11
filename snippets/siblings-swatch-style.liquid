@@ -1,0 +1,84 @@
+{%- comment -%}
+  Resolves sibling swatch CSS variable and data-swatch handle from theme settings and native color metafields.
+
+  Accepts:
+  - sib_product: {Object} Sibling product (required)
+  - show_siblings_images: {Boolean} When true, style is not used (required)
+
+  Sets (via capture — read output and split):
+  - swatch_style
+  - swatch_name_handle
+  - color_name (display label)
+
+  Usage:
+  {%- capture siblings_swatch -%}
+    {%- render 'siblings-swatch-style', sib_product: sib_product, show_siblings_images: show_siblings_images -%}
+  {%- endcapture -%}
+  {%- assign siblings_swatch_parts = siblings_swatch | split: '|||' -%}
+  {%- assign swatch_style = siblings_swatch_parts[0] -%}
+  {%- assign swatch_name_handle = siblings_swatch_parts[1] -%}
+  {%- assign color_name = siblings_swatch_parts[2] -%}
+{%- endcomment -%}
+{%- liquid
+  assign title_safe = sib_product.title | strip_html | escape
+  assign product_color_name = title_safe
+  assign title_handle = product_color_name | handle
+  assign color_metafield = sib_product.metafields.shopify['color-pattern'].value | map: 'color' | first
+  assign color_metafield_image = sib_product.metafields.shopify['color-pattern'].value | map: 'image' | first | image_url: width: 96
+  assign color_metafield_label = sib_product.metafields.shopify['color-pattern'].value | map: 'label' | first
+  assign color_name = color_metafield_label | default: product_color_name
+  assign swatch_match_handle = color_name | handle
+  assign swatch_name_handle = swatch_match_handle
+  assign theme_list_matched = false
+  assign swatch_style = ''
+
+  assign swatch_color_list = settings.swatch_color_list
+  assign lines = swatch_color_list | newline_to_br | split: '<br />'
+
+  for line in lines
+    assign clean_line = line | replace: '\n', ''
+    if clean_line == blank
+      continue
+    endif
+
+    assign style_parts = clean_line | split: ':'
+    assign swatch_name = style_parts[0] | strip | handle
+    assign swatch_color = style_parts[1] | strip | downcase | replace: ';', ''
+
+    if swatch_name == swatch_match_handle or swatch_name == title_handle
+      assign theme_list_matched = true
+      assign swatch_name_handle = swatch_name
+
+      if swatch_color == '#000' or swatch_color == '#000000'
+        assign swatch_name_handle = 'black'
+      elsif swatch_color == '#fff' or swatch_color == '#ffffff'
+        assign swatch_name_handle = 'white'
+      endif
+
+      break
+    endif
+  endfor
+
+  unless show_siblings_images
+    assign color_swatches_type = settings.color_swatches_type
+
+    if color_swatches_type == 'native'
+      if color_metafield_image != blank
+        assign swatch_style = '--swatch: url(' | append: color_metafield_image | append: ')'
+      elsif theme_list_matched
+        assign swatch_style = '--swatch: var(--' | append: swatch_name_handle | append: ');'
+      elsif color_metafield != blank
+        assign swatch_style = '--swatch: ' | append: color_metafield
+      else
+        assign swatch_style = '--swatch: var(--' | append: swatch_match_handle | append: ');'
+      endif
+    else
+      if theme_list_matched
+        assign swatch_style = '--swatch: var(--' | append: swatch_name_handle | append: ');'
+      else
+        assign swatch_style = '--swatch: var(--' | append: title_handle | append: ');'
+      endif
+    endif
+  endunless
+-%}
+{{- swatch_style -}}|||{{- swatch_name_handle -}}|||{{- color_name -}}
