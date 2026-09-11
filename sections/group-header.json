@@ -23,30 +23,10 @@
             "target_device_enabled": false,
             "target_device": "mobile"
           }
-        },
-        "text_LEFAHq": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Trusted by riders, ranchers and rodeo families<\/p>",
-            "text_color": "",
-            "heading_highlight_type": "circle",
-            "highlight_color": "#d43747",
-            "highlight_text_color": "#000000",
-            "icon_name": "none",
-            "icon_color": "",
-            "icon_width": 20,
-            "target_url_enabled": false,
-            "target_url": "",
-            "target_referrer_enabled": false,
-            "target_referrer": "",
-            "target_device_enabled": false,
-            "target_device": "mobile"
-          }
         }
       },
       "block_order": [
-        "1ad501f9-7292-42de-b05f-8fa8a1ccf5c0",
-        "text_LEFAHq"
+        "1ad501f9-7292-42de-b05f-8fa8a1ccf5c0"
       ],
       "settings": {
         "width": "wrapper--full",
@@ -54,18 +34,18 @@
         "show_top_border": false,
         "show_bottom_border": false,
         "padding": 10,
-        "slider_speed": 14,
-        "show_arrows": true,
-        "marquee_speed": 100,
-        "direction": "ticker-ltr",
+        "slider_speed": 12,
+        "show_arrows": false,
+        "marquee_speed": 75,
+        "direction": "ticker-rtl",
         "text_caps": true,
         "type_font": "archivo_n4",
         "text_size": 110,
         "letter_spacing": 100,
         "message_spacing": 30,
         "color_scheme": "scheme-3ed0586c-bc6d-462f-b437-bd431864e078",
-        "color": "#3D3A34",
-        "border_color": "#3D3A34"
+        "color": "#3d3a34",
+        "border_color": "#3d3a34"
       }
     },
     "header": {
@@ -99,82 +79,10 @@
         "header_transparent": false,
         "header_gradient": true
       }
-    },
-    "mobile_menu_CDGjkt": {
-      "type": "mobile-menu",
-      "blocks": {
-        "menu_KQkDaG": {
-          "type": "menu",
-          "settings": {
-            "mobile_menu_linklist": "main-menu",
-            "text_size": 100,
-            "show_images": true,
-            "image_aspect_ratio": 0.5,
-            "highlight_item": "Sale",
-            "enable_custom_badge": false,
-            "custom_badge_text": "10% OFF",
-            "highlight_item_color": "#d02e2e",
-            "highlight_item_text_color": "#ffffff",
-            "padding": false,
-            "padding_bottom": 10
-          }
-        },
-        "login_wcK6Yq": {
-          "type": "login",
-          "settings": {
-            "text_size": 100,
-            "pin_to_bottom": true,
-            "padding_bottom": 10
-          }
-        },
-        "search_9f3CPU": {
-          "type": "search",
-          "settings": {
-            "text_size": 100,
-            "pin_to_bottom": true,
-            "padding_bottom": 10
-          }
-        },
-        "localization_Mh4yrg": {
-          "type": "localization",
-          "settings": {
-            "show_locale_selector": true,
-            "show_locale_code": true,
-            "show_country_selector": true,
-            "show_country_name": false,
-            "show_country_flag": false,
-            "pin_to_bottom": true,
-            "padding_bottom": 10
-          }
-        },
-        "button_8AqTJ3": {
-          "type": "button",
-          "settings": {
-            "button_text": "Shop All",
-            "button_link": "shopify:\/\/collections\/all",
-            "button_color": "btn--white",
-            "button_style": "btn--solid-border",
-            "button_size": "btn--medium",
-            "pin_to_bottom": true,
-            "padding_bottom": 10
-          }
-        }
-      },
-      "block_order": [
-        "menu_KQkDaG",
-        "login_wcK6Yq",
-        "search_9f3CPU",
-        "localization_Mh4yrg",
-        "button_8AqTJ3"
-      ],
-      "settings": {
-        "logo_max_width": 150
-      }
     }
   },
   "order": [
     "announcement-bar",
-    "header",
-    "mobile_menu_CDGjkt"
+    "header"
   ]
 }

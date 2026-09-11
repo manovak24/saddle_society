@@ -101,42 +101,6 @@
           "upsells_text_color": "#0b0b0b"
         }
       },
-      "scheme-2": {
-        "settings": {
-          "section_bg": "#fff7f2",
-          "section_heading": "#000000",
-          "section_text": "#000000",
-          "section_bg_gradient": "",
-          "btn_primary_bg": "#f7f6f4",
-          "btn_secondary_bg": "#0b0b0b",
-          "accent": "#d02e2e",
-          "lines_and_border": "#000000",
-          "overlay": "#0000004d",
-          "links": "#000000",
-          "quick_add_bg_color": "#ffffff",
-          "quick_add_text_color": "#000000",
-          "upsells_bg_color": "#fff7f2",
-          "upsells_text_color": "#000000"
-        }
-      },
-      "scheme-3": {
-        "settings": {
-          "section_bg": "#0b0b0b",
-          "section_heading": "#ffffff",
-          "section_text": "#ffffff",
-          "section_bg_gradient": "",
-          "btn_primary_bg": "#fff8f2",
-          "btn_secondary_bg": "#f7f6f4",
-          "accent": "#fff7f2",
-          "lines_and_border": "#f7f6f4",
-          "overlay": "#ffffff4d",
-          "links": "#ffffff",
-          "quick_add_bg_color": "#000000",
-          "quick_add_text_color": "#ffffff",
-          "upsells_bg_color": "#0b0b0b",
-          "upsells_text_color": "#ffffff"
-        }
-      },
       "scheme-4": {
         "settings": {
           "section_bg": "#faf7f2",
@@ -337,7 +301,7 @@
       },
       "scheme-52328bfd-bced-4302-a5ea-d599738abaec": {
         "settings": {
-          "section_bg": "#FFF7F2",
+          "section_bg": "#fff7f2",
           "section_heading": "#121316",
           "section_text": "#121316",
           "section_bg_gradient": "",
