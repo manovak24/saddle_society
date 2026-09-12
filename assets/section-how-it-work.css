@@ -54,6 +54,10 @@
   border-radius: var(--radius, 0px);
 }
 
+.how-it-work .how-it-work_image .background-size-cover {
+  border-radius: var(--radius);
+}
+
 .how-it-work .how-it-work_steps {
   position: relative;
   width: calc(45% - 45px);

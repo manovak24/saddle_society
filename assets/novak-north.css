@@ -322,3 +322,28 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     }
 }
 
+
+
+/* Site header */
+.site-header .cart-indicator {
+    fill: #121316;
+}
+/* //////// End site header //////// */
+
+/* Slideshow */
+.slideshow .slide__text__wrapper {
+    padding-top: 15px;
+}
+
+@media screen and (max-width: 767px) {
+    .slideshow .slide__heading {
+        font-size: 36px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .slideshow .slide__text__wrapper {
+        padding-top: 40px;
+    }
+}
+/* //////// End slideshow //////// */
