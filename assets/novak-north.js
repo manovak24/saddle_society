@@ -1,75 +1,62 @@
-(function () {
-  if (window.howItWorkLineInit) return;
-  window.howItWorkLineInit = true;
+const initHowItWorkLine = () => {
+  const roots = document.querySelectorAll('[data-how-it-work-line]');
+  if (!roots.length) return;
 
-  function initHowItWorkLine(root) {
-    if (!root || root.dataset.lineReady === 'true') return;
+  roots.forEach((root) => {
+    if (root.dataset.lineReady === 'true') return;
     root.dataset.lineReady = 'true';
 
-    var fillEl = root.querySelector('[data-line-fill]');
-    var trackEl = root.querySelector('.how-it-work_line-track');
-    var markers = root.querySelectorAll('[data-step-marker]');
+    const markers = root.querySelectorAll('[data-step-marker]');
+    markers.forEach((marker, i) => marker.style.setProperty('--i', i));
+    root.style.setProperty('--steps-total', markers.length);
 
-    if (!fillEl || !trackEl) return;
-
-    var ticking = false;
-
-    function update() {
-      ticking = false;
-
-      var trackRect = trackEl.getBoundingClientRect();
-      var viewportH = window.innerHeight || document.documentElement.clientHeight;
-
-      /* Starts filling only when the section has moved further up the screen */
-      var triggerLine = viewportH * 0.65;
-
-      var percent = (triggerLine - trackRect.top) / trackRect.height;
-      percent = Math.max(0, Math.min(1, percent));
-
-      root.style.setProperty('--line-fill', percent);
-
-      markers.forEach(function (marker) {
-        var icon = marker.querySelector('.how-it-work_step-marker-icon');
-        var target = icon || marker;
-
-        var iconRect = target.getBoundingClientRect();
-        var iconCenter = iconRect.top + (iconRect.height / 2);
-
-        marker.classList.toggle('is-filled', iconCenter <= triggerLine);
+    const enterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) root.classList.add('is-active');
       });
-    }
+    }, { threshold: 0, rootMargin: '0px 0px -35% 0px' });
 
-    function onScroll() {
-      if (ticking) return;
-
-      window.requestAnimationFrame(update);
-      ticking = true;
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-
-    update();
-  }
-
-  function initAll() {
-    document
-      .querySelectorAll('[data-how-it-work-line]')
-      .forEach(initHowItWorkLine);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAll);
-  } else {
-    initAll();
-  }
-
-  document.addEventListener('shopify:section:load', function (event) {
-    event.target
-      .querySelectorAll('[data-how-it-work-line]')
-      .forEach(function (el) {
-        el.dataset.lineReady = 'false';
-        initHowItWorkLine(el);
+    const exitObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) root.classList.remove('is-active');
       });
+    }, { threshold: 0 });
+
+    enterObserver.observe(root);
+    exitObserver.observe(root);
   });
-})();
+};
+
+document.addEventListener('DOMContentLoaded', initHowItWorkLine);
+document.addEventListener('shopify:section:load', initHowItWorkLine);
+
+
+const initMobileMenuAnchorScroll = () => {
+  const menu = document.querySelector('.mobile-nav');
+  if (!menu) return;
+  if (menu.dataset.anchorScrollBound) return;
+  menu.dataset.anchorScrollBound = 'true';
+
+  menu.addEventListener('click', (e) => {
+    const link = e.target.closest('.mobile-menu__item .mobile-navlink');
+    if (!link) return;
+
+    const url = new URL(link.href, window.location.href);
+    const hash = url.hash;
+    if (!hash || hash === '#' || url.pathname !== window.location.pathname) return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    e.preventDefault();
+    document.querySelector('.drawer__close-button')?.click();
+
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', hash);
+    }, 300);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', initMobileMenuAnchorScroll);
+document.addEventListener('shopify:section:load', initMobileMenuAnchorScroll);

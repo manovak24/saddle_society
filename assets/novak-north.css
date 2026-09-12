@@ -347,3 +347,11 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     }
 }
 /* //////// End slideshow //////// */
+
+/* Overlapping images */
+@media screen and (max-width: 767px) {
+    .overlapping-images .h2 {
+        font-size: 24px;
+    }
+}
+/* //////// End overlapping images /////// */

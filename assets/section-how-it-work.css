@@ -1,11 +1,12 @@
 /*================ "How it works" ================*/
 .how-it-work {
   --radius: 0px;
-  --line-fill: 0;
+  --line-duration: 1.6s;
+  --line-delay: 0.3s;
+  --line-end-offset: -11px;
   position: relative;
   width: 100%;
   background: var(--bg);
-    --line-end-offset: -11px; 
 }
 
 .how-it-work .how-it-work_inner {
@@ -39,8 +40,8 @@
 
 .how-it-work .how-it-work_text {
   margin: 0 0 32px;
-    max-width: 470px;
-    color: #4E544B;
+  max-width: 470px;
+  color: #4E544B;
   line-height: 1.5;
 }
 
@@ -82,10 +83,9 @@
   position: absolute;
   top: 2px;
   bottom: var(--line-end-offset);
-  left: 50%;
+  left: calc(50% - 1px);
   width: 2px;
   height: auto;
-  transform: translateX(-50%);
 }
 
 .how-it-work .how-it-work_line-track {
@@ -94,9 +94,15 @@
 
 .how-it-work .how-it-work_line-fill {
   background: var(--text);
-  transform: translateX(-50%) scaleY(var(--line-fill));
+  transform: scaleY(0);
   transform-origin: top center;
-  transition: transform 0.1s linear;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.how-it-work .how-it-work_steps.is-active .how-it-work_line-fill {
+  transform: scaleY(1);
+  transition: transform var(--line-duration) cubic-bezier(.65, 0, .35, 1) var(--line-delay);
 }
 
 .how-it-work .how-it-work_step {
@@ -120,19 +126,28 @@
   justify-content: center;
   width: 24px;
   color: #D9D9D9;
-  transition: color 0.2s ease, opacity 0.2s ease;
-    align-self: start;
-        padding-top: 16px;
+  align-self: start;
+  padding-top: 16px;
+  transition: color 0.25s ease;
 }
 
 .how-it-work .how-it-work_step-marker-icon {
   width: 22px;
   height: 22px;
   position: relative;
+  transition: transform 0.25s ease;
 }
 
-.how-it-work .how-it-work_step-marker.is-filled {
+.how-it-work .how-it-work_steps.is-active .how-it-work_step-marker {
   color: var(--text);
+  transition: color 0.5s ease
+    calc(var(--line-delay) + var(--line-duration) * var(--i, 0) / var(--steps-total, 1));
+}
+
+.how-it-work .how-it-work_steps.is-active .how-it-work_step-marker-icon {
+  transform: scale(1.08);
+  transition: transform 0.5s cubic-bezier(.34, 1.56, .64, 1)
+    calc(var(--line-delay) + var(--line-duration) * var(--i, 0) / var(--steps-total, 1));
 }
 
 .how-it-work .how-it-work_step-content {
@@ -148,19 +163,32 @@
 }
 
 .how-it-work .how-it-work_step-text {
-    margin: 0;
-    line-height: 1.5;
-    color: #4E544B;
+  margin: 0;
+  line-height: 1.5;
+  color: #4E544B;
 }
 
 .how-it-work .how-it-work_step-text p {
   margin: 0;
 }
-.how-it-work .how-it-work_step .how-it-work_step-content{
-      padding-bottom: 50px;
+
+.how-it-work .how-it-work_step .how-it-work_step-content {
+  padding-bottom: 50px;
 }
-.how-it-work .how-it-work_steps .how-it-work_step:last-child .how-it-work_step-content{
-      padding-bottom: 0;
+
+.how-it-work .how-it-work_steps .how-it-work_step:last-child .how-it-work_step-content {
+  padding-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .how-it-work .how-it-work_line-fill,
+  .how-it-work .how-it-work_step-marker,
+  .how-it-work .how-it-work_step-marker-icon,
+  .how-it-work .how-it-work_steps.is-active .how-it-work_line-fill,
+  .how-it-work .how-it-work_steps.is-active .how-it-work_step-marker,
+  .how-it-work .how-it-work_steps.is-active .how-it-work_step-marker-icon {
+    transition: none;
+  }
 }
 
 /*================ Media queries ================*/
@@ -171,10 +199,10 @@
 }
 
 @media (min-width: 768px) and (max-width: 1439px) {
-  .how-it-work .how-it-work_step-marker{
+  .how-it-work .how-it-work_step-marker {
     padding-top: 12px;
   }
-  .how-it-work .how-it-work_line{
+  .how-it-work .how-it-work_line {
     top: 12px;
   }
 }
@@ -186,8 +214,8 @@
   .how-it-work .how-it-work_content {
     width: calc(52% - 20px);
   }
-  .how-it-work .how-it-work_steps{
-        width: calc(48% - 20px);
+  .how-it-work .how-it-work_steps {
+    width: calc(48% - 20px);
   }
 }
 
@@ -200,17 +228,17 @@
     column-gap: 18px;
     width: 100%;
   }
-  .how-it-work .how-it-work_content{
-        width: 100%;
+  .how-it-work .how-it-work_content {
+    width: 100%;
   }
-  .how-it-work .how-it-work_text{
-        margin: 0 0 25px;
-        font-size: 14px;
+  .how-it-work .how-it-work_text {
+    margin: 0 0 25px;
+    font-size: 14px;
   }
-  .how-it-work .how-it-work_step-heading{
-        font-size: 22px;
+  .how-it-work .how-it-work_step-heading {
+    font-size: 22px;
   }
-  .how-it-work .how-it-work_step-text{
+  .how-it-work .how-it-work_step-text {
     font-size: 14px;
   }
   .how-it-work .how-it-work_step-marker-icon {
@@ -220,10 +248,10 @@
   .how-it-work .how-it-work_step .how-it-work_step-content {
     padding-bottom: 32px;
   }
-    .how-it-work .how-it-work_step-marker{
+  .how-it-work .how-it-work_step-marker {
     padding-top: 8px;
   }
-  .how-it-work .how-it-work_line{
+  .how-it-work .how-it-work_line {
     top: 8px;
   }
 }
