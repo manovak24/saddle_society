@@ -5,8 +5,10 @@
       "blocks": {
         "template--18773133918486__90e8ecf2-4c0c-40f6-afb0-9a1386cbb6df-168318154263395a1e-0": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify:\/\/shop_images\/Rectangle_29.png",
+            "image_mobile": "shopify:\/\/shop_images\/hero_home_mobile.webp",
             "overlay_type": "disabled",
             "video_link_bg": "",
             "content_width": 100,
@@ -23,7 +25,45 @@
             "text": "Apparel, tack, horse care, supplements and grooming essentials hand-picked from the brands the Western community already trusts.",
             "text_size": 90,
             "show_text_background": false,
-            "bg_color": "",
+            "bg_color": "#ffffffba",
+            "text_color": "#173225",
+            "stacked_button": false,
+            "button_1_text": "choose your box",
+            "button_1_link": "shopify:\/\/collections\/all",
+            "button_1_color": "btn--primary",
+            "button_1_style": "btn--solid",
+            "button_1_size": "btn--large",
+            "button_2_text": "LEARN MORE",
+            "button_2_link": "",
+            "button_2_color": "btn--secondary",
+            "button_2_style": "btn--solid-border",
+            "button_2_size": "btn--large",
+            "video_text": "",
+            "video_link": ""
+          }
+        },
+        "image_wPpKFc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hero_banner.webp",
+            "image_mobile": "shopify:\/\/shop_images\/hero_banner_mobile.webp",
+            "overlay_type": "disabled",
+            "video_link_bg": "",
+            "content_width": 100,
+            "text_position": "center",
+            "text_alignment": "text-center",
+            "mobile_text_position": "center",
+            "mobile_text_alignment": "center",
+            "subheading": "Monthly Subscription Box",
+            "title": "<p>The ultimate monthly <br\/>s<em>ubscription box built<\/em> for the <br\/>western lifestyle<\/p>",
+            "heading_size": 180,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#fff3f2",
+            "highlight_text_color": "#ffffff",
+            "text": "Apparel, tack, horse care, supplements and grooming essentials hand-picked from the brands the Western community already trusts.",
+            "text_size": 90,
+            "show_text_background": true,
+            "bg_color": "#ffffffba",
             "text_color": "#173225",
             "stacked_button": false,
             "button_1_text": "choose your box",
@@ -42,22 +82,33 @@
         }
       },
       "block_order": [
-        "template--18773133918486__90e8ecf2-4c0c-40f6-afb0-9a1386cbb6df-168318154263395a1e-0"
+        "template--18773133918486__90e8ecf2-4c0c-40f6-afb0-9a1386cbb6df-168318154263395a1e-0",
+        "image_wPpKFc"
       ],
       "settings": {
         "slide_height": "original-height",
         "enable_mobile_height": true,
         "mobile_slide_height": "full-height-mobile",
-        "show_nav_dots": true,
+        "show_nav_dots": false,
         "show_nav_arrows": false,
         "show_arrow_down": false,
-        "autoplay": true,
+        "autoplay": false,
         "duration": 4,
         "transition": "zoom-out",
-        "enable_zoom_animation": true,
+        "enable_zoom_animation": false,
         "enable_card_scrolling": true,
         "increase_border_radius": true,
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff"
+      }
+    },
+    "section_custom_html_DipK3P": {
+      "type": "section-custom-html",
+      "name": "Custom code",
+      "settings": {
+        "custom_code": "<div id=\"featured-brands\"><\/div>",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "section_text_4wKgbd": {
@@ -66,7 +117,7 @@
         "text_Vb8jWz": {
           "type": "text",
           "settings": {
-            "text": "<p>FEATURING WORLD-CLASS WESTERN BRAND PARTNERS<\/p>",
+            "text": "<p><strong>FEATURING WORLD-CLASS WESTERN BRAND PARTNERS<\/strong><\/p>",
             "size": 100
           }
         }
@@ -225,7 +276,7 @@
           "type": "image",
           "settings": {
             "width": "25",
-            "image": "shopify:\/\/shop_images\/Frame_48.png",
+            "image": "shopify:\/\/shop_images\/saddle_society_box_v1.webp",
             "overlay_type": "disabled",
             "text_position": "bottom-center",
             "subheading": "",
@@ -244,7 +295,7 @@
           "type": "image",
           "settings": {
             "width": "25",
-            "image": "shopify:\/\/shop_images\/Frame_49.png",
+            "image": "shopify:\/\/shop_images\/saddle_society_model_with_box_v1.webp",
             "overlay_type": "disabled",
             "text_position": "bottom-center",
             "subheading": "",
@@ -263,7 +314,7 @@
           "type": "image",
           "settings": {
             "width": "25",
-            "image": "shopify:\/\/shop_images\/Frame_50.png",
+            "image": "shopify:\/\/shop_images\/saddle_society_built_for_west.webp",
             "overlay_type": "disabled",
             "text_position": "bottom-center",
             "subheading": "",
@@ -282,7 +333,7 @@
           "type": "image",
           "settings": {
             "width": "25",
-            "image": "shopify:\/\/shop_images\/Frame_51.png",
+            "image": "shopify:\/\/shop_images\/saddle_society_cowgirl_903253fb-9f8d-4278-a309-fed8baf86b41.webp",
             "overlay_type": "disabled",
             "text_position": "bottom-center",
             "subheading": "",
@@ -307,7 +358,7 @@
       "settings": {
         "desktop_height": "original-height",
         "enable_mobile_height": true,
-        "mobile_height": "two-fifty-height-mobile",
+        "mobile_height": "original-height-mobile",
         "heading_size": 100,
         "text_size": 100,
         "button_1_color": "btn--white",
@@ -364,7 +415,7 @@
         "badge_text": "Steps",
         "heading": "<p>How Saddle Society Works<\/p>",
         "text": "<p>Choose your box, tell us about you and your horse, and receive a premium selection of Western apparel, tack, horse-care products, and lifestyle essentials every month.<\/p>",
-        "image": "shopify:\/\/shop_images\/Group_7.png",
+        "image": "shopify:\/\/shop_images\/how_it_works_v1.webp",
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "section_width": "wrapper--full-padded",
         "padding_top": 40,
@@ -420,7 +471,7 @@
         "template--19703957815574__0681c988-bc81-449f-898e-35ff9ea1ef78-16884257840bbf4d3f-0": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-tile-hero_507e782b-0ccc-4349-9a81-8c92ae0caf5e.png",
+            "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
             "subheading": "<p><strong>Apparel<\/strong><\/p>",
             "subheading_size": 70,
             "heading": "<p><strong>Premium Apparel<\/strong><\/p>",
@@ -438,7 +489,7 @@
             "button_style": "btn--soft",
             "button_size": "btn--small",
             "bg_color": "",
-            "gradient_background": "linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1) 100%)",
+            "gradient_background": "linear-gradient(190deg, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 1) 100%)",
             "text_color": "#f2ede3",
             "overlay_type": "disabled"
           }
@@ -446,7 +497,7 @@
         "template--19703957815574__0681c988-bc81-449f-898e-35ff9ea1ef78-16884257840bbf4d3f-2": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-tile-medium_4cb8de16-123a-4913-b2f9-0e8bd6b5563a.png",
+            "image": "shopify:\/\/shop_images\/collage-tile-tack.webp",
             "subheading": "<p><strong>Tack<\/strong><\/p>",
             "subheading_size": 70,
             "heading": "<p><strong>Artisan Performance Tack<\/strong><\/p>",
@@ -476,17 +527,17 @@
       ],
       "settings": {
         "layout": "1",
-        "count_up_enabled": true,
+        "count_up_enabled": false,
         "count_up_duration": 60,
-        "height": "450",
-        "enable_mobile_height": false,
-        "mobile_height": "400",
+        "height": "550",
+        "enable_mobile_height": true,
+        "mobile_height": "350",
         "color_scheme": "scheme-afa66436-d445-4852-b059-ee61648786ca",
         "enable_slider_mobile": false,
         "columns_mobile": "1",
         "width": "wrapper--full-padded",
         "padding_top": 10,
-        "padding_bottom": 10
+        "padding_bottom": 100
       }
     },
     "section_promotion_row_MwyCUV": {
@@ -566,14 +617,15 @@
     },
     "4f1f992b-711a-4c96-b69a-ab3892f71369": {
       "type": "section-overlapping-images",
+      "custom_css": [],
       "settings": {
         "text_position": "right",
         "text_alignment": "left",
         "images_width": 750,
-        "images_offset": 150,
-        "image_1": "shopify:\/\/shop_images\/Container_1_8d783a73-b659-48e7-afff-4108f0e8475d.png",
+        "images_offset": 85,
+        "image_1": "shopify:\/\/shop_images\/sourced_by_real_ranchers_1.webp",
         "image_link_1": "",
-        "image_2": "shopify:\/\/shop_images\/Container.png",
+        "image_2": "shopify:\/\/shop_images\/sourced_by_real_ranchers_v1.webp",
         "image_link_2": "",
         "hide_image_2": false,
         "subheading": "Our Mission",
@@ -593,7 +645,7 @@
         "video_link": "",
         "color_scheme": "scheme-52328bfd-bced-4302-a5ea-d599738abaec",
         "animation": "horizontal",
-        "animation_intensity": 55,
+        "animation_intensity": 20,
         "width": "wrapper--full-padded",
         "padding_top": 100,
         "padding_bottom": 100
@@ -705,6 +757,16 @@
         "slider_width": "wrapper--full-padded",
         "padding_top": 100,
         "padding_bottom": 100
+      }
+    },
+    "section_custom_html_HdRnQU": {
+      "type": "section-custom-html",
+      "name": "Custom code",
+      "settings": {
+        "custom_code": "<div id=\"faq\"><\/div>",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "section_accordions_with_images_3U9fky": {
@@ -861,13 +923,15 @@
         "text_6iX7F9",
         "button_hFCFAE"
       ],
+      "custom_css": [
+        "section {margin-bottom: -5px;}"
+      ],
       "name": "Banner image",
       "settings": {
         "height": "original-height",
         "enable_mobile_height": true,
-        "mobile_height": "five-fifty-height-mobile",
+        "mobile_height": "seven-fifty-height-mobile",
         "image": "shopify:\/\/shop_images\/Group_1.jpg",
-        "image_mobile": "shopify:\/\/shop_images\/Group_1.jpg",
         "overlay_type": "disabled",
         "transition": "zoom-out",
         "enable_zoom_animation": false,
@@ -879,8 +943,8 @@
         "mobile_text_position": "top-center",
         "mobile_text_alignment": "center",
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
-        "show_text_background": false,
-        "bg_color": "",
+        "show_text_background": true,
+        "bg_color": "#ffffffb5",
         "text_color": "",
         "width": "wrapper--full",
         "padding_top": 0,
@@ -890,6 +954,7 @@
   },
   "order": [
     "90e8ecf2-4c0c-40f6-afb0-9a1386cbb6df",
+    "section_custom_html_DipK3P",
     "section_text_4wKgbd",
     "0155d563-b5f6-4178-a46b-3d1b1b9c9142",
     "e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b",
@@ -900,6 +965,7 @@
     "section_promotion_row_MwyCUV",
     "4f1f992b-711a-4c96-b69a-ab3892f71369",
     "section_testimonials_with_images_xHFcKf",
+    "section_custom_html_HdRnQU",
     "section_accordions_with_images_3U9fky",
     "section_banner_image_x6Qyxk"
   ]

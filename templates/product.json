@@ -116,6 +116,42 @@
         "padding_bottom": 30
       }
     },
+    "section_countdown_geV9jV": {
+      "type": "section-countdown",
+      "blocks": {
+        "timer_AhVGLz": {
+          "type": "timer",
+          "settings": {
+            "end_date": "2026-12-31",
+            "end_time": "11:59",
+            "period": "am",
+            "end_message": "",
+            "digit_size": 140,
+            "unit_size": 140,
+            "bg_color": "",
+            "bg_opacity": 100
+          }
+        }
+      },
+      "block_order": [
+        "timer_AhVGLz"
+      ],
+      "name": "Countdown",
+      "settings": {
+        "layout_style": "inline",
+        "text_alignment": "center",
+        "height": "450",
+        "enable_mobile_height": false,
+        "mobile_height": "400",
+        "overlay_type": "disabled",
+        "enable_zoom_animation": false,
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "text_width": "normal",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "166716198631433af0": {
       "type": "apps",
       "disabled": true,
@@ -313,6 +349,7 @@
   },
   "order": [
     "main",
+    "section_countdown_geV9jV",
     "166716198631433af0",
     "related",
     "how_it_works_XMDEp7",
