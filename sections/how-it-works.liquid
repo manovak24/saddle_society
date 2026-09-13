@@ -1,7 +1,5 @@
 {%- liquid
   assign color_scheme = 'color-' | append: section.settings.color_scheme
-  assign selected_color_scheme = section.settings.color_scheme | strip
-  assign scheme_bg_color = settings.color_schemes[selected_color_scheme].settings.section_bg
 
   assign badge_text = section.settings.badge_text
   assign heading = section.settings.heading
@@ -11,7 +9,6 @@
   assign increase_border_radius = section.settings.increase_border_radius
   assign section_width = section.settings.section_width
 
-  assign unique = section.id
   assign id = 'HowItWork--' | append: section.id
   assign selector_id = '#' | append: id
   assign animation_anchor = selector_id
@@ -29,6 +26,15 @@
   if content_position == 'right'
     assign items_layout_class = 'how-it-work_inner--image-right'
   endif
+
+  comment
+    Step headings are h3 when a real h2 exists above them.
+    If the section heading is blank, drop to a div so we dont leave orphaned h3s.
+  endcomment
+  assign step_heading_tag = 'div'
+  if heading != blank
+    assign step_heading_tag = 'h3'
+  endif
 -%}
 
 {%- render 'stylesheet', name: 'section-how-it-work.css', async: true -%}
@@ -44,6 +50,12 @@
       --radius: 34px;
     }
   {%- endif %}
+
+  @media (prefers-reduced-motion: reduce) {
+    {{ selector_id }} .how-it-work_line-fill {
+      transition: none;
+    }
+  }
 {%- endstyle -%}
 
 <section id="{{ id }}"
@@ -69,15 +81,15 @@
           {%- endif -%}
 
           {%- if heading != blank -%}
-            <div class="how-it-work_heading h2"
+            <h2 class="how-it-work_heading h2"
               {% if animations_enabled %}
                 data-aos="fade-up"
                 data-aos-anchor="{{ animation_anchor }}"
                 data-aos-delay="{{ animation_delay }}"
                 {%- assign animation_delay = animation_delay | plus: 150 -%}
               {% endif %}>
-              {{ heading }}
-            </div>
+              {{ heading | replace: '<p>', '' | replace: '</p>', '' }}
+            </h2>
           {%- endif -%}
 
           {%- if text != blank -%}
@@ -117,6 +129,7 @@
         {%- comment -%} Right column: numbered steps with scroll-fill timeline {%- endcomment -%}
         {%- if steps_count > 0 -%}
           <div class="how-it-work_steps"
+            role="list"
             data-how-it-work-line
             style="--steps-count: {{ steps_count }};">
 
@@ -133,9 +146,10 @@
 
                 <div class="how-it-work_step"
                   id="HowItWork--{{ block.id }}"
+                  role="listitem"
                   style="--row: {{ step_index }};"
                   {{ block.shopify_attributes }}>
-                  <div class="how-it-work_step-number h2">{{ padded_index }}</div>
+                  <div class="how-it-work_step-number h2" aria-hidden="true">{{ padded_index }}</div>
 
                   <div class="how-it-work_step-marker" data-step-marker aria-hidden="true">
                     <svg class="how-it-work_step-marker-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -151,7 +165,7 @@
                       {%- assign animation_delay = animation_delay | plus: 150 -%}
                     {% endif %}>
                     {%- if block.settings.heading != blank -%}
-                      <h3 class="how-it-work_step-heading">{{ block.settings.heading }}</h3>
+                      <{{ step_heading_tag }} class="how-it-work_step-heading">{{ block.settings.heading }}</{{ step_heading_tag }}>
                     {%- endif -%}
                     {%- if block.settings.text != blank -%}
                       <div class="how-it-work_step-text rte">{{ block.settings.text }}</div>

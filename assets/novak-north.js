@@ -37,6 +37,18 @@ const initMobileMenuAnchorScroll = () => {
   if (menu.dataset.anchorScrollBound) return;
   menu.dataset.anchorScrollBound = 'true';
 
+  const scrollToTarget = (target, hash) => {
+    const top = target.getBoundingClientRect().top;
+
+    if (typeof window.theme?.scrollTo === 'function') {
+      window.theme.scrollTo(top, target);
+    } else {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    history.replaceState(null, '', hash);
+  };
+
   menu.addEventListener('click', (e) => {
     const link = e.target.closest('.mobile-menu__item .mobile-navlink');
     if (!link) return;
@@ -49,12 +61,24 @@ const initMobileMenuAnchorScroll = () => {
     if (!target) return;
 
     e.preventDefault();
-    document.querySelector('.drawer__close-button')?.click();
 
-    setTimeout(() => {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      history.replaceState(null, '', hash);
-    }, 300);
+    let done = false;
+    const run = () => {
+      if (done) return;
+      done = true;
+      document.removeEventListener('theme:drawer:close', run);
+      requestAnimationFrame(() => scrollToTarget(target, hash));
+    };
+
+    document.addEventListener('theme:drawer:close', run, { once: true });
+    setTimeout(run, 600);
+
+    const drawer = menu.closest('drawer-element');
+    if (drawer && typeof drawer.close === 'function') {
+      drawer.close();
+    } else {
+      document.querySelector('.drawer__close-button')?.click();
+    }
   });
 };
 

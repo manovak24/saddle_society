@@ -33,7 +33,7 @@
     assign body_classes = body_classes | strip_newlines | strip
   -%}
 
-  <body id="{{ page_title | handle }}" class="{{ body_classes }}">
+  <body id="{{ page_title | handle }}" class="{{ body_classes }} {% if template.suffix %} template--{{ template.suffix | handle }}{% endif %}">
     {%- render 'loading' -%}
 
     <a class="in-page-link skip-link" data-skip-content href="#MainContent">

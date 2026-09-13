@@ -355,3 +355,22 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     }
 }
 /* //////// End overlapping images /////// */
+
+/* Policy pages */
+ .main-content:has(.shopify-policy__container) {
+    background-color: #fff;
+ }
+
+ .main-content:has(.shopify-policy__container) * {
+    color: #121316;
+ }
+
+ .main-content:has(.shopify-policy__container) .rte {
+    margin-bottom: 0;
+ }
+
+ .template--subscription-policy .section-default .rte {
+    margin: auto;
+    max-width: 65ch;
+ }
+/* //////// End polic pages //////// */
