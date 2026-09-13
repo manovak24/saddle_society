@@ -107,7 +107,7 @@
       "settings": {
         "custom_code": "<div id=\"featured-brands\"><\/div>",
         "width": "wrapper",
-        "padding_top": 0,
+        "padding_top": 50,
         "padding_bottom": 0
       }
     },
@@ -130,7 +130,7 @@
         "text_position": "center",
         "color_scheme": "scheme-1",
         "width": "wrapper--full-padded",
-        "padding_top": 50,
+        "padding_top": 0,
         "padding_bottom": 38
       }
     },
@@ -234,6 +234,16 @@
         "padding_bottom": 0
       }
     },
+    "section_custom_html_dRzXAj": {
+      "type": "section-custom-html",
+      "name": "Custom code",
+      "settings": {
+        "custom_code": "<div id=\"why-saddle-society\"><\/div>",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b": {
       "type": "section-text",
       "blocks": {
@@ -254,11 +264,19 @@
             "highlight_color": "#0b0b0b",
             "highlight_text_color": "#000000"
           }
+        },
+        "text_yCdQqD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Stop overpaying at the tack shop.<br\/>Over $150 in the best hand-picked brands.<br\/>Each box. Every Month.<\/p>",
+            "size": 100
+          }
         }
       },
       "block_order": [
         "template--18256742449430__e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b-167901971892ae9a60-0",
-        "template--18256742449430__e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b-167901971892ae9a60-1"
+        "template--18256742449430__e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b-167901971892ae9a60-1",
+        "text_yCdQqD"
       ],
       "settings": {
         "scroll_reveal_text": false,
@@ -537,7 +555,7 @@
         "columns_mobile": "1",
         "width": "wrapper--full-padded",
         "padding_top": 10,
-        "padding_bottom": 100
+        "padding_bottom": 10
       }
     },
     "section_promotion_row_MwyCUV": {
@@ -613,6 +631,16 @@
         "width": "wrapper--full-padded",
         "padding_top": 10,
         "padding_bottom": 100
+      }
+    },
+    "section_custom_html_fFqAqh": {
+      "type": "section-custom-html",
+      "name": "Custom code",
+      "settings": {
+        "custom_code": "<div id=\"our-mission\"><\/div>",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "4f1f992b-711a-4c96-b69a-ab3892f71369": {
@@ -957,12 +985,14 @@
     "section_custom_html_DipK3P",
     "section_text_4wKgbd",
     "0155d563-b5f6-4178-a46b-3d1b1b9c9142",
+    "section_custom_html_dRzXAj",
     "e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b",
     "a5dc417a-8b90-4b9e-8bbd-5761b491133e",
     "how_it_works_X8PaPM",
     "section_text_KzHzM4",
     "0681c988-bc81-449f-898e-35ff9ea1ef78",
     "section_promotion_row_MwyCUV",
+    "section_custom_html_fFqAqh",
     "4f1f992b-711a-4c96-b69a-ab3892f71369",
     "section_testimonials_with_images_xHFcKf",
     "section_custom_html_HdRnQU",
