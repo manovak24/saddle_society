@@ -1,24 +1,59 @@
 {
   "sections": {
+    "section_image_A6DfBX": {
+      "type": "section-image",
+      "disabled": true,
+      "name": "Image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/how_it_works_v1.webp",
+        "height": "original-height",
+        "enable_mobile_height": false,
+        "mobile_height": "original-height-mobile",
+        "enable_stretch": true,
+        "image_position": "center",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "width": "wrapper--full-padded",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "section_text_xWLmpm": {
+      "type": "section-text",
+      "blocks": {
+        "heading_MKKjyK": {
+          "type": "heading",
+          "settings": {
+            "text": "<h1>Saddle Society Signature Box<\/h1>",
+            "size": 175,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_MKKjyK"
+      ],
+      "name": "Text",
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "width": "wrapper--full-padded",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
     "main": {
       "type": "product",
       "blocks": {
         "title": {
           "type": "title",
+          "disabled": true,
           "settings": {
             "subheading": "none",
             "title_size": 125,
             "padding_bottom": 0
-          }
-        },
-        "price_hGyfVQ": {
-          "type": "price",
-          "settings": {
-            "price_size": 100,
-            "bold_price": false,
-            "show_tax_information": true,
-            "show_shipping_policy": true,
-            "padding_bottom": 20
           }
         },
         "description": {
@@ -28,6 +63,10 @@
             "padding_bottom": 20
           }
         },
+        "recharge_subscriptions_subscription_widget_v2_7t7U4U": {
+          "type": "shopify:\/\/apps\/recharge-subscriptions\/blocks\/subscription-widget-v2\/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {}
+        },
         "form": {
           "type": "form",
           "settings": {
@@ -36,89 +75,42 @@
             "show_payment_button": true,
             "padding_bottom": 32
           }
-        },
-        "bd7f4049-bdbb-4f44-8fe0-806fd3d5066d": {
-          "type": "product_accordion",
-          "settings": {
-            "accordion_style": "collapsible",
-            "show_description": false,
-            "show_read_more": true,
-            "open_by_default": false,
-            "enable_full_width": false,
-            "tabs_bg_color": "",
-            "show_accordion_divider": true,
-            "line_thickness": "normal",
-            "accordion_heading": "Size and fit",
-            "heading_style": "font-body",
-            "accordion_text": "<p>Fits true to size. Measurements included in our <a href=\"https:\/\/palo-alto-theme-vibrant.myshopify.com\/pages\/size-chart\" title=\"Size chart full\">Size Chart<\/a><\/p>",
-            "accordion_page": "",
-            "padding_bottom": 0
-          }
-        },
-        "91779a1e-6481-4424-b896-fed67e53ffc2": {
-          "type": "product_accordion",
-          "settings": {
-            "accordion_style": "collapsible",
-            "show_description": false,
-            "show_read_more": true,
-            "open_by_default": false,
-            "enable_full_width": false,
-            "tabs_bg_color": "",
-            "show_accordion_divider": true,
-            "line_thickness": "normal",
-            "accordion_heading": "Care information",
-            "heading_style": "font-body",
-            "accordion_text": "<p>For best results, dry clean or hand wash with natural detergent. Machine wash on delicate. Lay flat to dry. <\/p>",
-            "accordion_page": "",
-            "padding_bottom": 0
-          }
-        },
-        "715a2d47-72f9-4058-ab53-ac703b859fb4": {
-          "type": "product_accordion",
-          "settings": {
-            "accordion_style": "collapsible",
-            "show_description": false,
-            "show_read_more": true,
-            "open_by_default": false,
-            "enable_full_width": false,
-            "tabs_bg_color": "",
-            "show_accordion_divider": true,
-            "line_thickness": "normal",
-            "accordion_heading": "Shipping and returns",
-            "heading_style": "font-body",
-            "accordion_text": "<p>Shipping<\/p><p>Orders can take 2-3 business days to process before shipping. As soon as your package has left our warehouse, you will receive a confirmation by email. <br\/><\/p><p>Returns<\/p><p>﻿If for any reason you are unhappy with your purchase we offer returns for store credit within 7 days of delivery. If 7 days have passed since your purchase has been delivered, unfortunately, we are unable to offer you a credit or exchange.<\/p>",
-            "accordion_page": "",
-            "padding_bottom": 24
-          }
         }
       },
       "block_order": [
         "title",
-        "price_hGyfVQ",
         "description",
-        "form",
-        "bd7f4049-bdbb-4f44-8fe0-806fd3d5066d",
-        "91779a1e-6481-4424-b896-fed67e53ffc2",
-        "715a2d47-72f9-4058-ab53-ac703b859fb4"
+        "recharge_subscriptions_subscription_widget_v2_7t7U4U",
+        "form"
       ],
       "settings": {
         "product_sticky_enable": true,
         "variant_image_scroll": true,
-        "image_layout": "carousel",
+        "image_layout": "grid",
         "image_width": "large",
         "product_image_aspect_ratio": true,
         "show_cart_bar": false,
         "enable_zoom": true,
         "enable_video_looping": false,
-        "color_scheme": "scheme-afa66436-d445-4852-b059-ee61648786ca",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
         "width": "wrapper--full-padded",
-        "padding_top": 60,
-        "padding_bottom": 30
+        "padding_top": 30,
+        "padding_bottom": 60
       }
     },
     "section_countdown_geV9jV": {
       "type": "section-countdown",
       "blocks": {
+        "heading_4Qei6q": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Shop Before It Ends<\/p>",
+            "size": 120,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000000",
+            "highlight_text_color": ""
+          }
+        },
         "timer_AhVGLz": {
           "type": "timer",
           "settings": {
@@ -126,21 +118,22 @@
             "end_time": "11:59",
             "period": "am",
             "end_message": "",
-            "digit_size": 140,
-            "unit_size": 140,
+            "digit_size": 100,
+            "unit_size": 100,
             "bg_color": "",
             "bg_opacity": 100
           }
         }
       },
       "block_order": [
+        "heading_4Qei6q",
         "timer_AhVGLz"
       ],
       "name": "Countdown",
       "settings": {
-        "layout_style": "inline",
+        "layout_style": "stacked",
         "text_alignment": "center",
-        "height": "450",
+        "height": "150",
         "enable_mobile_height": false,
         "mobile_height": "400",
         "overlay_type": "disabled",
@@ -152,14 +145,108 @@
         "padding_bottom": 0
       }
     },
-    "166716198631433af0": {
-      "type": "apps",
-      "disabled": true,
+    "section_accordions_with_images_R8FJNy": {
+      "type": "section-accordions-with-images",
+      "blocks": {
+        "text_8zVBqR": {
+          "type": "text",
+          "settings": {
+            "title": "What comes in each box?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_gygNBQ": {
+          "type": "text",
+          "settings": {
+            "title": "How often do boxes ship?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_Hr4fhf": {
+          "type": "text",
+          "settings": {
+            "title": "Can I cancel anytime?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_8qK7xq": {
+          "type": "text",
+          "settings": {
+            "title": "Can I skip a month?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_eaRHBz": {
+          "type": "text",
+          "settings": {
+            "title": "How do I change my shirt size?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_pmkicq": {
+          "type": "text",
+          "settings": {
+            "title": "Is every box different?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_yrMgKV": {
+          "type": "text",
+          "settings": {
+            "title": "Is shipping included?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_G8YcCn": {
+          "type": "text",
+          "settings": {
+            "title": "Can I buy products individually?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        }
+      },
+      "block_order": [
+        "text_8zVBqR",
+        "text_gygNBQ",
+        "text_Hr4fhf",
+        "text_8qK7xq",
+        "text_eaRHBz",
+        "text_pmkicq",
+        "text_yrMgKV",
+        "text_G8YcCn"
+      ],
       "settings": {
-        "color_scheme": "",
+        "layout": "two-columns",
+        "show_accordion_divider": true,
+        "line_thickness": "normal",
+        "content_alignment": "text-center",
+        "subheading": "",
+        "title": "",
+        "heading_size": 180,
+        "text": "",
+        "type_style": "font-heading",
+        "tabs_bg_color": "rgba(0,0,0,0)",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "border_color": "#dbd1bf",
         "width": "wrapper",
-        "padding_top": 60,
-        "padding_bottom": 60
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "related": {
@@ -348,9 +435,11 @@
     }
   },
   "order": [
+    "section_image_A6DfBX",
+    "section_text_xWLmpm",
     "main",
     "section_countdown_geV9jV",
-    "166716198631433af0",
+    "section_accordions_with_images_R8FJNy",
     "related",
     "how_it_works_XMDEp7",
     "section_accordions_with_images_X8zcKf"

@@ -5,6 +5,7 @@
       "disabled": true,
       "settings": {
         "show_page_title": false,
+        "color_scheme": "",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -44,7 +45,9 @@
         "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-2"
       ],
       "settings": {
+        "scroll_reveal_text": false,
         "text_position": "center",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
         "width": "wrapper--narrow",
         "padding_top": 60,
         "padding_bottom": 60
@@ -94,9 +97,10 @@
         "show_bottom_border": true,
         "heading_size": 120,
         "text_size": 100,
-        "text_color": "#000000",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "text_color": "#121316",
         "box_color": "",
-        "color_border": "#333",
+        "color_border": "#121316",
         "button_text": "",
         "button_link": "",
         "button_color": "btn--black",
@@ -139,49 +143,13 @@
         "contact-form-3"
       ],
       "settings": {
-        "button_color": "btn--black",
+        "button_color": "btn--primary",
         "button_style": "btn--solid",
         "button_size": "btn--large",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
         "width": "wrapper--narrow",
         "padding_top": 40,
         "padding_bottom": 60
-      }
-    },
-    "locations": {
-      "type": "section-locations",
-      "blocks": {
-        "locations-0": {
-          "type": "locations",
-          "settings": {
-            "title": "566 Emerson Street Palo Alto, California",
-            "working_time": "<p>Mon - Fri: 8am - 5pm<\/p><p>Sat: 10am - 5pm<\/p><p>Sun: 12pm - 5pm<\/p>"
-          }
-        },
-        "locations-1": {
-          "type": "locations",
-          "settings": {
-            "title": "100 Sunset Blvd, Los Angeles, California",
-            "working_time": "<p>Mon - Fri: 8am - 5pm<\/p><p>Sat: Closed<\/p><p>Sun: Closed<\/p>"
-          }
-        },
-        "locations-2": {
-          "type": "locations",
-          "settings": {
-            "title": "566 Cross Creek Rd, Malibu, California",
-            "working_time": "<p>Mon - Fri: 9am - 6pm<\/p><p>Sat: 12pm - 6pm<\/p><p>Sun: 12pm - 6pm<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "locations-0",
-        "locations-1",
-        "locations-2"
-      ],
-      "settings": {
-        "subheading": "Our stores",
-        "title": "Locations & hours",
-        "padding_top": 60,
-        "padding_bottom": 80
       }
     }
   },
@@ -189,7 +157,6 @@
     "main",
     "46135749-756a-47d9-9cd2-5a1a9d750dc1",
     "75b65038-f658-4895-b63c-8f65c49cd645",
-    "contact-form",
-    "locations"
+    "contact-form"
   ]
 }

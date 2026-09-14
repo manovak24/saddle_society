@@ -1,0 +1,255 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_page_title": true,
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "section_image_4MTyFn": {
+      "type": "section-image",
+      "name": "Image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
+        "height": "four-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "original-height-mobile",
+        "enable_stretch": true,
+        "image_position": "center",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_text_p8rDeD": {
+      "type": "section-text",
+      "blocks": {
+        "heading_MQFW9r": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Built for the West.<br\/>Trusted by Those Who Live It.<\/p>",
+            "size": 120,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        },
+        "text_bkqmDY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "size": 100
+          }
+        },
+        "text_nVCRra": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_MQFW9r",
+        "text_bkqmDY",
+        "text_nVCRra"
+      ],
+      "name": "Text",
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-5a0f5c15-9f2f-4b0a-919b-a1636a9030ef",
+        "width": "wrapper--narrow",
+        "padding_top": 60,
+        "padding_bottom": 30
+      }
+    },
+    "section_image_with_text_xL86A7": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading_CXwQtq": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>Taylor Olmstead<\/p>",
+            "size": 120,
+            "text_position": "left",
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": "",
+            "spacing_bottom": 20
+          }
+        },
+        "text_TDRxQz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "size": 100,
+            "text_position": "left",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading_CXwQtq",
+        "text_TDRxQz"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "show_accordion_divider": false,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "left",
+        "image_width": "standard",
+        "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
+        "block_bg_color": "",
+        "color_scheme": "scheme-5a0f5c15-9f2f-4b0a-919b-a1636a9030ef",
+        "section_width": "wrapper",
+        "add_gutter": false,
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "section_image_with_text_HtnhKX": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "heading_CpDwLT": {
+          "type": "heading",
+          "settings": {
+            "title": "<p>Founder Name<\/p>",
+            "size": 120,
+            "text_position": "right",
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": "",
+            "spacing_bottom": 20
+          }
+        },
+        "text_GLYieV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "size": 100,
+            "text_position": "right",
+            "spacing_bottom": 12
+          }
+        }
+      },
+      "block_order": [
+        "heading_CpDwLT",
+        "text_GLYieV"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "show_accordion_divider": false,
+        "increase_border_radius": false,
+        "section_height": "six-fifty-height",
+        "enable_mobile_height": false,
+        "mobile_height": "four-fifty-height-mobile",
+        "layout": "inline",
+        "image_location": "right",
+        "image_width": "standard",
+        "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
+        "block_bg_color": "",
+        "color_scheme": "scheme-5a0f5c15-9f2f-4b0a-919b-a1636a9030ef",
+        "section_width": "wrapper",
+        "add_gutter": false,
+        "padding_top": 30,
+        "padding_bottom": 60
+      }
+    },
+    "section_banner_image_A4DhQF": {
+      "type": "section-banner-image",
+      "blocks": {
+        "subheading_nUh8a9": {
+          "type": "subheading",
+          "settings": {
+            "text": "<p>Join Saddle Society Today<\/p>",
+            "size": 100
+          }
+        },
+        "heading_qQ6HjW": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Experience the Best of the Western Lifestyle<\/p>",
+            "size": 180,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        },
+        "text_JYaJbn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover premium apparel, tack, horse-care products, and Western essentials carefully selected and delivered to your door every month.<\/p>",
+            "size": 100
+          }
+        },
+        "button_EVnNCF": {
+          "type": "button",
+          "settings": {
+            "stacked_button": false,
+            "button_1_text": "choose your box",
+            "button_1_link": "#",
+            "button_1_color": "btn--primary",
+            "button_1_style": "btn--solid",
+            "button_1_size": "btn--large",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_color": "btn--black",
+            "button_2_style": "btn--solid",
+            "button_2_size": "btn--medium"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_nUh8a9",
+        "heading_qQ6HjW",
+        "text_JYaJbn",
+        "button_EVnNCF"
+      ],
+      "custom_css": [
+        "section {margin-bottom: -5px;}"
+      ],
+      "name": "Banner image",
+      "settings": {
+        "height": "six-fifty-height",
+        "enable_mobile_height": true,
+        "mobile_height": "seven-fifty-height-mobile",
+        "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
+        "overlay_type": "disabled",
+        "transition": "zoom-out",
+        "enable_zoom_animation": false,
+        "enable_card_scrolling": false,
+        "increase_border_radius": false,
+        "content_width": 64,
+        "text_position": "center",
+        "text_alignment": "center",
+        "mobile_text_position": "center",
+        "mobile_text_alignment": "center",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "show_text_background": true,
+        "bg_color": "#ffffffb5",
+        "text_color": "",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_image_4MTyFn",
+    "section_text_p8rDeD",
+    "section_image_with_text_xL86A7",
+    "section_image_with_text_HtnhKX",
+    "section_banner_image_A4DhQF"
+  ]
+}

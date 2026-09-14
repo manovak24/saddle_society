@@ -93,6 +93,24 @@
     "checkout_button_color": "#fbcaff",
     "checkout_error_color": "#d02e2e",
     "content_for_index": [],
+    "blocks": {
+      "17151115064775110295": {
+        "type": "shopify:\/\/apps\/recharge-subscriptions\/blocks\/recharge-theme\/371eed76-0b44-4869-9813-730372ea378e",
+        "disabled": false,
+        "settings": {
+          "color_brand": "#1773B0",
+          "contrast_color": "#FFFFFF",
+          "color_brand_secondary": "#1773B0",
+          "corners": "8px",
+          "app_background": "#f7f7f7",
+          "app_container": 1200,
+          "app_vertical_padding": 32,
+          "images_aspect_ratio": "1",
+          "cards_background": "#FFFFFF",
+          "cards_border_color": "rgba(0,0,0,0)"
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -321,6 +339,24 @@
           "accent": "#fff7f2",
           "lines_and_border": "#000000",
           "overlay": "#0000004d",
+          "links": "#000000",
+          "quick_add_bg_color": "#ffffff",
+          "quick_add_text_color": "#000000",
+          "upsells_bg_color": "#f7f6f4",
+          "upsells_text_color": "#0b0b0b"
+        }
+      },
+      "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20": {
+        "settings": {
+          "section_bg": "#ffffff",
+          "section_heading": "#121316",
+          "section_text": "#121316",
+          "section_bg_gradient": "",
+          "btn_primary_bg": "#173225",
+          "btn_secondary_bg": "#ffffff",
+          "accent": "#fff7f2",
+          "lines_and_border": "#000000",
+          "overlay": "#00000030",
           "links": "#000000",
           "quick_add_bg_color": "#ffffff",
           "quick_add_text_color": "#000000",
