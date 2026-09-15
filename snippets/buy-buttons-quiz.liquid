@@ -1,0 +1,42 @@
+{%- comment -%}
+  Renders a "Build your box" link in place of the product form.
+  Used when product.template_suffix == 'subscription-box'.
+
+  Accepts:
+  - quiz_url: {String} link to the Quiz Kit quiz (required)
+  - quiz_button_text: {String} button label (optional)
+  - animation_anchor / animation_order: AOS hooks (optional)
+  - unique: {String} unique identifier (required)
+{%- endcomment -%}
+
+{%- liquid
+  assign animations_enabled = settings.animations_enabled
+  assign atc_button_color = settings.atc_button_color
+  assign atc_button_style = settings.atc_button_style
+  assign atc_button_size = settings.atc_button_size
+  assign quiz_button_text = quiz_button_text | default: 'Build your box'
+  assign quiz_url = quiz_url
+-%}
+
+<div class="product__submit__holder">
+  <div class="product__submit__buttons">
+    <div
+      class="product__submit__item"
+      {% if animations_enabled %}
+        data-aos="hero"
+        data-aos-anchor="{{ animation_anchor }}"
+        data-aos-order="{{ animation_order }}"
+      {% endif %}
+    >
+      <a
+        href="{{ quiz_url }}"
+        id="BuildYourBox--{{ unique }}"
+        class="btn {{ atc_button_color }} {{ atc_button_style }} {{ atc_button_size }} btn--advanced product__submit__add"
+        data-build-your-box
+      >
+        <hover-button></hover-button>
+        <span>{{ quiz_button_text }}</span>
+      </a>
+    </div>
+  </div>
+</div>

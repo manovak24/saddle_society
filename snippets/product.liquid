@@ -778,49 +778,69 @@
               -%}
 
               {%- unless product == blank -%}
-                <product-form
-                  class="product__block product__form__wrapper{{ hide_labels_class }}{% if sold_out %} variant--soldout{% endif %}{% if enable_half_width_btn and atc_show_product_price == false %} btn--half{% endif %}"
-                  data-form-wrapper
-                  data-variant-price="{{ current_variant.price }}"
-                  {% if current_variant.compare_at_price > current_variant.price %}
-                    data-variant-compare-price="{{ current_variant.compare_at_price }}"
-                  {% endif %}
-                  {{ block_style }}
-                  {{ block.shopify_attributes }}
-                >
-                  <div class="product__form">
-                    {%- render 'product-form',
-                      product: product,
-                      block: block,
-                      product_form_id: product_form_id,
-                      current_variant: current_variant,
-                      cart_qty: cart_qty,
-                      unique: unique,
-                      animation_anchor: animation_anchor,
-                      animation_order: animation_order,
-                      show_quantity: show_quantity,
-                      show_labels: show_labels,
-                      label_text_caps: label_text_caps,
-                      is_quick_view: false
-                    -%}
-
-                    {%- render 'buy-buttons',
-                      product: product,
-                      product_form_id: product_form_id,
-                      unique: unique,
-                      animation_anchor: animation_anchor,
-                      animation_order: animation_order,
-                      show_quantity: show_quantity,
-                      show_payment_button: show_payment_button,
-                      sold_out: sold_out,
-                      is_quick_view: false,
-                      current_variant_title: current_variant_title,
-                      gift_card_recipient_feature_active: gift_card_recipient_feature_active,
-                      max_inventory_reached: max_inventory_reached,
-                      error_message_position: error_message_position
-                    -%}
+                {%- if section.settings.enable_subscription_box_quiz -%}
+                  <div
+                    class="product__block product__form__wrapper{% if enable_half_width_btn and atc_show_product_price == false %} btn--half{% endif %}"
+                    {{ block_style }}
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="product__form">
+                      {%- render 'buy-buttons-quiz',
+                        unique: unique,
+                        quiz_url: section.settings.quiz_url,
+                        quiz_button_text: section.settings.quiz_button_text,
+                        animation_anchor: animation_anchor,
+                        animation_order: animation_order
+                      -%}
+                      {%- assign animation_order = animation_order | plus: 1 -%}
+                    </div>
                   </div>
-                </product-form>
+                {%- else -%}
+
+                  <product-form
+                    class="product__block product__form__wrapper{{ hide_labels_class }}{% if sold_out %} variant--soldout{% endif %}{% if enable_half_width_btn and atc_show_product_price == false %} btn--half{% endif %}"
+                    data-form-wrapper
+                    data-variant-price="{{ current_variant.price }}"
+                    {% if current_variant.compare_at_price > current_variant.price %}
+                      data-variant-compare-price="{{ current_variant.compare_at_price }}"
+                    {% endif %}
+                    {{ block_style }}
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="product__form">
+                      {%- render 'product-form',
+                        product: product,
+                        block: block,
+                        product_form_id: product_form_id,
+                        current_variant: current_variant,
+                        cart_qty: cart_qty,
+                        unique: unique,
+                        animation_anchor: animation_anchor,
+                        animation_order: animation_order,
+                        show_quantity: show_quantity,
+                        show_labels: show_labels,
+                        label_text_caps: label_text_caps,
+                        is_quick_view: false
+                      -%}
+
+                      {%- render 'buy-buttons',
+                        product: product,
+                        product_form_id: product_form_id,
+                        unique: unique,
+                        animation_anchor: animation_anchor,
+                        animation_order: animation_order,
+                        show_quantity: show_quantity,
+                        show_payment_button: show_payment_button,
+                        sold_out: sold_out,
+                        is_quick_view: false,
+                        current_variant_title: current_variant_title,
+                        gift_card_recipient_feature_active: gift_card_recipient_feature_active,
+                        max_inventory_reached: max_inventory_reached,
+                        error_message_position: error_message_position
+                      -%}
+                    </div>
+                  </product-form>
+                {%- endif -%}
               {%- else -%}
                 <div
                   class="product__block product__form__wrapper{{ hide_labels_class }}{% if enable_half_width_btn and atc_show_product_price == false %} btn--half{% endif %}"

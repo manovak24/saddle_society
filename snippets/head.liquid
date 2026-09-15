@@ -218,3 +218,15 @@
   to
   <script src="{{ 'theme.dev.js' | asset_url }}" defer="defer"></script>
 {%- endcomment -%}
+
+
+{%- assign box_settings = shop.metaobjects.subscription_box_settings.values | first -%}
+{%- assign box_message = box_settings.message -%}
+{%- if box_message != blank -%}
+  <style>
+    .ddXwQm::before {
+      content: {{ box_message | metafield_text | strip_newlines | json }};
+      font-size: 14px;
+    }
+  </style>
+{%- endif -%}

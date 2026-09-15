@@ -84,3 +84,24 @@ const initMobileMenuAnchorScroll = () => {
 
 document.addEventListener('DOMContentLoaded', initMobileMenuAnchorScroll);
 document.addEventListener('shopify:section:load', initMobileMenuAnchorScroll);
+
+
+const defaultToSubscription = () => {
+  const inputs = document.querySelectorAll(
+    'input[type="radio"][name^="purchase-"][value="subscription"]'
+  );
+  if (!inputs.length) return;
+
+  inputs.forEach((el) => {
+    const group = el.closest('.swiper--prevent-swiping-element') || el.parentElement;
+    if (group.dataset.defaulted) return;
+    group.dataset.defaulted = 'true';
+    if (!el.checked) el.click();
+  });
+};
+
+const observer = new MutationObserver(defaultToSubscription);
+observer.observe(document.body, { childList: true, subtree: true });
+
+document.addEventListener('DOMContentLoaded', defaultToSubscription);
+document.addEventListener('shopify:section:load', defaultToSubscription);

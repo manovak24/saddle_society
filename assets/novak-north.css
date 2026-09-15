@@ -374,3 +374,105 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     max-width: 65ch;
  }
 /* //////// End polic pages //////// */
+
+/* Pdp template */
+.template-product:has(.product-single cart-bar) {
+    padding-bottom: 62px;
+}
+
+.template-product.body--rounded-corners .cart-bar__media img {
+    border-radius: 8px;
+}
+
+.product-single .jdgm-widget {
+    margin-bottom: 20px;
+}
+
+.jm-review-widget-minimal-header__title {
+    display: none !important;
+}
+
+.countdown--stacked .countdown__content {
+    max-width: 100%;
+}
+
+.template-product .cart-bar {
+    background-color: #FAF7F2;
+}
+
+.template-product .cart-bar__message {
+    flex-grow: 0;
+    max-width: 40%;
+    margin: auto;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    .countdown-timer__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+    }
+    .template-product .cart-bar__form__wrapper {
+        flex-direction: column;
+    }
+    .template-product .cart-bar__message {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .template-product:has(.product-single cart-bar) {
+        padding-bottom: 70px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .template-product:has(.product-single cart-bar) {
+        padding-bottom: 100px;
+    }
+}
+/* //////// End pdp template //////// */
+
+/* Build your box quiz */
+.Layout-Section {
+    min-height: 0 !important;
+}
+
+.iHdOfj {
+    padding-bottom: 0 !important;
+}
+
+.jrHuCw {
+    margin-top: 10px !important;
+}
+
+.quizkit-popup__close {
+    background-color: #173225 !important;
+    border-color: #173225 !important;
+}
+
+.gWmSVK {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    margin-bottom: 0 !important;
+}
+
+.iJWNul {
+    font-size: 16px !important;
+}
+
+.ddXwQm {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px !important;
+}
+
+@media screen and (max-width: 767px) {
+    .gBMQTC {
+        margin-top: 0 !important;
+    }
+}
+/* //////// End build your box quiz //////// */

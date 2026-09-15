@@ -28,6 +28,11 @@
   elsif product.options_with_values.size > 1
     assign has_multiple_options = true
   endif
+
+  assign is_subscription_box = false
+  if section.settings.enable_subscription_box_quiz
+    assign is_subscription_box = true
+  endif
 -%}
 
 {% if product.selling_plan_groups != blank and blocks_form != blank %}
@@ -96,166 +101,188 @@
       </div>
     </div>
 
+    {%- assign box_settings = shop.metaobjects.subscription_box_settings.values | first -%}
+    {%- assign box_message = box_settings.message -%}
+    {%- if box_message != blank -%}
+      <div class="cart-bar__message">
+        {{ box_message | metafield_tag }}
+      </div>
+    {%- endif -%}
+
     <div class="cart-bar__form ">
-      {%- if has_multiple_options -%}
-        <div class="cart-bar__mobile-options-btn">
+      {%- if is_subscription_box -%}
+        <div class="cart-bar__submit product__submit__item">
+          <a
+            href="{{ section.settings.quiz_url }}"
+            id="CartBar-BuildYourBox--{{ section.id }}"
+            class="btn {{ settings.atc_button_color }} {{ settings.atc_button_style }} {{ settings.atc_button_size }} btn--advanced product__submit__add"
+            data-build-your-box
+          >
+            <hover-button></hover-button>
+            <span>{{ section.settings.quiz_button_text | default: 'Build your box' }}</span>
+          </a>
+        </div>
+      {%- else -%}
+        {%- if has_multiple_options -%}
+          <div class="cart-bar__mobile-options-btn">
+            <button
+              type="button"
+              class="btn {{ settings.atc_button_color }} {{ settings.atc_button_style }} {{ settings.atc_button_size }} btn--advanced btn--submit product__submit__add"
+              data-scroll-to-form
+            >
+              <span>{{ 'products.product.choose_options' | t | default: 'Choose options' }}</span>
+            </button>
+          </div>
+        {%- endif -%}
+
+        <div
+          class="cart-bar__options"
+          data-cart-bar-options
+        >
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="cart-bar__select__wrapper" data-selector-wrapper>
+                <popout-select class="select-popout" data-popout-prevent="true">
+                  <button
+                    type="button"
+                    class="select-popout__toggle"
+                    aria-expanded="false"
+                    aria-controls="CartBar-{{ section.id }}-select-{{ option.name | handle }}"
+                    aria-label="{{ option.name | escape }}"
+                    data-popout-toggle
+                  >
+                    <span class="select-popout__value" data-popout-text>{{ option.selected_value }}</span>
+                    {%- render 'icon-select' -%}
+                  </button>
+
+                  <div
+                    id="CartBar-{{ section.id }}-select-{{ option.name | handle }}"
+                    class="select-popout__list"
+                    data-popout-list
+                  >
+                    <ul class="select-popout__list__scroll" data-scroll-lock-scrollable>
+                      {%- for value in option.values -%}
+                        <li
+                          class="select-popout__item{% if option.selected_value == value %} select-popout__item--current{% endif %}"
+                          data-product-url="{{ value.product_url }}"
+                          data-option-value-id="{{ value.id }}"
+                        >
+                          <a
+                            class="select-popout__option{% unless value.available %} unavailable{% endunless %}"
+                            href="#"
+                            {% if option.selected_value == value %}
+                              aria-current="true"
+                            {% endif %}
+                            data-value="{{ value | escape_once }}"
+                            data-popout-option
+                          >
+                            <span>{{ value | escape_once }}</span>
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+
+                  {%- liquid
+                    assign selected_value = option.values | where: 'selected', true | first
+                    assign selected_option_value_id = selected_value.id | default: ''
+                    assign selected_option_product_url = selected_value.product_url | default: ''
+                  -%}
+                  <input
+                    type="hidden"
+                    value="{{ option.selected_value | escape }}"
+                    data-popout-input
+                    data-single-option-selector
+                    data-index="option{{ option.position }}"
+                    data-option-value-id="{{ selected_option_value_id }}"
+                    data-product-url="{{ selected_option_product_url }}"
+                  >
+                </popout-select>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+        </div>
+
+        <div class="cart-bar__quantity" data-cart-bar-qty>
+          <quantity-counter class="quantity-selector" data-quantity-holder>
+            <button
+              type="button"
+              class="quantity__btn quantity__btn--decrease"
+              data-quantity-minus
+              data-quantity-button
+              tabindex="0"
+              title="{{ 'general.accessibility.decrease' | t }} - {{ product.title | strip_html -}}"
+            >
+              <span class="visually-hidden">{{ 'general.accessibility.decrease' | t }}</span>
+              {%- render 'icon-toggle-minus' -%}
+            </button>
+
+            <input
+              class="quantity__selector quantity__input"
+              type="number"
+              name="quantity"
+              value="1"
+              data-quantity-field
+              min="{{ current_variant.quantity_rule.min }}"
+              {% if current_variant.quantity_rule.max > 0 %}
+                max="{{ current_variant.quantity_rule.max }}"
+              {% endif %}
+              step="{{ current_variant.quantity_rule.increment }}"
+              title="{{- 'products.product.quantity.quantity' | t }} - {{ product.title | strip_html -}}"
+              pattern="[0-9]*"
+            >
+
+            <button
+              type="button"
+              class="quantity__btn quantity__btn--increase"
+              data-quantity-plus
+              data-quantity-button
+              tabindex="0"
+              title="{{- 'general.accessibility.increase' | t }} - {{ product.title | strip_html -}}"
+            >
+              <span class="visually-hidden">{{ 'general.accessibility.increase' | t }}</span>
+              {%- render 'icon-toggle-plus' -%}
+            </button>
+          </quantity-counter>
+        </div>
+        <div class="cart-bar__submit product__submit__item">
           <button
             type="button"
+            name="add"
+            id="CartBar-AddToCart--{{ section.id }}"
             class="btn {{ settings.atc_button_color }} {{ settings.atc_button_style }} {{ settings.atc_button_size }} btn--advanced btn--submit product__submit__add"
-            data-scroll-to-form
+            data-cart-bar-add-to-cart
+            {% if current_variant.available == false %}
+              disabled="disabled"
+            {% endif %}
           >
-            <span>{{ 'products.product.choose_options' | t | default: 'Choose options' }}</span>
+            <hover-button></hover-button>
+            <span
+              id="CartBar-AddToCartText-{{ section.id }}"
+              data-add-to-cart-text
+              {% if settings.atc_show_product_price and current_variant.available %}
+                data-price-wrapper data-atc-button
+              {% endif %}
+            >
+              {%- assign preorder_check = false -%}
+
+              {%- if product.tags contains '_preorder' or product.metafields.theme.preorder.value -%}
+                {%- assign preorder_check = true -%}
+              {%- endif -%}
+
+              {%- if current_variant.available and preorder_check -%}
+                {{- 'products.product.preorder' | t -}}
+              {%- elsif current_variant.available -%}
+                {{- 'products.product.add_to_cart' | t -}}
+              {%- else -%}
+                {{- 'products.product.sold_out' | t -}}
+              {%- endif -%}
+            </span>
+
+            <em class="loader loader--line"><em class="loader-indeterminate"></em></em>
           </button>
         </div>
       {%- endif -%}
-
-      <div
-        class="cart-bar__options"
-        data-cart-bar-options
-      >
-        {%- unless product.has_only_default_variant -%}
-          {%- for option in product.options_with_values -%}
-            <div class="cart-bar__select__wrapper" data-selector-wrapper>
-              <popout-select class="select-popout" data-popout-prevent="true">
-                <button
-                  type="button"
-                  class="select-popout__toggle"
-                  aria-expanded="false"
-                  aria-controls="CartBar-{{ section.id }}-select-{{ option.name | handle }}"
-                  aria-label="{{ option.name | escape }}"
-                  data-popout-toggle
-                >
-                  <span class="select-popout__value" data-popout-text>{{ option.selected_value }}</span>
-                  {%- render 'icon-select' -%}
-                </button>
-
-                <div
-                  id="CartBar-{{ section.id }}-select-{{ option.name | handle }}"
-                  class="select-popout__list"
-                  data-popout-list
-                >
-                  <ul class="select-popout__list__scroll" data-scroll-lock-scrollable>
-                    {%- for value in option.values -%}
-                      <li
-                        class="select-popout__item{% if option.selected_value == value %} select-popout__item--current{% endif %}"
-                        data-product-url="{{ value.product_url }}"
-                        data-option-value-id="{{ value.id }}"
-                      >
-                        <a
-                          class="select-popout__option{% unless value.available %} unavailable{% endunless %}"
-                          href="#"
-                          {% if option.selected_value == value %}
-                            aria-current="true"
-                          {% endif %}
-                          data-value="{{ value | escape_once }}"
-                          data-popout-option
-                        >
-                          <span>{{ value | escape_once }}</span>
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-
-                {%- liquid
-                  assign selected_value = option.values | where: 'selected', true | first
-                  assign selected_option_value_id = selected_value.id | default: ''
-                  assign selected_option_product_url = selected_value.product_url | default: ''
-                -%}
-                <input
-                  type="hidden"
-                  value="{{ option.selected_value | escape }}"
-                  data-popout-input
-                  data-single-option-selector
-                  data-index="option{{ option.position }}"
-                  data-option-value-id="{{ selected_option_value_id }}"
-                  data-product-url="{{ selected_option_product_url }}"
-                >
-              </popout-select>
-            </div>
-          {%- endfor -%}
-        {%- endunless -%}
-      </div>
-
-      <div class="cart-bar__quantity" data-cart-bar-qty>
-        <quantity-counter class="quantity-selector" data-quantity-holder>
-          <button
-            type="button"
-            class="quantity__btn quantity__btn--decrease"
-            data-quantity-minus
-            data-quantity-button
-            tabindex="0"
-            title="{{ 'general.accessibility.decrease' | t }} - {{ product.title | strip_html -}}"
-          >
-            <span class="visually-hidden">{{ 'general.accessibility.decrease' | t }}</span>
-            {%- render 'icon-toggle-minus' -%}
-          </button>
-
-          <input
-            class="quantity__selector quantity__input"
-            type="number"
-            name="quantity"
-            value="1"
-            data-quantity-field
-            min="{{ current_variant.quantity_rule.min }}"
-            {% if current_variant.quantity_rule.max > 0 %}
-              max="{{ current_variant.quantity_rule.max }}"
-            {% endif %}
-            step="{{ current_variant.quantity_rule.increment }}"
-            title="{{- 'products.product.quantity.quantity' | t }} - {{ product.title | strip_html -}}"
-            pattern="[0-9]*"
-          >
-
-          <button
-            type="button"
-            class="quantity__btn quantity__btn--increase"
-            data-quantity-plus
-            data-quantity-button
-            tabindex="0"
-            title="{{- 'general.accessibility.increase' | t }} - {{ product.title | strip_html -}}"
-          >
-            <span class="visually-hidden">{{ 'general.accessibility.increase' | t }}</span>
-            {%- render 'icon-toggle-plus' -%}
-          </button>
-        </quantity-counter>
-      </div>
-      <div class="cart-bar__submit product__submit__item">
-        <button
-          type="button"
-          name="add"
-          id="CartBar-AddToCart--{{ section.id }}"
-          class="btn {{ settings.atc_button_color }} {{ settings.atc_button_style }} {{ settings.atc_button_size }} btn--advanced btn--submit product__submit__add"
-          data-cart-bar-add-to-cart
-          {% if current_variant.available == false %}
-            disabled="disabled"
-          {% endif %}
-        >
-          <hover-button></hover-button>
-          <span
-            id="CartBar-AddToCartText-{{ section.id }}"
-            data-add-to-cart-text
-            {% if settings.atc_show_product_price and current_variant.available %}
-              data-price-wrapper data-atc-button
-            {% endif %}
-          >
-            {%- assign preorder_check = false -%}
-
-            {%- if product.tags contains '_preorder' or product.metafields.theme.preorder.value -%}
-              {%- assign preorder_check = true -%}
-            {%- endif -%}
-
-            {%- if current_variant.available and preorder_check -%}
-              {{- 'products.product.preorder' | t -}}
-            {%- elsif current_variant.available -%}
-              {{- 'products.product.add_to_cart' | t -}}
-            {%- else -%}
-              {{- 'products.product.sold_out' | t -}}
-            {%- endif -%}
-          </span>
-
-          <em class="loader loader--line"><em class="loader-indeterminate"></em></em>
-        </button>
-      </div>
     </div>
   </div>
 </cart-bar>
