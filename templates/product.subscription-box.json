@@ -1,0 +1,626 @@
+{
+  "sections": {
+    "section_text_xWLmpm": {
+      "type": "section-text",
+      "blocks": {
+        "subheading_jRNhVh": {
+          "type": "subheading",
+          "settings": {
+            "text": "<p>Unmatched Value<\/p>",
+            "size": 100,
+            "margin_bottom": 16
+          }
+        },
+        "heading_MKKjyK": {
+          "type": "heading",
+          "settings": {
+            "text": "<h1>{{ product.title }}<\/h1>",
+            "size": 175,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000",
+            "highlight_text_color": ""
+          }
+        },
+        "text_73mET3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Each Saddle Society Signature Box delivers a value greater than what you pay, featuring a hand-picked selection of exclusive premium apparel, tack, equine supplements, and lifestyle goods from brands we use and trust.<\/p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "subheading_jRNhVh",
+        "heading_MKKjyK",
+        "text_73mET3"
+      ],
+      "custom_css": [],
+      "name": "Text",
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "width": "wrapper--full-padded",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title_FgJyPR": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "subheading": "none",
+            "title_size": 130,
+            "padding_bottom": 0
+          }
+        },
+        "judge_me_reviews_preview_badge_rxgAba": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price_BGNAqA": {
+          "type": "price",
+          "settings": {
+            "price_size": 150,
+            "bold_price": false,
+            "show_tax_information": false,
+            "show_shipping_policy": false,
+            "padding_bottom": 20
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "enable_full_width": false,
+            "padding_bottom": 20
+          }
+        },
+        "feature_yk8Uhk": {
+          "type": "feature",
+          "settings": {
+            "icon_name": "support",
+            "icon_image": "shopify:\/\/shop_images\/small-blk-diamond_png.png",
+            "icon_width": 20,
+            "title": "Choose your membership, saddle up, and let the surprises begin.",
+            "text": "<p>{{ metaobjects.subscription_box_settings[\"your-saddle-society-box-is-curated-specifically-for-you-based-on-your-quiz-results-place-your-order-by-the-28th-to-be-included-in-the-next-box-drop-shipping-by-the-5th-of-the-following-month\"].message | metafield_tag }}<\/p>",
+            "bg_color": "#faf7f2",
+            "text_color": "#121316",
+            "padding_bottom": 20
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "show_labels": true,
+            "show_quantity": false,
+            "show_payment_button": false,
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_FgJyPR",
+        "judge_me_reviews_preview_badge_rxgAba",
+        "price_BGNAqA",
+        "description",
+        "feature_yk8Uhk",
+        "form"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "variant_image_scroll": true,
+        "image_layout": "carousel",
+        "image_width": "standard",
+        "product_image_aspect_ratio": true,
+        "show_cart_bar": true,
+        "enable_zoom": true,
+        "enable_video_looping": false,
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "width": "wrapper",
+        "enable_subscription_box_quiz": true,
+        "quiz_url": "#quiz-kit-key-nRMsWiz6Gz",
+        "quiz_button_text": "Build your box",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "how_it_works_xfiwB9": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_Vd4giq": {
+          "type": "step",
+          "settings": {
+            "heading": "Choose Your Box",
+            "text": "<p>Select the claim your box and complete checkout. Skip or cancel anytime.<\/p>"
+          }
+        },
+        "step_byKtAm": {
+          "type": "step",
+          "settings": {
+            "heading": "Personalize Your Profile",
+            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing. so we can better tailor your experience each and every month. <\/p>"
+          }
+        },
+        "step_78q6dQ": {
+          "type": "step",
+          "settings": {
+            "heading": "Unbox the West",
+            "text": "<p>Receive a premium monthly collection of trusted apparel, tack, horse care products, and Western lifestyle goods delivered to your door.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_Vd4giq",
+        "step_byKtAm",
+        "step_78q6dQ"
+      ],
+      "name": "How it works",
+      "settings": {
+        "content_position": "left",
+        "increase_border_radius": true,
+        "badge_text": "Steps",
+        "heading": "<p>How Saddle Society Works<\/p>",
+        "text": "<p>Choose your box, tell us about you and your horse, and receive a premium selection of Western apparel, tack, horse-care products, and lifestyle essentials every month.<\/p>",
+        "image": "shopify:\/\/shop_images\/how_it_works_v1.webp",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "section_width": "wrapper--full-padded",
+        "padding_top": 40,
+        "padding_bottom": 90
+      }
+    },
+    "section_countdown_geV9jV": {
+      "type": "section-countdown",
+      "blocks": {
+        "heading_4Qei6q": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Shop Before It Ends<\/p>",
+            "size": 120,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000000",
+            "highlight_text_color": ""
+          }
+        },
+        "timer_AhVGLz": {
+          "type": "timer",
+          "settings": {
+            "end_date": "2026-12-31",
+            "end_time": "11:59",
+            "period": "am",
+            "end_message": "",
+            "digit_size": 100,
+            "unit_size": 100,
+            "bg_color": "",
+            "bg_opacity": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_4Qei6q",
+        "timer_AhVGLz"
+      ],
+      "name": "Countdown",
+      "settings": {
+        "layout_style": "stacked",
+        "text_alignment": "center",
+        "height": "150",
+        "enable_mobile_height": false,
+        "mobile_height": "400",
+        "overlay_type": "disabled",
+        "enable_zoom_animation": false,
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "text_width": "normal",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_accordions_with_images_R8FJNy": {
+      "type": "section-accordions-with-images",
+      "blocks": {
+        "text_8zVBqR": {
+          "type": "text",
+          "settings": {
+            "title": "What comes in each box?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_gygNBQ": {
+          "type": "text",
+          "settings": {
+            "title": "How often do boxes ship?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_Hr4fhf": {
+          "type": "text",
+          "settings": {
+            "title": "Can I cancel anytime?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_8qK7xq": {
+          "type": "text",
+          "settings": {
+            "title": "Can I skip a month?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_eaRHBz": {
+          "type": "text",
+          "settings": {
+            "title": "How do I change my shirt size?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_pmkicq": {
+          "type": "text",
+          "settings": {
+            "title": "Is every box different?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_yrMgKV": {
+          "type": "text",
+          "settings": {
+            "title": "Is shipping included?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        },
+        "text_G8YcCn": {
+          "type": "text",
+          "settings": {
+            "title": "Can I buy products individually?",
+            "text": "",
+            "icon_width": 20,
+            "icon_position": "inline-left"
+          }
+        }
+      },
+      "block_order": [
+        "text_8zVBqR",
+        "text_gygNBQ",
+        "text_Hr4fhf",
+        "text_8qK7xq",
+        "text_eaRHBz",
+        "text_pmkicq",
+        "text_yrMgKV",
+        "text_G8YcCn"
+      ],
+      "settings": {
+        "layout": "two-columns",
+        "show_accordion_divider": true,
+        "line_thickness": "normal",
+        "content_alignment": "text-center",
+        "subheading": "",
+        "title": "",
+        "heading_size": 180,
+        "text": "",
+        "type_style": "font-heading",
+        "tabs_bg_color": "rgba(0,0,0,0)",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "border_color": "#dbd1bf",
+        "width": "wrapper",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "section_text_YaYLxR": {
+      "type": "section-text",
+      "blocks": {
+        "subheading_TpGH6N": {
+          "type": "subheading",
+          "settings": {
+            "text": "<p>Inside The Box<\/p>",
+            "size": 100,
+            "margin_bottom": 16
+          }
+        },
+        "heading_zMxbj8": {
+          "type": "heading",
+          "settings": {
+            "text": "<p><strong>Unboxing Elevated Quality Every Month<\/strong><\/p>",
+            "size": 150,
+            "heading_highlight_type": "alternate-font",
+            "highlight_color": "#000000",
+            "highlight_text_color": "rgba(0,0,0,0)"
+          }
+        },
+        "text_XLQVYi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Some items will be available all the time and changing, while others are limited and left over from previous months' boxes<\/p>",
+            "size": 100
+          }
+        }
+      },
+      "block_order": [
+        "subheading_TpGH6N",
+        "heading_zMxbj8",
+        "text_XLQVYi"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-afa66436-d445-4852-b059-ee61648786ca",
+        "width": "wrapper--full-padded",
+        "padding_top": 100,
+        "padding_bottom": 54
+      }
+    },
+    "section_promotion_row_GcPnCy": {
+      "type": "section-promotion-row",
+      "blocks": {
+        "column_UNiMUH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collage-row-2_e546303a-0606-4744-a334-435313107ba1.png",
+            "subheading": "<p><strong>Horse Care<\/strong><\/p>",
+            "subheading_size": 70,
+            "heading": "<p><strong>Equine Wellness & Supplements<\/strong><\/p>",
+            "heading_size": 85,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#fbecdf",
+            "highlight_text_color": "#ffffff",
+            "description": "",
+            "description_size": 80,
+            "disclaimer": "",
+            "disclaimer_size": 75,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "bg_color": "#000000",
+            "gradient_background": "linear-gradient(180deg, rgba(11, 11, 11, 1), rgba(0, 0, 0, 1) 100%)",
+            "text_color": "#f2ede3",
+            "overlay_type": "disabled"
+          }
+        },
+        "column_UDqTYX": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collage-row-3_2d37a083-f1f7-456e-9093-e4173ea486cb.png",
+            "subheading": "<p><strong>Lifestyle Products<\/strong><\/p>",
+            "subheading_size": 70,
+            "heading": "<p><strong>Ranch Lifestyle & Accents<\/strong><\/p>",
+            "heading_size": 85,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#fff7f2",
+            "highlight_text_color": "#000000",
+            "description": "",
+            "description_size": 90,
+            "disclaimer": "",
+            "disclaimer_size": 75,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--white",
+            "button_style": "btn--soft",
+            "button_size": "btn--small",
+            "bg_color": "",
+            "gradient_background": "linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1) 100%)",
+            "text_color": "#f2ede3",
+            "overlay_type": "disabled"
+          }
+        }
+      },
+      "block_order": [
+        "column_UNiMUH",
+        "column_UDqTYX"
+      ],
+      "settings": {
+        "layout": "none",
+        "count_up_enabled": true,
+        "count_up_duration": 60,
+        "height": "300",
+        "enable_mobile_height": false,
+        "mobile_height": "400",
+        "color_scheme": "scheme-afa66436-d445-4852-b059-ee61648786ca",
+        "enable_slider_mobile": false,
+        "columns_mobile": "1",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 10
+      }
+    },
+    "section_promotion_row_pgQMV6": {
+      "type": "section-promotion-row",
+      "blocks": {
+        "column_WyFWm7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collage-tile-tack.webp",
+            "subheading": "<p><strong>Tack<\/strong><\/p>",
+            "subheading_size": 70,
+            "heading": "<p><strong>Artisan Performance Tack<\/strong><\/p>",
+            "heading_size": 100,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#fbecdf",
+            "highlight_text_color": "#ffffff",
+            "description": "",
+            "description_size": 80,
+            "disclaimer": "",
+            "disclaimer_size": 75,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "bg_color": "#000000",
+            "gradient_background": "linear-gradient(180deg, rgba(11, 11, 11, 1), rgba(0, 0, 0, 1) 100%)",
+            "text_color": "#f2ede3",
+            "overlay_type": "disabled"
+          }
+        },
+        "column_3k4Wiy": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
+            "subheading": "<p><strong>Apparel<\/strong><\/p>",
+            "subheading_size": 70,
+            "heading": "<p><strong>Premium Apparel<\/strong><\/p>",
+            "heading_size": 125,
+            "heading_highlight_type": "italics",
+            "highlight_color": "#fff7f2",
+            "highlight_text_color": "#000000",
+            "description": "",
+            "description_size": 90,
+            "disclaimer": "",
+            "disclaimer_size": 75,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--white",
+            "button_style": "btn--soft",
+            "button_size": "btn--small",
+            "bg_color": "",
+            "gradient_background": "linear-gradient(190deg, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 1) 100%)",
+            "text_color": "#f2ede3",
+            "overlay_type": "disabled"
+          }
+        }
+      },
+      "block_order": [
+        "column_WyFWm7",
+        "column_3k4Wiy"
+      ],
+      "settings": {
+        "layout": "1",
+        "count_up_enabled": false,
+        "count_up_duration": 60,
+        "height": "550",
+        "enable_mobile_height": true,
+        "mobile_height": "350",
+        "color_scheme": "scheme-afa66436-d445-4852-b059-ee61648786ca",
+        "enable_slider_mobile": false,
+        "columns_mobile": "1",
+        "width": "wrapper--full-padded",
+        "padding_top": 10,
+        "padding_bottom": 100
+      }
+    },
+    "section_text_Rzwrng": {
+      "type": "section-text",
+      "blocks": {
+        "subheading_i4NcKR": {
+          "type": "subheading",
+          "settings": {
+            "text": "<p>What the West is Saying<\/p>",
+            "size": 100,
+            "margin_bottom": 16
+          }
+        },
+        "heading_PaKBBg": {
+          "type": "heading",
+          "settings": {
+            "text": "<p><strong>Customer reviews<\/strong><\/p>",
+            "size": 150,
+            "heading_highlight_type": "alternate-font",
+            "highlight_color": "#000000",
+            "highlight_text_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_i4NcKR",
+        "heading_PaKBBg"
+      ],
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "width": "wrapper--full-padded",
+        "padding_top": 100,
+        "padding_bottom": 0
+      }
+    },
+    "1789395837ef019a57": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_PtNLWE": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 800,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_PtNLWE"
+      ],
+      "settings": {
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "blocks": {
+        "related_fwJCXM": {
+          "type": "related",
+          "settings": {
+            "title": "You may also like",
+            "product_recommendations_limit": 3
+          }
+        },
+        "recent_UAzxeW": {
+          "type": "recent",
+          "settings": {
+            "title": "Recently viewed",
+            "product_recently_limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "related_fwJCXM",
+        "recent_UAzxeW"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_tabs": false,
+        "layout": "grid",
+        "products_per_row_on_desktop": 4,
+        "columns_mobile": "2",
+        "type_style": "font-heading",
+        "tab_heading_size": 135,
+        "color_scheme": "scheme-2",
+        "width": "wrapper",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "section_text_xWLmpm",
+    "main",
+    "how_it_works_xfiwB9",
+    "section_countdown_geV9jV",
+    "section_accordions_with_images_R8FJNy",
+    "section_text_YaYLxR",
+    "section_promotion_row_GcPnCy",
+    "section_promotion_row_pgQMV6",
+    "section_text_Rzwrng",
+    "1789395837ef019a57",
+    "related"
+  ]
+}

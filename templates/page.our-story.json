@@ -32,41 +32,91 @@
         "heading_MQFW9r": {
           "type": "heading",
           "settings": {
-            "text": "<p>Built for the West.<br\/>Trusted by Those Who Live It.<\/p>",
+            "text": "<p>Our Story<\/p>",
             "size": 120,
             "heading_highlight_type": "underline-hand-drawn",
             "highlight_color": "#000",
             "highlight_text_color": ""
           }
-        },
-        "text_bkqmDY": {
+        }
+      },
+      "block_order": [
+        "heading_MQFW9r"
+      ],
+      "custom_css": [],
+      "name": "Text",
+      "settings": {
+        "scroll_reveal_text": false,
+        "text_position": "center",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "width": "wrapper--narrow",
+        "padding_top": 60,
+        "padding_bottom": 10
+      }
+    },
+    "section_text_NH8jbx": {
+      "type": "section-text",
+      "blocks": {
+        "text_xynNfz": {
           "type": "text",
           "settings": {
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "text": "<p>Saddle Society was built by people who live the western lifestyle every day.<\/p>",
             "size": 100
           }
         },
-        "text_nVCRra": {
+        "text_EciDRx": {
           "type": "text",
           "settings": {
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>",
+            "text": "<p>We have spent years in and out of the saddle, on ranches, in the arena, at horse shows, and countless calving seasons, putting products to the test along the way. We know firsthand what works, what doesn’t, and which brands consistently deliver quality when it matters most.<\/p>",
+            "size": 100
+          }
+        },
+        "text_FNiyUM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every product featured on the Saddle Society website and included in our monthly subscription boxes comes from brands we personally use, trust, and stand behind. These aren’t random products chosen from a catalog; they are products that have earned a place in our daily lives through real world use.<\/p>",
+            "size": 100
+          }
+        },
+        "text_QkyRVD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our mission is simple to introduce the western community to the same trusted products, apparel, supplements, grooming essentials, tack items, and lifestyle brands that have become part of our own routines. Whether you’re caring for horses before sunrise, working cattle in the summer heat, braving the coldest nights of calving season, competing in the arena, or stepping<br\/>into the show pen, we want to help equip you with products that perform.<\/p>",
+            "size": 100
+          }
+        },
+        "text_cTnz47": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Built for the West! Trusted by those who live it!<\/p>",
+            "size": 100
+          }
+        },
+        "text_JYqkp8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>\"Commit your work to the Lord, and your plans will be established.\"<br\/>— Proverbs 16:3<\/p>",
             "size": 100
           }
         }
       },
       "block_order": [
-        "heading_MQFW9r",
-        "text_bkqmDY",
-        "text_nVCRra"
+        "text_xynNfz",
+        "text_EciDRx",
+        "text_FNiyUM",
+        "text_QkyRVD",
+        "text_cTnz47",
+        "text_JYqkp8"
       ],
+      "custom_css": [],
       "name": "Text",
       "settings": {
         "scroll_reveal_text": false,
-        "text_position": "center",
-        "color_scheme": "scheme-5a0f5c15-9f2f-4b0a-919b-a1636a9030ef",
+        "text_position": "left",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "width": "wrapper--narrow",
-        "padding_top": 60,
-        "padding_bottom": 30
+        "padding_top": 10,
+        "padding_bottom": 60
       }
     },
     "section_image_with_text_xL86A7": {
@@ -98,6 +148,7 @@
         "heading_CXwQtq",
         "text_TDRxQz"
       ],
+      "disabled": true,
       "name": "Image with text",
       "settings": {
         "show_accordion_divider": false,
@@ -110,10 +161,10 @@
         "image_width": "standard",
         "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
         "block_bg_color": "",
-        "color_scheme": "scheme-5a0f5c15-9f2f-4b0a-919b-a1636a9030ef",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "section_width": "wrapper",
         "add_gutter": false,
-        "padding_top": 30,
+        "padding_top": 60,
         "padding_bottom": 30
       }
     },
@@ -146,6 +197,7 @@
         "heading_CpDwLT",
         "text_GLYieV"
       ],
+      "disabled": true,
       "name": "Image with text",
       "settings": {
         "show_accordion_divider": false,
@@ -158,11 +210,47 @@
         "image_width": "standard",
         "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
         "block_bg_color": "",
-        "color_scheme": "scheme-5a0f5c15-9f2f-4b0a-919b-a1636a9030ef",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "section_width": "wrapper",
         "add_gutter": false,
         "padding_top": 30,
         "padding_bottom": 60
+      }
+    },
+    "section_overlapping_images_d4Kk6Q": {
+      "type": "section-overlapping-images",
+      "custom_css": [],
+      "settings": {
+        "text_position": "right",
+        "text_alignment": "left",
+        "images_width": 750,
+        "images_offset": 85,
+        "image_1": "shopify:\/\/shop_images\/sourced_by_real_ranchers_1.webp",
+        "image_link_1": "",
+        "image_2": "shopify:\/\/shop_images\/sourced_by_real_ranchers_v1.webp",
+        "image_link_2": "",
+        "hide_image_2": false,
+        "subheading": "Our Mission",
+        "title": "<p>Sourced by real ranchers and competitors. Trusted by professionals. Every product is carefully selected for proven quality and real world performance from the ranch and trail to the arena and show pen. There’s something for everyone in the Western<\/p>",
+        "heading_size": 110,
+        "heading_highlight_type": "italics",
+        "highlight_color": "#e6caca",
+        "highlight_text_color": "#121316",
+        "description": "",
+        "text_size": 100,
+        "button_text": "Read Our Story",
+        "button_link": "#",
+        "button_color": "btn--secondary",
+        "button_style": "btn--outline",
+        "button_size": "btn--large",
+        "video_text": "",
+        "video_link": "",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "animation": "horizontal",
+        "animation_intensity": 20,
+        "width": "wrapper--full-padded",
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "section_banner_image_A4DhQF": {
@@ -248,8 +336,10 @@
     "main",
     "section_image_4MTyFn",
     "section_text_p8rDeD",
+    "section_text_NH8jbx",
     "section_image_with_text_xL86A7",
     "section_image_with_text_HtnhKX",
+    "section_overlapping_images_d4Kk6Q",
     "section_banner_image_A4DhQF"
   ]
 }

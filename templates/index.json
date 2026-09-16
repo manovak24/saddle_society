@@ -67,12 +67,12 @@
             "text_color": "#173225",
             "stacked_button": false,
             "button_1_text": "choose your box",
-            "button_1_link": "shopify:\/\/collections\/all",
+            "button_1_link": "#quiz-kit-key-nRMsWiz6Gz",
             "button_1_color": "btn--primary",
             "button_1_style": "btn--solid",
             "button_1_size": "btn--large",
             "button_2_text": "LEARN MORE",
-            "button_2_link": "",
+            "button_2_link": "shopify:\/\/products\/saddle-society-signature-box",
             "button_2_color": "btn--primary",
             "button_2_style": "btn--outline",
             "button_2_size": "btn--large",
@@ -200,6 +200,14 @@
             "link": "",
             "image_width": 180
           }
+        },
+        "image_grdFGt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/CC_Logo.png_1.webp",
+            "link": "",
+            "image_width": 180
+          }
         }
       },
       "block_order": [
@@ -210,7 +218,8 @@
         "image_RtVVdp",
         "image_MYrLEe",
         "image_dLrmrX",
-        "image_ydymC6"
+        "image_ydymC6",
+        "image_grdFGt"
       ],
       "settings": {
         "layout": "marquee",
@@ -268,7 +277,7 @@
         "text_yCdQqD": {
           "type": "text",
           "settings": {
-            "text": "<p>Stop overpaying at the tack shop.<br\/>Over $150 in the best hand-picked brands.<br\/>Each box. Every Month.<\/p>",
+            "text": "<p>Get more value in every box. Each Saddle Society box is worth more than what you pay, saving you money every month while giving you access to premium products from brands we know and trust.<\/p>",
             "size": 100
           }
         }
@@ -665,7 +674,7 @@
         "description": "",
         "text_size": 100,
         "button_text": "Read Our Story",
-        "button_link": "#",
+        "button_link": "shopify:\/\/pages\/our-story",
         "button_color": "btn--secondary",
         "button_style": "btn--outline",
         "button_size": "btn--large",

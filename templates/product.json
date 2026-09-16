@@ -23,7 +23,7 @@
         "heading_MKKjyK": {
           "type": "heading",
           "settings": {
-            "text": "<h1>Saddle Society Signature Box<\/h1>",
+            "text": "<h1>{{ product.title }}<\/h1>",
             "size": 175,
             "heading_highlight_type": "underline-hand-drawn",
             "highlight_color": "#000",
