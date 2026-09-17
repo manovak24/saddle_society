@@ -835,7 +835,7 @@
           "type": "text",
           "settings": {
             "title": "What comes in each box?",
-            "text": "",
+            "text": "<p>Each Saddle Society box is custom-built around your quiz results and may include a curated mix of premium Western apparel, tack, equine supplements, grooming products, and lifestyle goods. Contents vary from month to month based on your preferences, sizing, availability, and our curation process.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -844,7 +844,7 @@
           "type": "text",
           "settings": {
             "title": "How often do boxes ship?",
-            "text": "",
+            "text": "<p>Saddle Society boxes ship once a month. New orders placed by the 28th are generally included in the upcoming shipment cycle. Boxes are scheduled to ship during the first week of each month, typically around the 5th.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -853,7 +853,7 @@
           "type": "text",
           "settings": {
             "title": "Can I cancel anytime?",
-            "text": "",
+            "text": "<p>Yes. You can cancel your subscription at any time through your subscription account. To avoid your next recurring charge, cancel before the 18th of the month. If a charge has already processed, that paid box will still be fulfilled and your cancellation will apply to future renewals.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -862,7 +862,7 @@
           "type": "text",
           "settings": {
             "title": "Can I skip a month?",
-            "text": "",
+            "text": "<p>Yes. You can skip an upcoming month through your subscription account. To avoid being charged for that box, make sure the skip is completed before the recurring payment is processed on the 18th.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -871,7 +871,7 @@
           "type": "text",
           "settings": {
             "title": "How do I change my shirt size?",
-            "text": "",
+            "text": "<p>You can update your sizing and preferences through your subscription account or customer quiz. Make changes before the 18th whenever possible so we can use the updated information for your next box. Changes made after an order enters processing may not apply until a future box.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -880,7 +880,7 @@
           "type": "text",
           "settings": {
             "title": "Is every box different?",
-            "text": "",
+            "text": "<p>Yes. Each monthly box is curated to keep the experience fresh, and contents can vary based on your quiz results, sizing, preferences, season, and product availability. We do not guarantee the same products or brands in every box.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -889,7 +889,7 @@
           "type": "text",
           "settings": {
             "title": "Is shipping included?",
-            "text": "",
+            "text": "<p>Shipping is not included in the subscription price unless a promotion specifically says otherwise. Your applicable shipping charge will be shown at checkout.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -898,7 +898,7 @@
           "type": "text",
           "settings": {
             "title": "Can I buy products individually?",
-            "text": "",
+            "text": "<p>Yes. Items from previous months that are left over from our subscription boxes will be available individually in The Vault at a discounted rate, while supplies last.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }

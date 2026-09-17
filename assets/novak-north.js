@@ -105,3 +105,21 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 document.addEventListener('DOMContentLoaded', defaultToSubscription);
 document.addEventListener('shopify:section:load', defaultToSubscription);
+
+
+const updateCartBarPadding = () => {
+  const cartBar = document.querySelector('.product-single cart-bar');
+  const template = document.querySelector('.template-product');
+
+  if (!cartBar || !template) return;
+
+  template.style.paddingBottom = `${cartBar.offsetHeight}px`;
+
+  if (!cartBar.dataset.paddingObserverAttached) {
+    new ResizeObserver(updateCartBarPadding).observe(cartBar);
+    cartBar.dataset.paddingObserverAttached = 'true';
+  }
+};
+
+document.addEventListener('DOMContentLoaded', updateCartBarPadding);
+document.addEventListener('shopify:section:load', updateCartBarPadding);

@@ -391,10 +391,6 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
 /* //////// End polic pages //////// */
 
 /* Pdp template */
-.template-product:has(.product-single cart-bar) {
-    padding-bottom: 62px;
-}
-
 .template-product.body--rounded-corners .cart-bar__media img {
     border-radius: 8px;
 }
@@ -434,18 +430,6 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     .template-product .cart-bar__message {
         max-width: 100%;
         margin: 0;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .template-product:has(.product-single cart-bar) {
-        padding-bottom: 70px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .template-product:has(.product-single cart-bar) {
-        padding-bottom: 100px;
     }
 }
 /* //////// End pdp template //////// */
@@ -497,3 +481,15 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     border-radius: 0;
 }
 /* //////// End marquee //////// */
+
+
+/* Site footer */
+.shopify-section-group-group-footer.Image {
+    display: none;
+}
+
+.template-product .shopify-section-group-group-footer.Image,
+.template--contact .shopify-section-group-group-footer.Image {
+    display: block;
+}
+/* //////// End site footer //////// */

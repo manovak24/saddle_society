@@ -45,53 +45,6 @@
         "padding_bottom": 30
       }
     },
-    "section_countdown_geV9jV": {
-      "type": "section-countdown",
-      "blocks": {
-        "heading_4Qei6q": {
-          "type": "heading",
-          "settings": {
-            "text": "<p>Shop Before It Ends<\/p>",
-            "size": 120,
-            "heading_highlight_type": "underline-hand-drawn",
-            "highlight_color": "#000000",
-            "highlight_text_color": ""
-          }
-        },
-        "timer_AhVGLz": {
-          "type": "timer",
-          "settings": {
-            "end_date": "2026-09-28",
-            "end_time": "11:59",
-            "period": "pm",
-            "end_message": "",
-            "digit_size": 100,
-            "unit_size": 100,
-            "bg_color": "",
-            "bg_opacity": 100
-          }
-        }
-      },
-      "block_order": [
-        "heading_4Qei6q",
-        "timer_AhVGLz"
-      ],
-      "name": "Countdown",
-      "settings": {
-        "layout_style": "stacked",
-        "text_alignment": "center",
-        "height": "150",
-        "enable_mobile_height": false,
-        "mobile_height": "400",
-        "overlay_type": "disabled",
-        "enable_zoom_animation": false,
-        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
-        "text_width": "normal",
-        "width": "wrapper--full-padded",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "main": {
       "type": "product",
       "blocks": {
@@ -174,6 +127,53 @@
         "padding_bottom": 60
       }
     },
+    "section_countdown_geV9jV": {
+      "type": "section-countdown",
+      "blocks": {
+        "heading_4Qei6q": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Shop Before It Ends<\/p>",
+            "size": 120,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000000",
+            "highlight_text_color": ""
+          }
+        },
+        "timer_AhVGLz": {
+          "type": "timer",
+          "settings": {
+            "day_of_month": 28,
+            "time": "11:59",
+            "period": "pm",
+            "end_message": "",
+            "digit_size": 100,
+            "unit_size": 100,
+            "bg_color": "",
+            "bg_opacity": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_4Qei6q",
+        "timer_AhVGLz"
+      ],
+      "name": "Countdown",
+      "settings": {
+        "layout_style": "stacked",
+        "text_alignment": "center",
+        "height": "150",
+        "enable_mobile_height": false,
+        "mobile_height": "400",
+        "overlay_type": "disabled",
+        "enable_zoom_animation": false,
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "text_width": "normal",
+        "width": "wrapper--full-padded",
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
     "section_accordions_with_images_R8FJNy": {
       "type": "section-accordions-with-images",
       "blocks": {
@@ -181,7 +181,7 @@
           "type": "text",
           "settings": {
             "title": "What comes in each box?",
-            "text": "",
+            "text": "<p>Each Saddle Society box is custom-built around your quiz results and may include a curated mix of premium Western apparel, tack, equine supplements, grooming products, and lifestyle goods. Contents vary from month to month based on your preferences, sizing, availability, and our curation process.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -190,7 +190,7 @@
           "type": "text",
           "settings": {
             "title": "How often do boxes ship?",
-            "text": "",
+            "text": "<p>Saddle Society boxes ship once a month. New orders placed by the 28th are generally included in the upcoming shipment cycle. Boxes are scheduled to ship during the first week of each month, typically around the 5th.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -199,7 +199,7 @@
           "type": "text",
           "settings": {
             "title": "Can I cancel anytime?",
-            "text": "",
+            "text": "<p>Yes. You can cancel your subscription at any time through your subscription account. To avoid your next recurring charge, cancel before the 18th of the month. If a charge has already processed, that paid box will still be fulfilled and your cancellation will apply to future renewals.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -208,7 +208,7 @@
           "type": "text",
           "settings": {
             "title": "Can I skip a month?",
-            "text": "",
+            "text": "<p>Yes. You can skip an upcoming month through your subscription account. To avoid being charged for that box, make sure the skip is completed before the recurring payment is processed on the 18th.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -217,7 +217,7 @@
           "type": "text",
           "settings": {
             "title": "How do I change my shirt size?",
-            "text": "",
+            "text": "<p>You can update your sizing and preferences through your subscription account or customer quiz. Make changes before the 18th whenever possible so we can use the updated information for your next box. Changes made after an order enters processing may not apply until a future box.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -226,7 +226,7 @@
           "type": "text",
           "settings": {
             "title": "Is every box different?",
-            "text": "",
+            "text": "<p>Yes. Each monthly box is curated to keep the experience fresh, and contents can vary based on your quiz results, sizing, preferences, season, and product availability. We do not guarantee the same products or brands in every box.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -235,7 +235,7 @@
           "type": "text",
           "settings": {
             "title": "Is shipping included?",
-            "text": "",
+            "text": "<p>Shipping is not included in the subscription price unless a promotion specifically says otherwise. Your applicable shipping charge will be shown at checkout.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -244,7 +244,7 @@
           "type": "text",
           "settings": {
             "title": "Can I buy products individually?",
-            "text": "",
+            "text": "<p>Yes. Items from previous months that are left over from our subscription boxes will be available individually in The Vault at a discounted rate, while supplies last.<\/p>",
             "icon_width": 20,
             "icon_position": "inline-left"
           }
@@ -274,8 +274,8 @@
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "border_color": "#dbd1bf",
         "width": "wrapper",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 20,
+        "padding_bottom": 40
       }
     },
     "how_it_works_xfiwB9": {
@@ -613,8 +613,8 @@
   "order": [
     "section_text_xWLmpm",
     "main",
-    "section_accordions_with_images_R8FJNy",
     "section_countdown_geV9jV",
+    "section_accordions_with_images_R8FJNy",
     "how_it_works_xfiwB9",
     "section_text_YaYLxR",
     "section_promotion_row_7zR6eW",
