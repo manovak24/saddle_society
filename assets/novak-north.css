@@ -68,10 +68,16 @@
     letter-spacing: 0;
 }
 .text__content {
-        max-width: 470px;
+    max-width: 515px;
     margin: 0 auto;
     font-size: 16px!important;
 }
+
+.template-product .text__content,
+.template--our-story .text__content {
+    max-width: 525px;
+}
+
 .promotion-row__item__subheading.subheading-text p{
     margin:0;
     display: block;
@@ -178,6 +184,15 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.template--contact .section-image {
+  background: #fff;
+}
+
+.body--rounded-corners .cart__item__image,
+.cart__item__image a {
+    border-radius: 8px;
 }
 
 /**/
@@ -476,3 +491,9 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     }
 }
 /* //////// End build your box quiz //////// */
+
+/* Marquee */
+.body--rounded-corners .section-marquee .announcement__image {
+    border-radius: 0;
+}
+/* //////// End marquee //////// */
