@@ -1,5 +1,6 @@
 {
   "current": {
+    "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
     "menu_bg_color": "#FFFFFF",
     "header_link": "#121316",
     "type_header_font": "alegreya_n4",
@@ -58,6 +59,7 @@
     "show_rounded_corners": true,
     "increase_border_radius": false,
     "mobile_menu_behaviour": "link",
+    "animations_enabled": false,
     "product_badges_size": 95,
     "show_sale_badge": false,
     "show_saving_badge": false,
@@ -80,7 +82,7 @@
     "social_twitter_link": "",
     "social_pinterest_link": "",
     "currency_code_enable": false,
-    "favicon": "",
+    "favicon": "shopify:\/\/shop_images\/saddle_society_favicon_v1.webp",
     "checkout_logo_position": "left",
     "checkout_logo_size": "large",
     "checkout_body_background_image": "",
@@ -364,6 +366,24 @@
           "section_text": "#121316",
           "section_bg_gradient": "",
           "btn_primary_bg": "#173225",
+          "btn_secondary_bg": "#ffffff",
+          "accent": "#fff7f2",
+          "lines_and_border": "#000000",
+          "overlay": "#00000030",
+          "links": "#000000",
+          "quick_add_bg_color": "#ffffff",
+          "quick_add_text_color": "#000000",
+          "upsells_bg_color": "#f7f6f4",
+          "upsells_text_color": "#0b0b0b"
+        }
+      },
+      "scheme-d7aa8ff3-7eb9-499c-be2c-9b5982fd8bc8": {
+        "settings": {
+          "section_bg": "rgba(0,0,0,0)",
+          "section_heading": "#4e544b",
+          "section_text": "#4e544b",
+          "section_bg_gradient": "",
+          "btn_primary_bg": "#0b0b0b",
           "btn_secondary_bg": "#ffffff",
           "accent": "#fff7f2",
           "lines_and_border": "#000000",

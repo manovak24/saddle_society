@@ -2,6 +2,23 @@
   "type": "footer",
   "name": "Footer group",
   "sections": {
+    "section_image_RekX6F": {
+      "type": "section-image",
+      "custom_css": [],
+      "name": "Image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/footer_fade.webp",
+        "height": "original-height",
+        "enable_mobile_height": false,
+        "mobile_height": "original-height-mobile",
+        "enable_stretch": true,
+        "image_position": "center",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "width": "wrapper--full",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -90,6 +107,7 @@
     }
   },
   "order": [
+    "section_image_RekX6F",
     "footer"
   ]
 }

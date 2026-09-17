@@ -30,19 +30,11 @@
             "highlight_color": "#d43747",
             "highlight_text_color": "#000000"
           }
-        },
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Need to get in touch? Feel free to reach out using the contact form below or for specific inquiries, reach out to the specific email address. We're available to chat Monday - Friday 9a.m - 9p.m PST. <\/p>",
-            "size": 100
-          }
         }
       },
       "block_order": [
         "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-0",
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-1",
-        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-2"
+        "template--16737047871766__46135749-756a-47d9-9cd2-5a1a9d750dc1-16671545760217c3d5-1"
       ],
       "settings": {
         "scroll_reveal_text": false,
@@ -51,65 +43,6 @@
         "width": "wrapper--narrow",
         "padding_top": 60,
         "padding_bottom": 60
-      }
-    },
-    "75b65038-f658-4895-b63c-8f65c49cd645": {
-      "type": "section-icons-row",
-      "blocks": {
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-0": {
-          "type": "text",
-          "settings": {
-            "icon_name": "support",
-            "title": "Order Status",
-            "text": "<p>orders@companyname.com<\/p>"
-          }
-        },
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-1": {
-          "type": "text",
-          "settings": {
-            "icon_name": "mail",
-            "title": "Start a Return",
-            "text": "<p>returns@companyname.com<\/p>"
-          }
-        },
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-2": {
-          "type": "text",
-          "settings": {
-            "icon_name": "clipboard",
-            "title": "Sizing and Product Info",
-            "text": "<p>products@companyname.com<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-0",
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-1",
-        "template--16737047871766__75b65038-f658-4895-b63c-8f65c49cd645-1667153805a86dfb7b-2"
-      ],
-      "settings": {
-        "heading": "",
-        "subheading": "",
-        "alignment": "center",
-        "columns": 3,
-        "icons_width": 30,
-        "show_vertical_borders": true,
-        "show_top_border": true,
-        "show_bottom_border": true,
-        "heading_size": 120,
-        "text_size": 100,
-        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
-        "text_color": "#121316",
-        "box_color": "",
-        "color_border": "#121316",
-        "button_text": "",
-        "button_link": "",
-        "button_color": "btn--black",
-        "button_style": "btn--secondary btn--small",
-        "button_size": "btn--small",
-        "layout_mobile": "stacked",
-        "width": "wrapper",
-        "padding_top": 20,
-        "padding_bottom": 20
       }
     },
     "contact-form": {
@@ -156,7 +89,6 @@
   "order": [
     "main",
     "46135749-756a-47d9-9cd2-5a1a9d750dc1",
-    "75b65038-f658-4895-b63c-8f65c49cd645",
     "contact-form"
   ]
 }

@@ -45,6 +45,53 @@
         "padding_bottom": 30
       }
     },
+    "section_countdown_geV9jV": {
+      "type": "section-countdown",
+      "blocks": {
+        "heading_4Qei6q": {
+          "type": "heading",
+          "settings": {
+            "text": "<p>Shop Before It Ends<\/p>",
+            "size": 120,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#000000",
+            "highlight_text_color": ""
+          }
+        },
+        "timer_AhVGLz": {
+          "type": "timer",
+          "settings": {
+            "end_date": "2026-09-28",
+            "end_time": "11:59",
+            "period": "pm",
+            "end_message": "",
+            "digit_size": 100,
+            "unit_size": 100,
+            "bg_color": "",
+            "bg_opacity": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_4Qei6q",
+        "timer_AhVGLz"
+      ],
+      "name": "Countdown",
+      "settings": {
+        "layout_style": "stacked",
+        "text_alignment": "center",
+        "height": "150",
+        "enable_mobile_height": false,
+        "mobile_height": "400",
+        "overlay_type": "disabled",
+        "enable_zoom_animation": false,
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "text_width": "normal",
+        "width": "wrapper--full-padded",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "main": {
       "type": "product",
       "blocks": {
@@ -123,99 +170,8 @@
         "enable_subscription_box_quiz": true,
         "quiz_url": "#quiz-kit-key-nRMsWiz6Gz",
         "quiz_button_text": "Build your box",
-        "padding_top": 0,
-        "padding_bottom": 60
-      }
-    },
-    "how_it_works_xfiwB9": {
-      "type": "how-it-works",
-      "blocks": {
-        "step_Vd4giq": {
-          "type": "step",
-          "settings": {
-            "heading": "Choose Your Box",
-            "text": "<p>Select the claim your box and complete checkout. Skip or cancel anytime.<\/p>"
-          }
-        },
-        "step_byKtAm": {
-          "type": "step",
-          "settings": {
-            "heading": "Personalize Your Profile",
-            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing. so we can better tailor your experience each and every month. <\/p>"
-          }
-        },
-        "step_78q6dQ": {
-          "type": "step",
-          "settings": {
-            "heading": "Unbox the West",
-            "text": "<p>Receive a premium monthly collection of trusted apparel, tack, horse care products, and Western lifestyle goods delivered to your door.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "step_Vd4giq",
-        "step_byKtAm",
-        "step_78q6dQ"
-      ],
-      "name": "How it works",
-      "settings": {
-        "content_position": "left",
-        "increase_border_radius": true,
-        "badge_text": "Steps",
-        "heading": "<p>How Saddle Society Works<\/p>",
-        "text": "<p>Choose your box, tell us about you and your horse, and receive a premium selection of Western apparel, tack, horse-care products, and lifestyle essentials every month.<\/p>",
-        "image": "shopify:\/\/shop_images\/how_it_works_v1.webp",
-        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
-        "section_width": "wrapper--full-padded",
         "padding_top": 40,
-        "padding_bottom": 90
-      }
-    },
-    "section_countdown_geV9jV": {
-      "type": "section-countdown",
-      "blocks": {
-        "heading_4Qei6q": {
-          "type": "heading",
-          "settings": {
-            "text": "<p>Shop Before It Ends<\/p>",
-            "size": 120,
-            "heading_highlight_type": "underline-hand-drawn",
-            "highlight_color": "#000000",
-            "highlight_text_color": ""
-          }
-        },
-        "timer_AhVGLz": {
-          "type": "timer",
-          "settings": {
-            "end_date": "2026-12-31",
-            "end_time": "11:59",
-            "period": "am",
-            "end_message": "",
-            "digit_size": 100,
-            "unit_size": 100,
-            "bg_color": "",
-            "bg_opacity": 100
-          }
-        }
-      },
-      "block_order": [
-        "heading_4Qei6q",
-        "timer_AhVGLz"
-      ],
-      "name": "Countdown",
-      "settings": {
-        "layout_style": "stacked",
-        "text_alignment": "center",
-        "height": "150",
-        "enable_mobile_height": false,
-        "mobile_height": "400",
-        "overlay_type": "disabled",
-        "enable_zoom_animation": false,
-        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
-        "text_width": "normal",
-        "width": "wrapper--full-padded",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 60
       }
     },
     "section_accordions_with_images_R8FJNy": {
@@ -322,6 +278,50 @@
         "padding_bottom": 80
       }
     },
+    "how_it_works_xfiwB9": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_Vd4giq": {
+          "type": "step",
+          "settings": {
+            "heading": "Choose Your Box",
+            "text": "<p>Select the claim your box and complete checkout. Skip or cancel anytime.<\/p>"
+          }
+        },
+        "step_byKtAm": {
+          "type": "step",
+          "settings": {
+            "heading": "Personalize Your Profile",
+            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing. so we can better tailor your experience each and every month. <\/p>"
+          }
+        },
+        "step_78q6dQ": {
+          "type": "step",
+          "settings": {
+            "heading": "Unbox the West",
+            "text": "<p>Receive a premium monthly collection of trusted apparel, tack, horse care products, and Western lifestyle goods delivered to your door.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_Vd4giq",
+        "step_byKtAm",
+        "step_78q6dQ"
+      ],
+      "name": "How it works",
+      "settings": {
+        "content_position": "left",
+        "increase_border_radius": true,
+        "badge_text": "Steps",
+        "heading": "<p>How Saddle Society Works<\/p>",
+        "text": "<p>Choose your box, tell us about you and your horse, and receive a premium selection of Western apparel, tack, horse-care products, and lifestyle essentials every month.<\/p>",
+        "image": "shopify:\/\/shop_images\/how_it_works_v1.webp",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "section_width": "wrapper--full-padded",
+        "padding_top": 40,
+        "padding_bottom": 90
+      }
+    },
     "section_text_YaYLxR": {
       "type": "section-text",
       "blocks": {
@@ -365,16 +365,16 @@
         "padding_bottom": 54
       }
     },
-    "section_promotion_row_GcPnCy": {
+    "section_promotion_row_7zR6eW": {
       "type": "section-promotion-row",
       "blocks": {
-        "column_UNiMUH": {
+        "column_U4PAg8": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-row-2_e546303a-0606-4744-a334-435313107ba1.png",
+            "image": "shopify:\/\/shop_images\/collage-tile-horse-care.webp",
             "subheading": "<p><strong>Horse Care<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Equine Wellness & Supplements<\/strong><\/p>",
+            "heading": "",
             "heading_size": 85,
             "heading_highlight_type": "underline-hand-drawn",
             "highlight_color": "#fbecdf",
@@ -394,13 +394,13 @@
             "overlay_type": "disabled"
           }
         },
-        "column_UDqTYX": {
+        "column_P3pGBr": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-row-3_2d37a083-f1f7-456e-9093-e4173ea486cb.png",
+            "image": "shopify:\/\/shop_images\/collage-tile-lifestyle-products.webp",
             "subheading": "<p><strong>Lifestyle Products<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Ranch Lifestyle & Accents<\/strong><\/p>",
+            "heading": "",
             "heading_size": 85,
             "heading_highlight_type": "italics",
             "highlight_color": "#fff7f2",
@@ -422,8 +422,8 @@
         }
       },
       "block_order": [
-        "column_UNiMUH",
-        "column_UDqTYX"
+        "column_U4PAg8",
+        "column_P3pGBr"
       ],
       "settings": {
         "layout": "none",
@@ -436,46 +436,20 @@
         "enable_slider_mobile": false,
         "columns_mobile": "1",
         "width": "wrapper--full-padded",
-        "padding_top": 0,
+        "padding_top": 10,
         "padding_bottom": 10
       }
     },
-    "section_promotion_row_pgQMV6": {
+    "section_promotion_row_TiJ3GY": {
       "type": "section-promotion-row",
       "blocks": {
-        "column_WyFWm7": {
-          "type": "column",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/collage-tile-tack.webp",
-            "subheading": "<p><strong>Tack<\/strong><\/p>",
-            "subheading_size": 70,
-            "heading": "<p><strong>Artisan Performance Tack<\/strong><\/p>",
-            "heading_size": 100,
-            "heading_highlight_type": "underline-hand-drawn",
-            "highlight_color": "#fbecdf",
-            "highlight_text_color": "#ffffff",
-            "description": "",
-            "description_size": 80,
-            "disclaimer": "",
-            "disclaimer_size": 75,
-            "button_text": "",
-            "button_link": "",
-            "button_color": "btn--black",
-            "button_style": "btn--solid",
-            "button_size": "btn--small",
-            "bg_color": "#000000",
-            "gradient_background": "linear-gradient(180deg, rgba(11, 11, 11, 1), rgba(0, 0, 0, 1) 100%)",
-            "text_color": "#f2ede3",
-            "overlay_type": "disabled"
-          }
-        },
-        "column_3k4Wiy": {
+        "column_rrrgth": {
           "type": "column",
           "settings": {
             "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
             "subheading": "<p><strong>Apparel<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Premium Apparel<\/strong><\/p>",
+            "heading": "",
             "heading_size": 125,
             "heading_highlight_type": "italics",
             "highlight_color": "#fff7f2",
@@ -494,11 +468,37 @@
             "text_color": "#f2ede3",
             "overlay_type": "disabled"
           }
+        },
+        "column_mWR9Lb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collage-tile-tack.webp",
+            "subheading": "<p><strong>Tack<\/strong><\/p>",
+            "subheading_size": 70,
+            "heading": "",
+            "heading_size": 100,
+            "heading_highlight_type": "underline-hand-drawn",
+            "highlight_color": "#fbecdf",
+            "highlight_text_color": "#ffffff",
+            "description": "",
+            "description_size": 80,
+            "disclaimer": "",
+            "disclaimer_size": 75,
+            "button_text": "",
+            "button_link": "",
+            "button_color": "btn--black",
+            "button_style": "btn--solid",
+            "button_size": "btn--small",
+            "bg_color": "#000000",
+            "gradient_background": "linear-gradient(180deg, rgba(11, 11, 11, 1), rgba(0, 0, 0, 1) 100%)",
+            "text_color": "#f2ede3",
+            "overlay_type": "disabled"
+          }
         }
       },
       "block_order": [
-        "column_WyFWm7",
-        "column_3k4Wiy"
+        "column_rrrgth",
+        "column_mWR9Lb"
       ],
       "settings": {
         "layout": "1",
@@ -613,12 +613,12 @@
   "order": [
     "section_text_xWLmpm",
     "main",
-    "how_it_works_xfiwB9",
-    "section_countdown_geV9jV",
     "section_accordions_with_images_R8FJNy",
+    "section_countdown_geV9jV",
+    "how_it_works_xfiwB9",
     "section_text_YaYLxR",
-    "section_promotion_row_GcPnCy",
-    "section_promotion_row_pgQMV6",
+    "section_promotion_row_7zR6eW",
+    "section_promotion_row_TiJ3GY",
     "section_text_Rzwrng",
     "1789395837ef019a57",
     "related"

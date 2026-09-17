@@ -10,17 +10,44 @@
         "padding_bottom": 60
       }
     },
-    "section_image_4MTyFn": {
-      "type": "section-image",
-      "name": "Image",
+    "section_banner_image_PhtJcr": {
+      "type": "section-banner-image",
+      "blocks": {
+        "heading_GUy3fm": {
+          "type": "heading",
+          "settings": {
+            "text": "<p><em>Our Story<\/em><\/p>",
+            "size": 180,
+            "heading_highlight_type": "highlight-color",
+            "highlight_color": "#173225",
+            "highlight_text_color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "heading_GUy3fm"
+      ],
+      "name": "Banner image",
       "settings": {
-        "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
-        "height": "four-fifty-height",
-        "enable_mobile_height": false,
+        "height": "original-height",
+        "enable_mobile_height": true,
         "mobile_height": "original-height-mobile",
-        "enable_stretch": true,
-        "image_position": "center",
-        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
+        "image": "shopify:\/\/shop_images\/hero_banner.webp",
+        "image_mobile": "shopify:\/\/shop_images\/hero_banner_mobile.webp",
+        "overlay_type": "disabled",
+        "transition": "zoom-out",
+        "enable_zoom_animation": true,
+        "enable_card_scrolling": false,
+        "increase_border_radius": true,
+        "content_width": 80,
+        "text_position": "bottom-center",
+        "text_alignment": "center",
+        "mobile_text_position": "bottom-center",
+        "mobile_text_alignment": "center",
+        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "show_text_background": false,
+        "bg_color": "",
+        "text_color": "",
         "width": "wrapper--full",
         "padding_top": 0,
         "padding_bottom": 0
@@ -43,6 +70,7 @@
       "block_order": [
         "heading_MQFW9r"
       ],
+      "disabled": true,
       "custom_css": [],
       "name": "Text",
       "settings": {
@@ -115,7 +143,7 @@
         "text_position": "left",
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "width": "wrapper--narrow",
-        "padding_top": 10,
+        "padding_top": 60,
         "padding_bottom": 60
       }
     },
@@ -253,17 +281,17 @@
         "padding_bottom": 100
       }
     },
-    "section_banner_image_A4DhQF": {
+    "section_banner_image_empjJy": {
       "type": "section-banner-image",
       "blocks": {
-        "subheading_nUh8a9": {
+        "subheading_M8RdRf": {
           "type": "subheading",
           "settings": {
             "text": "<p>Join Saddle Society Today<\/p>",
             "size": 100
           }
         },
-        "heading_qQ6HjW": {
+        "heading_FGEW8Y": {
           "type": "heading",
           "settings": {
             "text": "<p>Experience the Best of the Western Lifestyle<\/p>",
@@ -273,14 +301,14 @@
             "highlight_text_color": ""
           }
         },
-        "text_JYaJbn": {
+        "text_GX7iBh": {
           "type": "text",
           "settings": {
             "text": "<p>Discover premium apparel, tack, horse-care products, and Western essentials carefully selected and delivered to your door every month.<\/p>",
             "size": 100
           }
         },
-        "button_EVnNCF": {
+        "button_jTUbRA": {
           "type": "button",
           "settings": {
             "stacked_button": false,
@@ -298,20 +326,20 @@
         }
       },
       "block_order": [
-        "subheading_nUh8a9",
-        "heading_qQ6HjW",
-        "text_JYaJbn",
-        "button_EVnNCF"
+        "subheading_M8RdRf",
+        "heading_FGEW8Y",
+        "text_GX7iBh",
+        "button_jTUbRA"
       ],
       "custom_css": [
-        "section {margin-bottom: -5px;}"
+        "section {margin-bottom: -5px;}",
+        ".banner-image__image-container {display: none;}"
       ],
       "name": "Banner image",
       "settings": {
-        "height": "six-fifty-height",
+        "height": "original-height",
         "enable_mobile_height": true,
-        "mobile_height": "seven-fifty-height-mobile",
-        "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
+        "mobile_height": "original-height-mobile",
         "overlay_type": "disabled",
         "transition": "zoom-out",
         "enable_zoom_animation": false,
@@ -320,26 +348,26 @@
         "content_width": 64,
         "text_position": "center",
         "text_alignment": "center",
-        "mobile_text_position": "center",
+        "mobile_text_position": "top-center",
         "mobile_text_alignment": "center",
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "show_text_background": true,
-        "bg_color": "#ffffffb5",
+        "bg_color": "#ffffffed",
         "text_color": "",
         "width": "wrapper--full",
-        "padding_top": 0,
+        "padding_top": 40,
         "padding_bottom": 0
       }
     }
   },
   "order": [
     "main",
-    "section_image_4MTyFn",
+    "section_banner_image_PhtJcr",
     "section_text_p8rDeD",
     "section_text_NH8jbx",
     "section_image_with_text_xL86A7",
     "section_image_with_text_HtnhKX",
     "section_overlapping_images_d4Kk6Q",
-    "section_banner_image_A4DhQF"
+    "section_banner_image_empjJy"
   ]
 }

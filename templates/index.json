@@ -45,8 +45,8 @@
         "image_wPpKFc": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/hero_banner.webp",
-            "image_mobile": "shopify:\/\/shop_images\/hero_banner_mobile.webp",
+            "image": "shopify:\/\/shop_images\/home_page_hero_v3.webp",
+            "image_mobile": "shopify:\/\/shop_images\/home_page_hero_mobile.webp",
             "overlay_type": "disabled",
             "video_link_bg": "",
             "content_width": 100,
@@ -63,7 +63,7 @@
             "text": "Apparel, tack, horse care, supplements and grooming essentials hand-picked from the brands the Western community already trusts.",
             "text_size": 90,
             "show_text_background": true,
-            "bg_color": "#ffffffba",
+            "bg_color": "#ffffffc4",
             "text_color": "#173225",
             "stacked_button": false,
             "button_1_text": "choose your box",
@@ -208,6 +208,22 @@
             "link": "",
             "image_width": 180
           }
+        },
+        "image_P8yQMU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Back_on_Track_USA_Logo.webp",
+            "link": "",
+            "image_width": 180
+          }
+        },
+        "image_xyiEqg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mayatex_Tagline_Blue_1.webp",
+            "link": "",
+            "image_width": 180
+          }
         }
       },
       "block_order": [
@@ -219,7 +235,9 @@
         "image_MYrLEe",
         "image_dLrmrX",
         "image_ydymC6",
-        "image_grdFGt"
+        "image_grdFGt",
+        "image_P8yQMU",
+        "image_xyiEqg"
       ],
       "settings": {
         "layout": "marquee",
@@ -360,7 +378,7 @@
           "type": "image",
           "settings": {
             "width": "25",
-            "image": "shopify:\/\/shop_images\/saddle_society_cowgirl_903253fb-9f8d-4278-a309-fed8baf86b41.webp",
+            "image": "shopify:\/\/shop_images\/tezza.webp",
             "overlay_type": "disabled",
             "text_position": "bottom-center",
             "subheading": "",
@@ -501,7 +519,7 @@
             "image": "shopify:\/\/shop_images\/collage-tile-hero.webp",
             "subheading": "<p><strong>Apparel<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Premium Apparel<\/strong><\/p>",
+            "heading": "",
             "heading_size": 125,
             "heading_highlight_type": "italics",
             "highlight_color": "#fff7f2",
@@ -527,7 +545,7 @@
             "image": "shopify:\/\/shop_images\/collage-tile-tack.webp",
             "subheading": "<p><strong>Tack<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Artisan Performance Tack<\/strong><\/p>",
+            "heading": "",
             "heading_size": 100,
             "heading_highlight_type": "underline-hand-drawn",
             "highlight_color": "#fbecdf",
@@ -573,10 +591,10 @@
         "column_U3edBF": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-row-2_e546303a-0606-4744-a334-435313107ba1.png",
+            "image": "shopify:\/\/shop_images\/collage-tile-horse-care.webp",
             "subheading": "<p><strong>Horse Care<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Equine Wellness & Supplements<\/strong><\/p>",
+            "heading": "",
             "heading_size": 85,
             "heading_highlight_type": "underline-hand-drawn",
             "highlight_color": "#fbecdf",
@@ -599,10 +617,10 @@
         "column_wCK3cb": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-row-3_2d37a083-f1f7-456e-9093-e4173ea486cb.png",
+            "image": "shopify:\/\/shop_images\/collage-tile-lifestyle-products.webp",
             "subheading": "<p><strong>Lifestyle Products<\/strong><\/p>",
             "subheading_size": 70,
-            "heading": "<p><strong>Ranch Lifestyle & Accents<\/strong><\/p>",
+            "heading": "",
             "heading_size": 85,
             "heading_highlight_type": "italics",
             "highlight_color": "#fff7f2",
@@ -698,10 +716,10 @@
             "enable_border": false,
             "heading": "",
             "text_size": 125,
-            "text": "<p>\"Saddle Society has changed my equine care routine. The leather balms and high-grade supplements pay for the box alone. Essential gear that lasts.\"<\/p>",
+            "text": "<p>\"I couldn’t be happier with my experience! The boxes are excellent quality, sturdy, and exactly what I was looking for. You can tell this company truly cares about the quality of its products and its customers!\"<\/p>",
             "content_size": 150,
-            "customer_name": "Wyatt C.",
-            "subheading": "<p>Working Rancher · Bozeman, MT<\/p>"
+            "customer_name": "Shelby F",
+            "subheading": "<p>Amsterdam MO<\/p>"
           }
         },
         "testimonial_Q7mriK": {
@@ -711,14 +729,15 @@
             "enable_border": false,
             "heading": "",
             "text_size": 125,
-            "text": "<p>\"The quality of apparel and custom reins inside this subscription is remarkable. I look forward to unboxing this parcel every single month.\"<\/p>",
+            "text": "<p>\"I was extremely pleased with this box! It included a great variety of high quality and useful products for my horse, and I really enjoyed trying items I may not have chosen on my own!\"<\/p>",
             "content_size": 150,
-            "customer_name": "Kaitlyn M.",
-            "subheading": "<p>Equine Trainer · Sheridan, WY<\/p>"
+            "customer_name": "Gracie B",
+            "subheading": "<p>Windom MN<\/p>"
           }
         },
         "testimonial_rJVVWw": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "star_rating": 5,
             "enable_border": false,
@@ -732,6 +751,7 @@
         },
         "testimonial_qdd7LP": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "star_rating": 5,
             "enable_border": false,
@@ -745,6 +765,7 @@
         },
         "testimonial_Ad8m7C": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "star_rating": 5,
             "enable_border": false,
@@ -758,6 +779,7 @@
         },
         "testimonial_azmeET": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "star_rating": 5,
             "enable_border": false,
@@ -790,7 +812,7 @@
         "color_scheme": "scheme-daef8f90-bd88-4c02-9736-1558f1f988f2",
         "testimonial_block_color": "#ffffff",
         "star_color": "#dbd1bf",
-        "width": "wrapper--full-padded",
+        "width": "wrapper",
         "slider_width": "wrapper--full-padded",
         "padding_top": 100,
         "padding_bottom": 100
@@ -942,7 +964,7 @@
           "settings": {
             "stacked_button": false,
             "button_1_text": "choose your box",
-            "button_1_link": "#",
+            "button_1_link": "#quiz-kit-key-nRMsWiz6Gz",
             "button_1_color": "btn--primary",
             "button_1_style": "btn--solid",
             "button_1_size": "btn--large",
@@ -961,14 +983,14 @@
         "button_hFCFAE"
       ],
       "custom_css": [
-        "section {margin-bottom: -5px;}"
+        "section {margin-bottom: -5px;}",
+        ".banner-image__image-container {display: none;}"
       ],
       "name": "Banner image",
       "settings": {
         "height": "original-height",
         "enable_mobile_height": true,
-        "mobile_height": "seven-fifty-height-mobile",
-        "image": "shopify:\/\/shop_images\/Group_1.jpg",
+        "mobile_height": "original-height-mobile",
         "overlay_type": "disabled",
         "transition": "zoom-out",
         "enable_zoom_animation": false,
@@ -981,10 +1003,10 @@
         "mobile_text_alignment": "center",
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "show_text_background": true,
-        "bg_color": "#ffffffb5",
+        "bg_color": "#ffffffed",
         "text_color": "",
         "width": "wrapper--full",
-        "padding_top": 0,
+        "padding_top": 40,
         "padding_bottom": 0
       }
     }
