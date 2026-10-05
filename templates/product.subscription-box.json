@@ -91,6 +91,14 @@
             "padding_bottom": 20
           }
         },
+        "text_NWz79N": {
+          "type": "text",
+          "settings": {
+            "title": "<p>You'll be charged today. Your membership renews on the 18th of each month. Skip or cancel before the 18th to avoid that month's charge.<\/p>",
+            "text_alignment": "left",
+            "padding_bottom": 20
+          }
+        },
         "form": {
           "type": "form",
           "settings": {
@@ -107,6 +115,7 @@
         "price_BGNAqA",
         "description",
         "feature_yk8Uhk",
+        "text_NWz79N",
         "form"
       ],
       "settings": {
@@ -121,7 +130,7 @@
         "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
         "width": "wrapper",
         "enable_subscription_box_quiz": true,
-        "quiz_url": "#quiz-kit-key-nRMsWiz6Gz",
+        "quiz_url": "#quiz-kit-key-0zTirWNDw",
         "quiz_button_text": "Build your box",
         "padding_top": 40,
         "padding_bottom": 60
@@ -285,14 +294,14 @@
           "type": "step",
           "settings": {
             "heading": "Choose Your Box",
-            "text": "<p>Select the claim your box and complete checkout. Skip or cancel anytime.<\/p>"
+            "text": "<p>Choose your box and complete checkout. Skip or cancel anytime.<\/p>"
           }
         },
         "step_byKtAm": {
           "type": "step",
           "settings": {
             "heading": "Personalize Your Profile",
-            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing. so we can better tailor your experience each and every month. <\/p>"
+            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing, so we can better tailor your experience each and every month.&nbsp;<\/p>"
           }
         },
         "step_78q6dQ": {
@@ -346,7 +355,7 @@
         "text_XLQVYi": {
           "type": "text",
           "settings": {
-            "text": "<p>Some items will be available all the time and changing, while others are limited and left over from previous months' boxes<\/p>",
+            "text": "<p>Each month brings a curated selection tailored to your profile.<br\/>Contents vary.<\/p>",
             "size": 100
           }
         }

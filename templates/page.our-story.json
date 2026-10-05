@@ -20,7 +20,7 @@
             "size": 180,
             "heading_highlight_type": "highlight-color",
             "highlight_color": "#173225",
-            "highlight_text_color": "#FFFFFF"
+            "highlight_text_color": "#ffffff"
           }
         }
       },
@@ -32,8 +32,8 @@
         "height": "original-height",
         "enable_mobile_height": true,
         "mobile_height": "original-height-mobile",
-        "image": "shopify:\/\/shop_images\/hero_banner.webp",
-        "image_mobile": "shopify:\/\/shop_images\/hero_banner_mobile.webp",
+        "image": "shopify:\/\/shop_images\/our_story_hero_v1_04bb0c14-58ca-4987-b383-cb62fd795c48.webp",
+        "image_mobile": "shopify:\/\/shop_images\/our_story_hero_v1_mobile.webp",
         "overlay_type": "disabled",
         "transition": "zoom-out",
         "enable_zoom_animation": true,
@@ -281,17 +281,17 @@
         "padding_bottom": 100
       }
     },
-    "section_banner_image_empjJy": {
+    "section_banner_image_xx8cyr": {
       "type": "section-banner-image",
       "blocks": {
-        "subheading_M8RdRf": {
+        "subheading_NyTbQb": {
           "type": "subheading",
           "settings": {
             "text": "<p>Join Saddle Society Today<\/p>",
             "size": 100
           }
         },
-        "heading_FGEW8Y": {
+        "heading_e9JqJ7": {
           "type": "heading",
           "settings": {
             "text": "<p>Experience the Best of the Western Lifestyle<\/p>",
@@ -301,19 +301,19 @@
             "highlight_text_color": ""
           }
         },
-        "text_GX7iBh": {
+        "text_gLhcdz": {
           "type": "text",
           "settings": {
             "text": "<p>Discover premium apparel, tack, horse-care products, and Western essentials carefully selected and delivered to your door every month.<\/p>",
             "size": 100
           }
         },
-        "button_jTUbRA": {
+        "button_MWxrwC": {
           "type": "button",
           "settings": {
             "stacked_button": false,
             "button_1_text": "choose your box",
-            "button_1_link": "#",
+            "button_1_link": "#quiz-kit-key-nRMsWiz6Gz",
             "button_1_color": "btn--primary",
             "button_1_style": "btn--solid",
             "button_1_size": "btn--large",
@@ -326,20 +326,21 @@
         }
       },
       "block_order": [
-        "subheading_M8RdRf",
-        "heading_FGEW8Y",
-        "text_GX7iBh",
-        "button_jTUbRA"
+        "subheading_NyTbQb",
+        "heading_e9JqJ7",
+        "text_gLhcdz",
+        "button_MWxrwC"
       ],
       "custom_css": [
-        "section {margin-bottom: -5px;}",
-        ".banner-image__image-container {display: none;}"
+        "section {margin-bottom: -5px;}"
       ],
       "name": "Banner image",
       "settings": {
         "height": "original-height",
         "enable_mobile_height": true,
         "mobile_height": "original-height-mobile",
+        "image": "shopify:\/\/shop_images\/our_story_man_in_bar_with_horse.webp",
+        "image_mobile": "shopify:\/\/shop_images\/our_story_man_in_barn_with_horse.webp",
         "overlay_type": "disabled",
         "transition": "zoom-out",
         "enable_zoom_animation": false,
@@ -348,11 +349,11 @@
         "content_width": 64,
         "text_position": "center",
         "text_alignment": "center",
-        "mobile_text_position": "top-center",
+        "mobile_text_position": "center",
         "mobile_text_alignment": "center",
-        "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
+        "color_scheme": "scheme-329a7809-fd4f-4628-9aea-3d38fc1c3a20",
         "show_text_background": true,
-        "bg_color": "#ffffffed",
+        "bg_color": "#ffffffc2",
         "text_color": "",
         "width": "wrapper--full",
         "padding_top": 40,
@@ -368,6 +369,6 @@
     "section_image_with_text_xL86A7",
     "section_image_with_text_HtnhKX",
     "section_overlapping_images_d4Kk6Q",
-    "section_banner_image_empjJy"
+    "section_banner_image_xx8cyr"
   ]
 }

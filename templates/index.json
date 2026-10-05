@@ -48,7 +48,7 @@
             "image": "shopify:\/\/shop_images\/home_page_hero_v3.webp",
             "image_mobile": "shopify:\/\/shop_images\/home_page_hero_mobile.webp",
             "overlay_type": "disabled",
-            "video_link_bg": "",
+            "video_link_bg": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/3be7e077c8dc49f8aec0254504ab0d51.mp4",
             "content_width": 100,
             "text_position": "center",
             "text_alignment": "text-center",
@@ -63,11 +63,11 @@
             "text": "Apparel, tack, horse care, supplements and grooming essentials hand-picked from the brands the Western community already trusts.",
             "text_size": 90,
             "show_text_background": true,
-            "bg_color": "#ffffffc4",
+            "bg_color": "#ffffffd4",
             "text_color": "#173225",
             "stacked_button": false,
             "button_1_text": "choose your box",
-            "button_1_link": "#quiz-kit-key-nRMsWiz6Gz",
+            "button_1_link": "#quiz-kit-key-0zTirWNDw",
             "button_1_color": "btn--primary",
             "button_1_style": "btn--solid",
             "button_1_size": "btn--large",
@@ -88,7 +88,7 @@
       "settings": {
         "slide_height": "original-height",
         "enable_mobile_height": true,
-        "mobile_slide_height": "full-height-mobile",
+        "mobile_slide_height": "original-height-mobile",
         "show_nav_dots": false,
         "show_nav_arrows": false,
         "show_arrow_down": false,
@@ -277,7 +277,7 @@
         "template--18256742449430__e3ca25d1-ffe7-4cc0-b1e7-80a8f74c5e9b-167901971892ae9a60-0": {
           "type": "subheading",
           "settings": {
-            "text": "<p>Sadde Society<\/p>",
+            "text": "<p>Saddle Society<\/p>",
             "size": 100,
             "margin_bottom": 10
           }
@@ -430,14 +430,14 @@
           "type": "step",
           "settings": {
             "heading": "Choose Your Box",
-            "text": "<p>Select the claim your box and complete checkout. Skip or cancel anytime.<\/p>"
+            "text": "<p>Choose your box and complete checkout. Skip or cancel anytime.<\/p>"
           }
         },
         "step_m9kUYa": {
           "type": "step",
           "settings": {
             "heading": "Personalize Your Profile",
-            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing. so we can better tailor your experience each and every month. <\/p>"
+            "text": "<p>Tell us your apparel sizes, riding discipline, horse care needs, preferences and horse blanket and boot sizing, so we can better tailor your experience each and every month.&nbsp;<\/p>"
           }
         },
         "step_VCaRgp": {
@@ -491,7 +491,7 @@
         "text_bDejK7": {
           "type": "text",
           "settings": {
-            "text": "<p>Some items will be available all the time and changing, while others are limited and left over from previous months' boxes<\/p>",
+            "text": "<p>Each month brings a curated selection tailored to your profile.<br\/>Contents vary.<\/p>",
             "size": 100
           }
         }
@@ -684,7 +684,7 @@
         "image_link_2": "",
         "hide_image_2": false,
         "subheading": "Our Mission",
-        "title": "<p>Sourced by real ranchers and competitors. Trusted by professionals. Every product is carefully selected for proven quality and real world performance from the ranch and trail to the arena and show pen. There’s something for everyone in the Western<\/p>",
+        "title": "<p>Sourced by real ranchers and competitors. Trusted by professionals. Every product is carefully selected for proven quality and real world performance from the ranch and trail to the arena and show pen. There’s something for everyone in the Western community in our boxes.<\/p>",
         "heading_size": 110,
         "heading_highlight_type": "italics",
         "highlight_color": "#e6caca",
@@ -964,7 +964,7 @@
           "settings": {
             "stacked_button": false,
             "button_1_text": "choose your box",
-            "button_1_link": "#quiz-kit-key-nRMsWiz6Gz",
+            "button_1_link": "#quiz-kit-key-0zTirWNDw",
             "button_1_color": "btn--primary",
             "button_1_style": "btn--solid",
             "button_1_size": "btn--large",
@@ -983,27 +983,28 @@
         "button_hFCFAE"
       ],
       "custom_css": [
-        "section {margin-bottom: -5px;}",
-        ".banner-image__image-container {display: none;}"
+        "section {margin-bottom: -5px;}"
       ],
       "name": "Banner image",
       "settings": {
         "height": "original-height",
         "enable_mobile_height": true,
         "mobile_height": "original-height-mobile",
+        "image": "shopify:\/\/shop_images\/man_with_horse_in_barn_v1.webp",
+        "image_mobile": "shopify:\/\/shop_images\/man_with_horse_in_barn_v1_mobile.webp",
         "overlay_type": "disabled",
         "transition": "zoom-out",
         "enable_zoom_animation": false,
         "enable_card_scrolling": false,
         "increase_border_radius": false,
         "content_width": 64,
-        "text_position": "top-center",
+        "text_position": "center",
         "text_alignment": "center",
-        "mobile_text_position": "top-center",
+        "mobile_text_position": "center",
         "mobile_text_alignment": "center",
         "color_scheme": "scheme-539a4762-8315-4153-ad82-bcb80016c0ff",
         "show_text_background": true,
-        "bg_color": "#ffffffed",
+        "bg_color": "#ffffffc2",
         "text_color": "",
         "width": "wrapper--full",
         "padding_top": 40,
