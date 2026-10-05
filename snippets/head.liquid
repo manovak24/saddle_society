@@ -222,10 +222,13 @@
 
 {%- assign box_settings = shop.metaobjects.subscription_box_settings.values | first -%}
 {%- assign box_message = box_settings.message -%}
+{%- assign box_terms = box_settings.subscription_terms.value -%}
+
 {%- if box_message != blank -%}
   <style>
     .ddXwQm::before {
-      content: {{ box_message | metafield_text | strip_newlines | json }};
+      content: {{ box_message | metafield_text | strip_newlines | json }}{% if box_terms != blank %} "\A\A" {{ box_terms | strip_newlines | json }}{% endif %};
+      white-space: pre-line;
       font-size: 14px;
     }
   </style>

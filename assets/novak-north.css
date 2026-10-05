@@ -395,6 +395,12 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     border-radius: 8px;
 }
 
+.template-product .product__subheading h4 {
+    font-family: var(--FONT-STACK-BODY);
+    font-size: 26px;
+
+}
+
 .product-single .jdgm-widget {
     margin-bottom: 20px;
 }
