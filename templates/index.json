@@ -55,12 +55,12 @@
             "mobile_text_position": "center",
             "mobile_text_alignment": "center",
             "subheading": "Monthly Subscription Box",
-            "title": "<p>The ultimate monthly <br\/>s<em>ubscription box built<\/em> for the <br\/>western lifestyle<\/p>",
+            "title": "<p>The ultimate monthly&nbsp;<br\/>s<em>ubscription box built<\/em> for the&nbsp;<br\/>western lifestyle<\/p>",
             "heading_size": 180,
             "heading_highlight_type": "italics",
             "highlight_color": "#fff3f2",
             "highlight_text_color": "#ffffff",
-            "text": "Apparel, tack, horse care, supplements and grooming essentials hand-picked from the brands the Western community already trusts.",
+            "text": "Apparel, tack, horse care, supplements and grooming essentials hand-picked from the brands the Western community already trusts. <br> $175 one-time or $148.75\/month with Subscribe & save (15% off)",
             "text_size": 90,
             "show_text_background": true,
             "bg_color": "#ffffffd4",
@@ -359,7 +359,7 @@
           "type": "image",
           "settings": {
             "width": "25",
-            "image": "shopify:\/\/shop_images\/saddle_society_built_for_west.webp",
+            "image": "shopify:\/\/shop_images\/IMG_2874.jpg",
             "overlay_type": "disabled",
             "text_position": "bottom-center",
             "subheading": "",
@@ -371,7 +371,7 @@
             "button_2_link": "",
             "show_text_background": false,
             "bg_color": "",
-            "text_color": "#f2ede3"
+            "text_color": "#F2EDE3"
           }
         },
         "template--18144394182934__a5dc417a-8b90-4b9e-8bbd-5761b491133e-167882456093fe0fe1-2": {
@@ -542,7 +542,7 @@
         "template--19703957815574__0681c988-bc81-449f-898e-35ff9ea1ef78-16884257840bbf4d3f-2": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-tile-tack.webp",
+            "image": "shopify:\/\/shop_images\/Tezza-0885.jpg",
             "subheading": "<p><strong>Tack<\/strong><\/p>",
             "subheading_size": 70,
             "heading": "",
@@ -591,7 +591,7 @@
         "column_U3edBF": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/collage-tile-horse-care.webp",
+            "image": "shopify:\/\/shop_images\/IMG_2878.jpg",
             "subheading": "<p><strong>Horse Care<\/strong><\/p>",
             "subheading_size": 70,
             "heading": "",

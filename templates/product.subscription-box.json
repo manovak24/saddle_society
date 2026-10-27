@@ -61,13 +61,11 @@
           "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
-        "price_BGNAqA": {
-          "type": "price",
+        "text_gfWnTT": {
+          "type": "text",
           "settings": {
-            "price_size": 150,
-            "bold_price": false,
-            "show_tax_information": false,
-            "show_shipping_policy": false,
+            "title": "<h4>$175 one-time or $148.75\/month with Subscribe & save (15% off)<\/h4>",
+            "text_alignment": "left",
             "padding_bottom": 20
           }
         },
@@ -94,7 +92,7 @@
         "text_NWz79N": {
           "type": "text",
           "settings": {
-            "title": "<p>You'll be charged today. Your membership renews on the 18th of each month. Skip or cancel before the 18th to avoid that month's charge.<\/p>",
+            "title": "<p>{{ metaobjects.subscription_box_settings[\"your-saddle-society-box-is-curated-specifically-for-you-based-on-your-quiz-results-place-your-order-by-the-28th-to-be-included-in-the-next-box-drop-shipping-by-the-5th-of-the-following-month\"].subscription_terms.value }}<\/p>",
             "text_alignment": "left",
             "padding_bottom": 20
           }
@@ -112,7 +110,7 @@
       "block_order": [
         "title_FgJyPR",
         "judge_me_reviews_preview_badge_rxgAba",
-        "price_BGNAqA",
+        "text_gfWnTT",
         "description",
         "feature_yk8Uhk",
         "text_NWz79N",
