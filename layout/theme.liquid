@@ -73,6 +73,14 @@
       <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
     {%- endcomment -%}
 
+    {%- assign waitlist_product = settings.waitlist_product -%}
+    {%- if waitlist_product != blank -%}
+      {%- if waitlist_product.available == false or settings.waitlist_preview -%}
+        {%- render 'waitlist-dialog' -%}
+        <script src="{{ 'waitlist.js' | asset_url }}" defer></script>
+      {%- endif -%}
+    {%- endif -%}
+
     <!-- Paste marketing code or third party scripts below this comment line ============== -->
 
     <!-- And above this comment line ================================================== -->

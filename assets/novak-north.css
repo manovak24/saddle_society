@@ -499,3 +499,89 @@ body:has(.section-footer--visible) .parallax-rounded-corners {
     display: block;
 }
 /* //////// End site footer //////// */
+
+/* Waitlist dialog */
+.waitlist-dialog {
+    position: fixed;
+    width: calc(100% - 32px);
+    max-width: 520px;
+    padding: 50px 40px 40px;
+    border: 0;
+    border-radius: var(--radius, 32px);
+    text-align: center;
+}
+
+.waitlist-dialog::backdrop {
+    background: rgba(18, 19, 22, 0.5);
+}
+
+.waitlist-dialog__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.waitlist-dialog__close svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.25s ease;
+}
+
+.waitlist-dialog__close:hover svg {
+    transform: rotate(90deg);
+}
+
+.waitlist-dialog__heading {
+    margin: 0 0 12px;
+}
+
+.waitlist-dialog__text {
+    margin: 0 0 24px;
+}
+
+.waitlist-dialog form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.waitlist-dialog form > .waitlist-dialog__heading,
+.waitlist-dialog form > .waitlist-dialog__text,
+.waitlist-dialog form > .errors,
+.waitlist-dialog form > .waitlist-dialog__success {
+    flex: 0 0 100%;
+}
+
+.waitlist-dialog input[type="email"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+}
+
+.waitlist-dialog button[type="submit"] {
+    flex: 0 0 auto;
+}
+
+.waitlist-dialog__success {
+    margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .waitlist-dialog {
+        padding: 50px 24px 24px;
+    }
+    
+    .waitlist-dialog input[type="email"],
+    .waitlist-dialog button[type="submit"] {
+        flex: 0 0 100%;
+    }
+}
+/* //////// End waitlist dialog //////// */

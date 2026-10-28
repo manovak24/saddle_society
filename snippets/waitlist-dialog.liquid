@@ -1,0 +1,34 @@
+<dialog class="waitlist-dialog" data-waitlist-dialog aria-labelledby="WaitlistHeading">
+  <button type="button" class="waitlist-dialog__close" data-waitlist-close aria-label="Close">
+    {%- render 'icon-close' -%}
+  </button>
+
+  {%- form 'customer', id: 'waitlist-form', class: 'waitlist-dialog__form' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="waitlist-dialog__success" data-waitlist-success>{{ settings.waitlist_success }}</p>
+    {%- else -%}
+      <h2 id="WaitlistHeading" class="waitlist-dialog__heading">{{ settings.waitlist_heading }}</h2>
+      <p class="waitlist-dialog__text">{{ settings.waitlist_text }}</p>
+
+      {%- if form.errors -%}
+        <div class="errors">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+
+      <input type="hidden" name="contact[tags]" value="waitlist">
+      <label for="WaitlistEmail" class="visually-hidden">Email</label>
+      <input
+        type="email"
+        id="WaitlistEmail"
+        name="contact[email]"
+        placeholder="Email"
+        autocomplete="email"
+        autocorrect="off"
+        autocapitalize="off"
+        required
+      >
+      <button type="submit" class="btn">Notify me</button>
+    {%- endif -%}
+  {%- endform -%}
+</dialog>
+
+<span hidden data-waitlist-label>{{ settings.waitlist_button_label | escape }}</span>

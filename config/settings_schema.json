@@ -643,6 +643,46 @@
     ]
   },
   {
+    "name": "Waitlist",
+    "settings": [
+      {
+        "type": "product",
+        "id": "waitlist_product",
+        "label": "Subscription box product"
+      },
+      {
+        "type": "text",
+        "id": "waitlist_button_label",
+        "label": "Button label",
+        "default": "Join the waitlist"
+      },
+      {
+        "type": "text",
+        "id": "waitlist_heading",
+        "label": "Heading",
+        "default": "This month's boxes are sold out"
+      },
+      {
+        "type": "textarea",
+        "id": "waitlist_text",
+        "label": "Text",
+        "default": "Join the waitlist and we'll email you when boxes open back up."
+      },
+      {
+        "type": "text",
+        "id": "waitlist_success",
+        "label": "Success message",
+        "default": "You're on the list! We'll be in touch when boxes are available."
+      },
+      {
+        "type": "checkbox",
+        "id": "waitlist_preview",
+        "label": "Preview sold out state",
+        "default": false
+      }
+    ]
+  },
+  {
     "name": "Product grid",
     "settings": [
       {
